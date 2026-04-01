@@ -188,98 +188,19 @@ export default function App() {
               </motion.div>
             </motion.div>
 
-            {/* Mockup */}
+            {/* Hero image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.2 }}
               className="relative lg:ml-auto"
             >
-              <div className="relative w-full mx-auto">
-                {/* Desktop monitor mockup */}
-                <div className="flex flex-col items-center">
-                  {/* Monitor bezel */}
-                  <div className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl p-3 pt-7 shadow-[0_30px_80px_-10px_rgba(0,0,0,0.5)] border border-gray-700/80 relative w-full ring-1 ring-white/5">
-                    {/* Webcam dot */}
-                    <div className="absolute top-3 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-gray-600 ring-1 ring-gray-500" />
-                    {/* Screen with inner glow */}
-                    <div className="rounded-lg overflow-hidden shadow-inner ring-1 ring-black/40">
-                      <img
-                        src="/wayne-edwards-preview.png"
-                        alt="Wayne Edwards Plumbing — client site preview"
-                        className="w-full h-auto block"
-                        loading="eager"
-                      />
-                    </div>
-                    {/* Bottom bezel reflection */}
-                    <div className="h-1.5 mt-2 rounded-full bg-gradient-to-r from-transparent via-white/10 to-transparent mx-8" />
-                  </div>
-                  {/* Stand neck — tapered */}
-                  <div
-                    className="mx-auto bg-gradient-to-b from-gray-700 to-gray-600"
-                    style={{ width: '48px', height: '28px', clipPath: 'polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%)' }}
-                  />
-                  {/* Stand base — pill with sheen */}
-                  <div className="relative w-44 h-3 bg-gradient-to-b from-gray-500 to-gray-700 rounded-full shadow-lg">
-                    <div className="absolute inset-x-6 top-0.5 h-0.5 rounded-full bg-white/20" />
-                  </div>
-                </div>
-
-                {/* Mobile phone mockup — floating in front */}
-                <motion.div
-                  initial={{ x: 30, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
-                  className="absolute -bottom-2 right-2 z-10"
-                  style={{ width: '90px' }}
-                >
-                  {/* Phone frame */}
-                  <div className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-[18px] p-1.5 shadow-[0_20px_50px_-5px_rgba(0,0,0,0.6)] border border-gray-700/80 ring-1 ring-white/5 relative">
-                    {/* Notch */}
-                    <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-8 h-1 rounded-full bg-gray-700 z-10" />
-                    {/* Screen */}
-                    <div className="rounded-[12px] overflow-hidden bg-black" style={{ aspectRatio: '9/18' }}>
-                      <img
-                        src="/wayne-edwards-mobile-preview.svg"
-                        alt="Mobile preview"
-                        className="w-full h-full object-cover object-top"
-                      />
-                    </div>
-                    {/* Home bar */}
-                    <div className="mt-1 w-8 h-1 bg-gray-600 rounded-full mx-auto" />
-                  </div>
-                  {/* Phone shadow */}
-                  <div className="w-3/4 h-2 bg-black/30 rounded-full blur-sm mx-auto mt-1" />
-                </motion.div>
-
-                <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 1, duration: 0.5 }}
-                  className="absolute -bottom-4 left-4 right-4 bg-white rounded-2xl p-4 shadow-2xl border border-gray-100"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center shrink-0">
-                      <TrendingUp className="w-5 h-5 text-white" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-bold text-sm">Local search ranking up</p>
-                      <p className="text-xs text-brand-slate truncate">"Plumber Llanelli" — page 1</p>
-                    </div>
-                    <div className="flex gap-1 items-end shrink-0">
-                      {[6, 10, 8, 14, 10, 16].map((h, i) => (
-                        <motion.div
-                          key={i}
-                          animate={{ height: [h * 0.6, h, h * 0.6] }}
-                          transition={{ repeat: Infinity, duration: 1.8, delay: i * 0.15 }}
-                          className="w-1.5 bg-green-500 rounded-full"
-                          style={{ height: h }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
+              <img
+                src="/agencyheroimage.svg"
+                alt="Website design showcase"
+                className="w-full h-auto block"
+                loading="eager"
+              />
             </motion.div>
           </div>
         </div>
