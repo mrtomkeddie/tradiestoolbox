@@ -77,7 +77,7 @@ export default function App() {
       trade: 'Plumber & Gas Engineer',
       location: 'Llanelli, South Wales',
       package: 'Growth',
-      url: 'https://golden-mooncake-8e0648.netlify.app/',
+      url: 'https://wayne-edwards.netlify.app/',
       description: 'Multi-page local SEO site for a Gas Safe registered engineer with 20+ years experience. Competitor research, service pages, schema markup.',
     },
     {
@@ -85,7 +85,7 @@ export default function App() {
       trade: 'Plumber',
       location: 'Llanelli, Wales',
       package: 'Growth',
-      url: 'https://heroic-fenglisu-73c272.netlify.app/',
+      url: 'https://craig-edwards.netlify.app/',
       description: 'Service-page focused Growth build targeting boiler installations, repairs, and central heating across Llanelli.',
     },
     {
@@ -93,7 +93,7 @@ export default function App() {
       trade: 'Plumber & Gas Engineer',
       location: 'Llanelli, Wales',
       package: 'Starter',
-      url: null,
+      url: 'https://corcoran-plumbing.netlify.app/',
       description: 'Steel and orange brand identity for a Gas Safe registered heating specialist. Boiler installations, servicing, and LPG work across Carmarthenshire.',
     },
   ];
