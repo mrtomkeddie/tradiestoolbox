@@ -71,7 +71,7 @@ export default function App() {
     }
   };
 
-  const portfolio: { name: string; trade: string; location: string; package: string; url: string | null; description: string }[] = [
+  const portfolio: { name: string; trade: string; location: string; package: string; url: string | null; description: string; preview: string | null }[] = [
     {
       name: 'Wayne Edwards Plumbing & Gas',
       trade: 'Plumber & Gas Engineer',
@@ -79,6 +79,7 @@ export default function App() {
       package: 'Growth',
       url: 'https://wayne-edwards.netlify.app/',
       description: 'Multi-page local SEO site for a Gas Safe registered engineer with 20+ years experience. Competitor research, service pages, schema markup.',
+      preview: '/wayne-edwards-preview.png',
     },
     {
       name: 'Craig Edwards Plumbing',
@@ -87,14 +88,16 @@ export default function App() {
       package: 'Growth',
       url: 'https://craig-edwards.netlify.app/',
       description: 'Service-page focused Growth build targeting boiler installations, repairs, and central heating across Llanelli.',
+      preview: '/craig-edwards-preview.png',
     },
     {
       name: 'Corcoran Plumbing & Heating',
       trade: 'Plumber & Gas Engineer',
       location: 'Llanelli, Wales',
-      package: 'Starter',
+      package: 'Growth',
       url: 'https://corcoran-plumbing.netlify.app/',
       description: 'Steel and orange brand identity for a Gas Safe registered heating specialist. Boiler installations, servicing, and LPG work across Carmarthenshire.',
+      preview: '/corcoran-preview.png',
     },
   ];
 
@@ -343,30 +346,37 @@ export default function App() {
                 whileHover={{ y: -4 }}
                 className="bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 flex flex-col"
               >
-                <div className="overflow-hidden bg-gray-100 relative" style={{ height: '240px' }}>
-                  {p.url ? (
-                    <iframe
-                      src={p.url}
-                      title={p.name}
-                      loading="lazy"
-                      style={{
-                        pointerEvents: 'none',
-                        width: '1200px',
-                        height: '800px',
-                        transform: 'scale(0.4)',
-                        transformOrigin: 'top left',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                      }}
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-brand-slate">
-                      <Globe className="w-8 h-8 opacity-30" />
-                      <span className="text-xs font-medium opacity-50">Coming soon</span>
+                {/* Browser chrome mockup */}
+                <div className="bg-gray-100 border-b border-gray-200">
+                  {/* Title bar */}
+                  <div className="flex items-center gap-2 px-4 py-3">
+                    <div className="flex gap-1.5">
+                      <div className="w-3 h-3 rounded-full bg-red-400" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                      <div className="w-3 h-3 rounded-full bg-green-400" />
                     </div>
-                  )}
+                    <div className="flex-1 bg-white rounded-md px-3 py-1 text-xs text-gray-400 font-mono truncate border border-gray-200">
+                      {p.url ?? 'coming soon'}
+                    </div>
+                  </div>
+                  {/* Screenshot */}
+                  <div className="overflow-hidden relative" style={{ height: '260px' }}>
+                    {p.preview ? (
+                      <img
+                        src={p.preview}
+                        alt={`${p.name} website preview`}
+                        className="w-full h-full object-cover object-top"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-brand-slate bg-gray-50">
+                        <Globe className="w-8 h-8 opacity-30" />
+                        <span className="text-xs font-medium opacity-50">Coming soon</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
+                {/* Card body */}
                 <div className="p-6 flex flex-col flex-1">
                   <div className="flex items-start justify-between gap-4 mb-3">
                     <div>
