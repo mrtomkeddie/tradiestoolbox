@@ -77,7 +77,7 @@ export default function App() {
       trade: 'Plumber & Gas Engineer',
       location: 'Llanelli, South Wales',
       package: 'Growth',
-      url: 'https://69ca5a3f16676a6a2c3656da--golden-mooncake-8e0648.netlify.app/',
+      url: 'https://golden-mooncake-8e0648.netlify.app/',
       description: 'Multi-page local SEO site for a Gas Safe registered engineer with 20+ years experience. Competitor research, service pages, schema markup.',
     },
     {
@@ -85,7 +85,7 @@ export default function App() {
       trade: 'Plumber',
       location: 'Llanelli, Wales',
       package: 'Growth',
-      url: 'https://69ca5a6f9d201d471d74555f--heroic-fenglisu-73c272.netlify.app/',
+      url: 'https://heroic-fenglisu-73c272.netlify.app/',
       description: 'Service-page focused Growth build targeting boiler installations, repairs, and central heating across Llanelli.',
     },
     {
@@ -144,7 +144,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+      <section className="relative pt-28 pb-10 lg:pt-32 lg:pb-16 overflow-hidden min-h-screen flex flex-col justify-center">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:18px_18px] opacity-40" />
         <div className="absolute top-0 right-0 -z-10 w-[700px] h-[700px] bg-brand-orange/5 rounded-full blur-3xl translate-x-1/3 -translate-y-1/4" />
 
@@ -157,12 +157,12 @@ export default function App() {
                 For Plumbers, Roofers, Electricians & HVAC
               </motion.div>
 
-              <motion.h1 variants={fadeInUp} className="text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6">
+              <motion.h1 variants={fadeInUp} className="text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight mb-4">
                 Websites built for the trades.{' '}
                 <span className="text-brand-orange">AI tools to back them up.</span>
               </motion.h1>
 
-              <motion.p variants={fadeInUp} className="text-lg text-brand-slate mb-8 leading-relaxed max-w-[55ch]">
+              <motion.p variants={fadeInUp} className="text-base text-brand-slate mb-6 leading-relaxed max-w-[55ch]">
                 We build high-converting sites for tradespeople — researched against your competitors, optimised for local search, and delivered fully async. No calls required.
               </motion.p>
 
@@ -175,7 +175,7 @@ export default function App() {
                 </a>
               </motion.div>
 
-              <motion.div variants={fadeInUp} className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-brand-slate font-medium">
+              <motion.div variants={fadeInUp} className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-brand-slate font-medium">
                 {['Trades only', 'You own the site', 'Fully async', 'AI-powered'].map(t => (
                   <span key={t} className="flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4 text-brand-orange" />
@@ -193,26 +193,61 @@ export default function App() {
               className="relative lg:ml-auto"
             >
               <div className="relative w-full mx-auto">
-                {/* iframe: 1440px wide, scaled 0.5 → 720px display width, 810px height → 405px display height */}
-                <div className="bg-brand-dark rounded-3xl p-2.5 shadow-2xl border-4 border-gray-800 overflow-hidden">
-                  <div className="rounded-2xl overflow-hidden relative" style={{ width: '100%', height: '405px' }}>
-                    <iframe
-                      src="https://69ca5a3f16676a6a2c3656da--golden-mooncake-8e0648.netlify.app/"
-                      title="Wayne Edwards Plumbing — client site preview"
-                      loading="lazy"
-                      style={{
-                        pointerEvents: 'none',
-                        width: '1440px',
-                        height: '810px',
-                        transform: 'scale(0.5)',
-                        transformOrigin: 'top left',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                      }}
-                    />
+                {/* Desktop monitor mockup */}
+                <div className="flex flex-col items-center">
+                  {/* Monitor bezel */}
+                  <div className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl p-3 pt-7 shadow-[0_30px_80px_-10px_rgba(0,0,0,0.5)] border border-gray-700/80 relative w-full ring-1 ring-white/5">
+                    {/* Webcam dot */}
+                    <div className="absolute top-3 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-gray-600 ring-1 ring-gray-500" />
+                    {/* Screen with inner glow */}
+                    <div className="rounded-lg overflow-hidden shadow-inner ring-1 ring-black/40">
+                      <img
+                        src="/wayne-edwards-preview.png"
+                        alt="Wayne Edwards Plumbing — client site preview"
+                        className="w-full h-auto block"
+                        loading="eager"
+                      />
+                    </div>
+                    {/* Bottom bezel reflection */}
+                    <div className="h-1.5 mt-2 rounded-full bg-gradient-to-r from-transparent via-white/10 to-transparent mx-8" />
+                  </div>
+                  {/* Stand neck — tapered */}
+                  <div
+                    className="mx-auto bg-gradient-to-b from-gray-700 to-gray-600"
+                    style={{ width: '48px', height: '28px', clipPath: 'polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%)' }}
+                  />
+                  {/* Stand base — pill with sheen */}
+                  <div className="relative w-44 h-3 bg-gradient-to-b from-gray-500 to-gray-700 rounded-full shadow-lg">
+                    <div className="absolute inset-x-6 top-0.5 h-0.5 rounded-full bg-white/20" />
                   </div>
                 </div>
+
+                {/* Mobile phone mockup — floating in front */}
+                <motion.div
+                  initial={{ x: 30, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
+                  className="absolute -bottom-2 right-2 z-10"
+                  style={{ width: '90px' }}
+                >
+                  {/* Phone frame */}
+                  <div className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-[18px] p-1.5 shadow-[0_20px_50px_-5px_rgba(0,0,0,0.6)] border border-gray-700/80 ring-1 ring-white/5 relative">
+                    {/* Notch */}
+                    <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-8 h-1 rounded-full bg-gray-700 z-10" />
+                    {/* Screen */}
+                    <div className="rounded-[12px] overflow-hidden bg-black" style={{ aspectRatio: '9/18' }}>
+                      <img
+                        src="/wayne-edwards-preview.png"
+                        alt="Mobile preview"
+                        className="w-full h-full object-cover object-top scale-[1.4] origin-top"
+                      />
+                    </div>
+                    {/* Home bar */}
+                    <div className="mt-1 w-8 h-1 bg-gray-600 rounded-full mx-auto" />
+                  </div>
+                  {/* Phone shadow */}
+                  <div className="w-3/4 h-2 bg-black/30 rounded-full blur-sm mx-auto mt-1" />
+                </motion.div>
 
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
