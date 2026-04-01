@@ -237,9 +237,9 @@ export default function App() {
                     {/* Screen */}
                     <div className="rounded-[12px] overflow-hidden bg-black" style={{ aspectRatio: '9/18' }}>
                       <img
-                        src="/wayne-edwards-preview.png"
+                        src="/wayne-edwards-mobile-preview.svg"
                         alt="Mobile preview"
-                        className="w-full h-full object-cover object-top scale-[1.4] origin-top"
+                        className="w-full h-full object-cover object-top"
                       />
                     </div>
                     {/* Home bar */}
