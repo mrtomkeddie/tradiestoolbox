@@ -108,7 +108,7 @@ export default function App() {
       <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <div className="flex items-center">
-            <img src="/ttlogo.svg" alt="TradersToolkit" className="h-9 w-auto" />
+            <img src="/Logo (black).svg" alt="Tradies Toolbox" className="h-9 w-auto" />
           </div>
 
           <div className="hidden md:flex items-center gap-8 font-medium text-sm">
@@ -173,7 +173,7 @@ export default function App() {
                 <a href="#portfolio" className="bg-brand-orange text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-[#e66000] transition-colors shadow-xl shadow-brand-orange/20 flex items-center justify-center gap-2">
                   See Our Work <ArrowRight className="w-5 h-5" />
                 </a>
-                <a href="#start-build" className="bg-white text-brand-dark border-2 border-gray-200 px-8 py-4 rounded-xl font-bold text-base hover:border-brand-dark transition-colors flex items-center justify-center gap-2">
+                <a href="#pricing" className="bg-white text-brand-dark border-2 border-gray-200 px-8 py-4 rounded-xl font-bold text-base hover:border-brand-dark transition-colors flex items-center justify-center gap-2">
                   View Pricing
                 </a>
               </motion.div>
@@ -650,14 +650,14 @@ export default function App() {
       <footer className="bg-brand-dark text-gray-400 py-10 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center">
-            <img src="/tlogowhite.svg" alt="TradersToolkit" className="h-7 w-auto" />
+            <img src="/Logo (white).svg" alt="Tradies Toolbox" className="h-7 w-auto" />
           </div>
           <div className="flex gap-6 text-sm">
             <a href="#how-it-works" className="hover:text-white transition-colors">How It Works</a>
             <a href="#portfolio" className="hover:text-white transition-colors">Our Work</a>
             <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
           </div>
-          <p className="text-xs">© 2026 TradersToolkit. traderstoolkit.io</p>
+          <p className="text-xs">© 2026 Tradies Toolbox. tradiestoolbox.co.uk</p>
         </div>
       </footer>
 
