@@ -398,14 +398,14 @@ export default function App() {
             <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex flex-col">
               <h3 className="text-xl font-bold mb-1">Local</h3>
               <div className="text-4xl font-display font-bold mb-1">£447</div>
-              <p className="text-sm text-brand-slate mb-6">Get found by customers searching for your trade in your town.</p>
+              <p className="text-sm text-brand-slate mb-6">A sharp, bespoke site built to rank in your town and turn visitors into calls. Live in 5–7 days.</p>
               <ul className="space-y-3 mb-8 flex-1 text-sm">
                 {[
-                  'Bespoke single-page website',
+                  'Bespoke design — no templates',
+                  'Ranks for your trade + your town',
+                  'Click-to-call + contact form',
                   'Conversion copy written for you',
-                  'Mobile optimised',
-                  'Full local SEO & schema markup',
-                  'Contact form',
+                  'Schema markup included',
                   '2 rounds of revisions',
                   '5–7 day delivery',
                 ].map(f => (
@@ -425,16 +425,15 @@ export default function App() {
               <div className="absolute top-0 right-0 bg-brand-orange text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-wider">Most Popular</div>
               <h3 className="text-xl font-bold mb-1">Dominate</h3>
               <div className="text-4xl font-display font-bold mb-1">£797</div>
-              <p className="text-sm text-gray-300 mb-6">Own the search results across every town you cover.</p>
+              <p className="text-sm text-gray-300 mb-6">Built to own every search term across every town you cover. The last website you'll ever need.</p>
               <ul className="space-y-3 mb-8 flex-1 text-sm text-gray-200">
                 {[
                   'Everything in Local',
-                  'Multi-page website',
+                  'Ranks across multiple towns',
                   'Competitor research included',
-                  'Dedicated service & location pages',
+                  'Dedicated page per service',
                   'Google review integration',
                   '3 rounds of revisions',
-                  'Priority delivery',
                 ].map(f => (
                   <li key={f} className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
