@@ -76,7 +76,7 @@ export default function App() {
       name: 'Wayne Edwards Plumbing & Gas',
       trade: 'Plumber & Gas Engineer',
       location: 'Llanelli, South Wales',
-      package: 'Growth',
+      package: 'Dominate',
       url: 'https://wayne-edwards.netlify.app/',
       description: 'Multi-page local SEO site for a Gas Safe registered engineer with 20+ years experience. Competitor research, service pages, schema markup.',
       preview: '/wayne-edwards-preview.png',
@@ -85,16 +85,16 @@ export default function App() {
       name: 'Craig Edwards Plumbing',
       trade: 'Plumber',
       location: 'Llanelli, Wales',
-      package: 'Growth',
+      package: 'Dominate',
       url: 'https://craig-edwards.netlify.app/',
-      description: 'Service-page focused Growth build targeting boiler installations, repairs, and central heating across Llanelli.',
+      description: 'Multi-page Dominate build targeting boiler installations, repairs, and central heating across Llanelli.',
       preview: '/craig-edwards-preview.png',
     },
     {
       name: 'Corcoran Plumbing & Heating',
       trade: 'Plumber & Gas Engineer',
       location: 'Llanelli, Wales',
-      package: 'Growth',
+      package: 'Dominate',
       url: 'https://corcoran-plumbing.netlify.app/',
       description: 'Steel and orange brand identity for a Gas Safe registered heating specialist. Boiler installations, servicing, and LPG work across Carmarthenshire.',
       preview: '/corcoran-preview.png',
@@ -393,45 +393,19 @@ export default function App() {
             <p className="text-lg text-brand-slate">One-off builds. You own the site outright — no monthly subscription to escape from.</p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-6 mb-10">
-            {/* Starter */}
+          <div className="grid lg:grid-cols-2 gap-6 mb-10">
+            {/* Local */}
             <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex flex-col">
-              <h3 className="text-xl font-bold mb-1">Starter</h3>
-              <div className="text-4xl font-display font-bold mb-1">£297</div>
-              <p className="text-sm text-brand-slate mb-6">Get online fast with a professional single-page site.</p>
+              <h3 className="text-xl font-bold mb-1">Local</h3>
+              <div className="text-4xl font-display font-bold mb-1">£447</div>
+              <p className="text-sm text-brand-slate mb-6">Get found by customers searching for your trade in your town.</p>
               <ul className="space-y-3 mb-8 flex-1 text-sm">
                 {[
-                  'Single-page website',
+                  'Bespoke single-page website',
+                  'Conversion copy written for you',
                   'Mobile optimised',
-                  'Basic local SEO',
+                  'Full local SEO & schema markup',
                   'Contact form',
-                  '1 round of revisions',
-                  '5–7 day delivery',
-                ].map(f => (
-                  <li key={f} className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <a href="#start-build" className="block text-center bg-gray-100 text-brand-dark font-bold py-3.5 rounded-xl hover:bg-gray-200 transition-colors text-sm">
-                Get Started
-              </a>
-            </div>
-
-            {/* Growth */}
-            <div className="bg-brand-dark text-white rounded-3xl p-8 shadow-xl relative overflow-hidden flex flex-col">
-              <div className="absolute top-0 right-0 bg-brand-orange text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-wider">Most Popular</div>
-              <h3 className="text-xl font-bold mb-1">Growth</h3>
-              <div className="text-4xl font-display font-bold mb-1">£597</div>
-              <p className="text-sm text-gray-300 mb-6">A full local SEO machine built to dominate your area.</p>
-              <ul className="space-y-3 mb-8 flex-1 text-sm text-gray-200">
-                {[
-                  'Multi-page website',
-                  'Competitor research included',
-                  'Deep local SEO (service + location pages)',
-                  'Google review integration',
-                  'Schema.org markup',
                   '2 rounds of revisions',
                   '5–7 day delivery',
                 ].map(f => (
@@ -441,24 +415,26 @@ export default function App() {
                   </li>
                 ))}
               </ul>
-              <a href="#start-build" className="block text-center bg-brand-orange text-white font-bold py-3.5 rounded-xl hover:bg-[#e66000] transition-colors shadow-lg shadow-brand-orange/20 text-sm">
+              <a href="#start-build" className="block text-center bg-gray-100 text-brand-dark font-bold py-3.5 rounded-xl hover:bg-gray-200 transition-colors text-sm">
                 Get Started
               </a>
             </div>
 
-            {/* Scale */}
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex flex-col">
-              <h3 className="text-xl font-bold mb-1">Scale</h3>
-              <div className="text-4xl font-display font-bold mb-1">£997</div>
-              <p className="text-sm text-brand-slate mb-6">Everything in Growth, plus AI receptionist setup.</p>
-              <ul className="space-y-3 mb-8 flex-1 text-sm">
+            {/* Dominate */}
+            <div className="bg-brand-dark text-white rounded-3xl p-8 shadow-xl relative overflow-hidden flex flex-col">
+              <div className="absolute top-0 right-0 bg-brand-orange text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-wider">Most Popular</div>
+              <h3 className="text-xl font-bold mb-1">Dominate</h3>
+              <div className="text-4xl font-display font-bold mb-1">£797</div>
+              <p className="text-sm text-gray-300 mb-6">Own the search results across every town you cover.</p>
+              <ul className="space-y-3 mb-8 flex-1 text-sm text-gray-200">
                 {[
-                  'Everything in Growth',
-                  'AI voice receptionist included',
-                  'Answers calls 24/7',
-                  'Qualifies leads & books jobs',
-                  'Priority delivery',
+                  'Everything in Local',
+                  'Multi-page website',
+                  'Competitor research included',
+                  'Dedicated service & location pages',
+                  'Google review integration',
                   '3 rounds of revisions',
+                  'Priority delivery',
                 ].map(f => (
                   <li key={f} className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
@@ -466,7 +442,7 @@ export default function App() {
                   </li>
                 ))}
               </ul>
-              <a href="#start-build" className="block text-center bg-gray-100 text-brand-dark font-bold py-3.5 rounded-xl hover:bg-gray-200 transition-colors text-sm">
+              <a href="#start-build" className="block text-center bg-brand-orange text-white font-bold py-3.5 rounded-xl hover:bg-[#e66000] transition-colors shadow-lg shadow-brand-orange/20 text-sm">
                 Get Started
               </a>
             </div>
@@ -610,9 +586,8 @@ export default function App() {
                   className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition-all appearance-none text-sm"
                 >
                   <option value="">Select a package...</option>
-                  <option>Starter — £297</option>
-                  <option>Growth — £597</option>
-                  <option>Scale — £997</option>
+                  <option>Local — £447</option>
+                  <option>Dominate — £797</option>
                   <option>Not sure yet</option>
                 </select>
               </div>
