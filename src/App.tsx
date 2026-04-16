@@ -260,20 +260,16 @@ export default function App() {
             <p className="text-xl text-brand-slate leading-relaxed">Every site is built from scratch — researched, designed, and optimised for local search.</p>
           </Reveal>
 
-          <div className="grid gap-8">
+          <div className="grid lg:grid-cols-2 gap-8">
             {portfolio.map((p, i) => {
               const tierClass = p.tier === 'Pro'
                 ? 'bg-brand-dark text-white border-brand-dark'
                 : 'bg-brand-orange/10 text-brand-orange border-brand-orange/20';
               return (
               <Reveal key={p.name} delay={i * 0.08}>
-              <TiltCard
-                max={3}
-                className="bg-white rounded-3xl overflow-hidden shadow-xl shadow-brand-dark/5 border border-gray-100 hover:shadow-2xl hover:shadow-brand-dark/10 transition-shadow duration-500"
-              >
-                <div className="grid lg:grid-cols-[1.5fr_1fr]">
+                <article className="bg-white rounded-3xl overflow-hidden shadow-xl shadow-brand-dark/5 border border-gray-100 flex flex-col h-full">
                   {/* Desktop preview with browser chrome */}
-                  <div className="bg-gray-100 border-b lg:border-b-0 lg:border-r border-gray-200 flex flex-col">
+                  <div className="bg-gray-100 border-b border-gray-200">
                     <div className="flex items-center gap-2 px-4 py-3">
                       <div className="flex gap-1.5">
                         <div className="w-3 h-3 rounded-full bg-red-400" />
@@ -284,7 +280,7 @@ export default function App() {
                         {p.url ?? 'coming soon'}
                       </div>
                     </div>
-                    <div className="relative bg-white">
+                    <div className="bg-white">
                       {p.previewDesktop ? (
                         <img
                           src={p.previewDesktop}
@@ -301,11 +297,11 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Right column: phone mockup + body */}
-                  <div className="flex flex-col">
+                  {/* Bottom row: phone mockup + body */}
+                  <div className="grid sm:grid-cols-[auto_1fr] gap-8 p-8 flex-1">
                     {/* Phone mockup */}
-                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 px-8 py-10 flex items-center justify-center border-b border-gray-200">
-                      <div className="relative bg-brand-dark rounded-[2rem] p-2 shadow-2xl shadow-brand-dark/20" style={{ width: '190px' }}>
+                    <div className="flex sm:block justify-center">
+                      <div className="relative bg-brand-dark rounded-[2rem] p-1.5 shadow-xl shadow-brand-dark/20" style={{ width: '160px' }}>
                         <div className="bg-white rounded-[1.5rem] overflow-hidden" style={{ aspectRatio: '600 / 1300' }}>
                           {p.previewMobile ? (
                             <img
@@ -323,8 +319,8 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* Card body */}
-                    <div className="p-8 flex flex-col flex-1">
+                    {/* Body */}
+                    <div className="flex flex-col">
                       <div className="flex items-start justify-between gap-4 mb-3">
                         <div>
                           <h3 className="font-bold text-xl leading-tight">{p.name}</h3>
@@ -349,8 +345,7 @@ export default function App() {
                       )}
                     </div>
                   </div>
-                </div>
-              </TiltCard>
+                </article>
               </Reveal>
               );
             })}
