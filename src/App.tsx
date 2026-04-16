@@ -305,9 +305,8 @@ export default function App() {
                   <div className="flex flex-col">
                     {/* Phone mockup */}
                     <div className="bg-gradient-to-br from-gray-50 to-gray-100 px-8 py-10 flex items-center justify-center border-b border-gray-200">
-                      <div className="relative bg-brand-dark rounded-[2rem] p-2 shadow-2xl shadow-brand-dark/20" style={{ width: '180px' }}>
-                        <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-4 bg-brand-dark rounded-b-xl z-10" />
-                        <div className="bg-white rounded-[1.5rem] overflow-hidden" style={{ aspectRatio: '9 / 19' }}>
+                      <div className="relative bg-brand-dark rounded-[2rem] p-2 shadow-2xl shadow-brand-dark/20" style={{ width: '190px' }}>
+                        <div className="bg-white rounded-[1.5rem] overflow-hidden" style={{ aspectRatio: '600 / 1300' }}>
                           {p.previewMobile ? (
                             <img
                               src={p.previewMobile}
