@@ -70,33 +70,16 @@ export default function App() {
     }
   };
 
-  const portfolio: { name: string; trade: string; location: string; package: string; url: string | null; description: string; preview: string | null }[] = [
+  const portfolio: { name: string; trade: string; location: string; tier: 'Starter' | 'Pro'; url: string | null; description: string; previewDesktop: string | null; previewMobile: string | null }[] = [
     {
-      name: 'Wayne Edwards Plumbing & Gas',
-      trade: 'Plumber & Gas Engineer',
+      name: 'GLJ Plumbing',
+      trade: 'Plumber & Bathroom Specialist',
       location: 'Llanelli, South Wales',
-      package: 'Pro',
-      url: 'https://wayne-edwards.netlify.app/',
-      description: 'Multi-page local SEO site for a Gas Safe registered engineer with 20+ years experience. Competitor research, service pages, schema markup.',
-      preview: '/wayne-edwards-preview.png',
-    },
-    {
-      name: 'Craig Edwards Plumbing',
-      trade: 'Plumber',
-      location: 'Llanelli, Wales',
-      package: 'Pro',
-      url: 'https://craig-edwards.netlify.app/',
-      description: 'Multi-page Pro build targeting boiler installations, repairs, and central heating across Llanelli.',
-      preview: '/craig-edwards-preview.png',
-    },
-    {
-      name: 'Corcoran Plumbing & Heating',
-      trade: 'Plumber & Gas Engineer',
-      location: 'Llanelli, Wales',
-      package: 'Pro',
-      url: 'https://corcoran-plumbing.netlify.app/',
-      description: 'Steel and orange brand identity for a Gas Safe registered heating specialist. Boiler installations, servicing, and LPG work across Carmarthenshire.',
-      preview: '/corcoran-preview.png',
+      tier: 'Starter',
+      url: 'https://glj-plumbing-portfolio.netlify.app/',
+      description: 'Family-run plumbers established 1993. Bathroom installations, kitchen plumbing and repairs across Carmarthenshire. Real Yell reviews, local schema, mobile-first call CTAs.',
+      previewDesktop: '/glj-preview-desktop.png',
+      previewMobile: '/glj-preview-mobile.png',
     },
   ];
 
@@ -277,71 +260,101 @@ export default function App() {
             <p className="text-xl text-brand-slate leading-relaxed">Every site is built from scratch — researched, designed, and optimised for local search.</p>
           </Reveal>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {portfolio.map((p, i) => (
+          <div className="grid gap-8">
+            {portfolio.map((p, i) => {
+              const tierClass = p.tier === 'Pro'
+                ? 'bg-brand-dark text-white border-brand-dark'
+                : 'bg-brand-orange/10 text-brand-orange border-brand-orange/20';
+              return (
               <Reveal key={p.name} delay={i * 0.08}>
               <TiltCard
-                max={4}
-                className="bg-white rounded-3xl overflow-hidden shadow-xl shadow-brand-dark/5 border border-gray-100 flex flex-col h-full hover:shadow-2xl hover:shadow-brand-dark/10 transition-shadow duration-500"
+                max={3}
+                className="bg-white rounded-3xl overflow-hidden shadow-xl shadow-brand-dark/5 border border-gray-100 hover:shadow-2xl hover:shadow-brand-dark/10 transition-shadow duration-500"
               >
-                {/* Browser chrome mockup */}
-                <div className="bg-gray-100 border-b border-gray-200">
-                  {/* Title bar */}
-                  <div className="flex items-center gap-2 px-4 py-3">
-                    <div className="flex gap-1.5">
-                      <div className="w-3 h-3 rounded-full bg-red-400" />
-                      <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                      <div className="w-3 h-3 rounded-full bg-green-400" />
-                    </div>
-                    <div className="flex-1 bg-white rounded-md px-3 py-1 text-xs text-gray-400 font-mono truncate border border-gray-200">
-                      {p.url ?? 'coming soon'}
-                    </div>
-                  </div>
-                  {/* Screenshot */}
-                  <div className="overflow-hidden relative" style={{ height: '360px' }}>
-                    {p.preview ? (
-                      <img
-                        src={p.preview}
-                        alt={`${p.name} website preview`}
-                        className="w-full h-full object-cover object-top"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-brand-slate bg-gray-50">
-                        <Globe className="w-8 h-8 opacity-30" />
-                        <span className="text-xs font-medium opacity-50">Coming soon</span>
+                <div className="grid lg:grid-cols-[1.5fr_1fr]">
+                  {/* Desktop preview with browser chrome */}
+                  <div className="bg-gray-100 border-b lg:border-b-0 lg:border-r border-gray-200 flex flex-col">
+                    <div className="flex items-center gap-2 px-4 py-3">
+                      <div className="flex gap-1.5">
+                        <div className="w-3 h-3 rounded-full bg-red-400" />
+                        <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                        <div className="w-3 h-3 rounded-full bg-green-400" />
                       </div>
-                    )}
-                  </div>
-                </div>
-                {/* Card body */}
-                <div className="p-8 flex flex-col flex-1">
-                  <div className="flex items-start justify-between gap-4 mb-3">
-                    <div>
-                      <h3 className="font-bold text-xl leading-tight">{p.name}</h3>
-                      <p className="text-sm text-brand-slate mt-1">{p.trade} · {p.location}</p>
+                      <div className="flex-1 bg-white rounded-md px-3 py-1 text-xs text-gray-400 font-mono truncate border border-gray-200">
+                        {p.url ?? 'coming soon'}
+                      </div>
                     </div>
-                    <span className="shrink-0 text-xs font-bold bg-brand-orange/10 text-brand-orange px-3 py-1 rounded-full border border-brand-orange/20">{p.package}</span>
+                    <div className="overflow-hidden relative flex-1" style={{ minHeight: '440px' }}>
+                      {p.previewDesktop ? (
+                        <img
+                          src={p.previewDesktop}
+                          alt={`${p.name} desktop website preview`}
+                          className="w-full h-full object-cover object-top"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-brand-slate bg-gray-50">
+                          <Globe className="w-8 h-8 opacity-30" />
+                          <span className="text-xs font-medium opacity-50">Coming soon</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <p className="text-base text-brand-slate leading-relaxed mb-6 flex-1">{p.description}</p>
-                  {p.url ? (
-                    <a
-                      href={p.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-bold text-brand-orange link-underline self-start"
-                    >
-                      View live site <ExternalLink className="w-4 h-4" />
-                    </a>
-                  ) : (
-                    <span className="inline-flex items-center gap-2 text-sm font-medium text-brand-slate opacity-50">
-                      <Clock className="w-4 h-4" /> Deploying soon
-                    </span>
-                  )}
+
+                  {/* Right column: phone mockup + body */}
+                  <div className="flex flex-col">
+                    {/* Phone mockup */}
+                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 px-8 py-10 flex items-center justify-center border-b border-gray-200">
+                      <div className="relative bg-brand-dark rounded-[2rem] p-2 shadow-2xl shadow-brand-dark/20" style={{ width: '180px' }}>
+                        <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-4 bg-brand-dark rounded-b-xl z-10" />
+                        <div className="bg-white rounded-[1.5rem] overflow-hidden" style={{ aspectRatio: '9 / 19' }}>
+                          {p.previewMobile ? (
+                            <img
+                              src={p.previewMobile}
+                              alt={`${p.name} mobile website preview`}
+                              className="w-full h-full object-cover object-top"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex flex-col items-center justify-center gap-2 text-brand-slate bg-gray-50">
+                              <Globe className="w-6 h-6 opacity-30" />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Card body */}
+                    <div className="p-8 flex flex-col flex-1">
+                      <div className="flex items-start justify-between gap-4 mb-3">
+                        <div>
+                          <h3 className="font-bold text-xl leading-tight">{p.name}</h3>
+                          <p className="text-sm text-brand-slate mt-1">{p.trade} · {p.location}</p>
+                        </div>
+                        <span className={`shrink-0 text-xs font-bold px-3 py-1 rounded-full border ${tierClass}`}>{p.tier}</span>
+                      </div>
+                      <p className="text-base text-brand-slate leading-relaxed mb-6 flex-1">{p.description}</p>
+                      {p.url ? (
+                        <a
+                          href={p.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-sm font-bold text-brand-orange link-underline self-start"
+                        >
+                          View live site <ExternalLink className="w-4 h-4" />
+                        </a>
+                      ) : (
+                        <span className="inline-flex items-center gap-2 text-sm font-medium text-brand-slate opacity-50">
+                          <Clock className="w-4 h-4" /> Deploying soon
+                        </span>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </TiltCard>
               </Reveal>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
