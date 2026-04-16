@@ -284,16 +284,16 @@ export default function App() {
                         {p.url ?? 'coming soon'}
                       </div>
                     </div>
-                    <div className="overflow-hidden relative flex-1" style={{ minHeight: '440px' }}>
+                    <div className="relative bg-white">
                       {p.previewDesktop ? (
                         <img
                           src={p.previewDesktop}
                           alt={`${p.name} desktop website preview`}
-                          className="w-full h-full object-cover object-top"
+                          className="w-full h-auto block"
                           loading="lazy"
                         />
                       ) : (
-                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-brand-slate bg-gray-50">
+                        <div className="flex flex-col items-center justify-center gap-2 text-brand-slate bg-gray-50 py-32">
                           <Globe className="w-8 h-8 opacity-30" />
                           <span className="text-xs font-medium opacity-50">Coming soon</span>
                         </div>
