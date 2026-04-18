@@ -102,6 +102,16 @@ export default function App() {
       previewDesktop: '/paragon-preview-desktop.png',
       previewMobile: '/paragon-preview-mobile.png',
     },
+    {
+      name: 'G J Isitt & Son Roofing',
+      trade: 'Roofer',
+      location: 'Carmarthen, West Wales',
+      tier: 'Pro',
+      url: 'https://gj-isitt-roofing.netlify.app/',
+      description: 'Father and son roofers since 1975. Six-page build with service categories, gallery, area coverage across Carmarthenshire, storm damage emergency banner, RoofingContractor schema with aggregateRating, and 20-year guarantee messaging.',
+      previewDesktop: '/isitt-preview-desktop.png',
+      previewMobile: '/isitt-preview-mobile.png',
+    },
   ];
 
   return (
