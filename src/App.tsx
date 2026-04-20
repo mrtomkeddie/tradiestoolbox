@@ -1,26 +1,154 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import {
-  Wrench,
-  CheckCircle2,
-  ArrowRight,
-  Menu,
-  X,
-  Star,
-  Check,
-  Send,
-  Zap,
-  Globe,
-  ExternalLink,
-  Clock,
-  Mic,
-} from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Magnetic, Reveal, CountUp, TiltCard } from './animations';
+import './design.css';
 
+/* =========================================================
+   Portfolio data (real projects)
+   ========================================================= */
+interface PortfolioItem {
+  name: string;
+  trade: string;
+  location: string;
+  year: string;
+  tier: 'Starter' | 'Pro';
+  url: string | null;
+  result?: string;
+  tradeTag: string;
+  tradeFilter: string;
+  accent: string;
+  accent2: string;
+  // Device mockup content
+  navLabel: string;
+  navCta: string;
+  eyebrow: string;
+  h1: string;
+  pill: string;
+  strip: string[];
+  mbEyebrow: string;
+  mbH1: string;
+  mbCta: string;
+  mbPills: [string, string];
+  previewDesktop: string | null;
+  previewMobile: string | null;
+}
+
+const portfolio: PortfolioItem[] = [
+  {
+    name: 'GLJ Plumbing',
+    trade: 'Plumber & Bathroom Specialist',
+    location: 'Llanelli, South Wales',
+    year: '2025',
+    tier: 'Pro',
+    url: 'https://glj-plumbing-portfolio.netlify.app/',
+    result: '3× enquiries',
+    tradeTag: 'Plumbing',
+    tradeFilter: 'plumbing',
+    accent: '#1f6feb',
+    accent2: '#0b3a8a',
+    navLabel: 'GLJ PLUMBING',
+    navCta: 'CALL 24/7',
+    eyebrow: 'GAS SAFE · EST. 1993',
+    h1: 'Family plumbers,\nLlanelli.',
+    pill: '★ 4.9 / Gas Safe',
+    strip: ['BOILERS', 'BATHROOMS', 'LEAKS', 'HEATING'],
+    mbEyebrow: 'GAS SAFE',
+    mbH1: 'Family\nplumbers.',
+    mbCta: 'CALL NOW',
+    mbPills: ['★ 4.9', 'Gas Safe'],
+    previewDesktop: '/glj-preview-desktop.png',
+    previewMobile: '/glj-preview-mobile.png',
+  },
+  {
+    name: 'Andy John Plumbing',
+    trade: 'Plumber, Heating & Gas Engineer',
+    location: 'Swansea, South Wales',
+    year: '2025',
+    tier: 'Pro',
+    url: 'https://andy-john-plumbing.netlify.app/',
+    tradeTag: 'Plumbing',
+    tradeFilter: 'plumbing',
+    accent: '#dc2626',
+    accent2: '#651010',
+    navLabel: 'ANDY JOHN',
+    navCta: 'EMERGENCY',
+    eyebrow: '24/7 · GAS SAFE · TRUSTMARK',
+    h1: "Swansea's highest-rated\nplumber.",
+    pill: '★ 5.0 / 64 reviews',
+    strip: ['BOILERS', 'GAS', 'HEATING', 'EMERGENCY'],
+    mbEyebrow: '24/7',
+    mbH1: 'Top-rated\nplumber.',
+    mbCta: 'CALL NOW',
+    mbPills: ['★ 5.0', 'Gas Safe'],
+    previewDesktop: '/andy-john-preview-desktop.png',
+    previewMobile: '/andy-john-preview-mobile.png',
+  },
+  {
+    name: 'Paragon Plumbing',
+    trade: 'Gas Safe Plumber & Heating Engineer',
+    location: 'Swansea & Pontardawe',
+    year: '2025',
+    tier: 'Starter',
+    url: 'https://paragon-plumbing-portfolio.netlify.app/',
+    tradeTag: 'Plumbing',
+    tradeFilter: 'plumbing',
+    accent: '#2563eb',
+    accent2: '#1e3a8a',
+    navLabel: 'PARAGON',
+    navCta: 'FREE QUOTE',
+    eyebrow: 'GAS SAFE · SAME-DAY',
+    h1: 'Gas Safe plumbers,\nSwansea.',
+    pill: '★ 5.0 / 39 reviews',
+    strip: ['BOILERS', 'GAS', 'HEATING', 'LEAKS'],
+    mbEyebrow: 'SAME-DAY',
+    mbH1: 'Gas Safe\nSwansea.',
+    mbCta: 'QUOTE NOW',
+    mbPills: ['★ 5.0', 'Yell'],
+    previewDesktop: '/paragon-preview-desktop.png',
+    previewMobile: '/paragon-preview-mobile.png',
+  },
+  {
+    name: 'G J Isitt & Son Roofing',
+    trade: 'Roofer',
+    location: 'Carmarthen, West Wales',
+    year: '2025',
+    tier: 'Pro',
+    url: 'https://gj-isitt-roofing.netlify.app/',
+    tradeTag: 'Roofing',
+    tradeFilter: 'roofing',
+    accent: '#2f5d3a',
+    accent2: '#16321e',
+    navLabel: 'GJ ISITT',
+    navCta: 'FREE SURVEY',
+    eyebrow: 'EST. 1975 · 20-YR GUARANTEE',
+    h1: 'Roofers since 1975,\nCarmarthen.',
+    pill: '20-year guarantee',
+    strip: ['SLATE', 'TILE', 'FLAT', 'REPAIRS'],
+    mbEyebrow: '20 YR',
+    mbH1: 'Roofers\nsince 1975.',
+    mbCta: 'FREE SURVEY',
+    mbPills: ['Slate', 'Flat'],
+    previewDesktop: '/isitt-preview-desktop.png',
+    previewMobile: '/isitt-preview-mobile.png',
+  },
+];
+
+/* =========================================================
+   Trade picker colours (hero variant B)
+   ========================================================= */
+const tradeColors: Record<string, string> = {
+  plumbers: '#2BA6E8',
+  electricians: '#FFD400',
+  builders: '#FF7A1A',
+  roofers: '#8B5CF6',
+  decorators: '#E84D8A',
+  landscapers: '#4CAF50',
+};
+
+/* =========================================================
+   App
+   ========================================================= */
 export default function App() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  /* ---- form state ---- */
   const [formData, setFormData] = useState({
     businessName: '',
     trade: '',
@@ -33,22 +161,73 @@ export default function App() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
+  /* ---- tweaks panel state ---- */
+  const [heroVariant, setHeroVariant] = useState<'editorial' | 'blocks' | 'ticker'>('editorial');
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [fonts, setFonts] = useState<'display-sans' | 'condensed-serif' | 'mono-grotesk'>('display-sans');
+  const [tweaksOpen, setTweaksOpen] = useState(false);
+
+  /* ---- portfolio filter ---- */
+  const [activeFilter, setActiveFilter] = useState<string>('all');
+
+  /* ---- process step ---- */
+  const [activeStep, setActiveStep] = useState(0);
+  const stepTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  /* ---- faq open item ---- */
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  /* ---- Apply theme/fonts to body ---- */
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    document.body.dataset.theme = theme;
+    document.body.dataset.fonts = fonts;
+  }, [theme, fonts]);
+
+  /* ---- Process auto-advance ---- */
+  useEffect(() => {
+    stepTimerRef.current = setInterval(() => {
+      setActiveStep(prev => (prev + 1) % 3);
+    }, 4000);
+    return () => {
+      if (stepTimerRef.current) clearInterval(stepTimerRef.current);
+    };
   }, []);
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 24 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
-  };
+  /* ---- Tweaks panel: listen for editmode messages ---- */
+  useEffect(() => {
+    const handler = (e: MessageEvent) => {
+      if (!e.data || typeof e.data !== 'object') return;
+      if (e.data.type === '__activate_edit_mode') setTweaksOpen(true);
+      if (e.data.type === '__deactivate_edit_mode') setTweaksOpen(false);
+    };
+    window.addEventListener('message', handler);
+    try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch (_) {}
+    return () => window.removeEventListener('message', handler);
+  }, []);
 
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
-  };
+  /* ---- Scroll spy ---- */
+  useEffect(() => {
+    const sectionIds = ['services', 'process', 'portfolio', 'pricing', 'faq'];
+    const sections = sectionIds.map(id => document.getElementById(id));
+    const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-links a[data-link]');
 
+    function spy() {
+      let activeId: string | null = null;
+      const y = window.scrollY + 100;
+      sections.forEach(s => { if (s && s.offsetTop <= y) activeId = s.id; });
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + activeId);
+      });
+    }
+    window.addEventListener('scroll', spy, { passive: true });
+    spy();
+    return () => window.removeEventListener('scroll', spy);
+  }, []);
+
+  /* ---- Process fill line width ---- */
+  const processFillWidth = `${((activeStep + 1) / 3) * 100}%`;
+
+  /* ---- handleSubmit ---- */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
@@ -71,631 +250,847 @@ export default function App() {
     }
   };
 
-  const portfolio: { name: string; trade: string; location: string; tier: 'Starter' | 'Pro'; url: string | null; description: string; previewDesktop: string | null; previewMobile: string | null }[] = [
-    {
-      name: 'GLJ Plumbing',
-      trade: 'Plumber & Bathroom Specialist',
-      location: 'Llanelli, South Wales',
-      tier: 'Pro',
-      url: 'https://glj-plumbing-portfolio.netlify.app/',
-      description: 'Family-run plumbers established 1993. Five-page build with dedicated Services, About and Areas pages, real Yell reviews, Plumber-specific schema, and a mobile-first sticky call bar.',
-      previewDesktop: '/glj-preview-desktop.png',
-      previewMobile: '/glj-preview-mobile.png',
-    },
-    {
-      name: 'Andy John Plumbing',
-      trade: 'Plumber, Heating & Gas Engineer',
-      location: 'Swansea, South Wales',
-      tier: 'Pro',
-      url: 'https://andy-john-plumbing.netlify.app/',
-      description: 'Five-page build for Swansea\'s highest-rated plumber. 64 five-star Google reviews front and centre, lettings agency trust section, 7 service categories with imagery, Gas Safe & TrustMark credentials, and 24/7 emergency messaging.',
-      previewDesktop: '/andy-john-preview-desktop.png',
-      previewMobile: '/andy-john-preview-mobile.png',
-    },
-    {
-      name: 'Paragon Plumbing',
-      trade: 'Gas Safe Plumber & Heating Engineer',
-      location: 'Swansea & Pontardawe',
-      tier: 'Starter',
-      url: 'https://paragon-plumbing-portfolio.netlify.app/',
-      description: 'One-page build for a Gas Safe engineer. Same-day callout messaging, 39 verified Yell reviews at 5.0★, accordion services section, and Plumber schema with aggregateRating.',
-      previewDesktop: '/paragon-preview-desktop.png',
-      previewMobile: '/paragon-preview-mobile.png',
-    },
-    {
-      name: 'G J Isitt & Son Roofing',
-      trade: 'Roofer',
-      location: 'Carmarthen, West Wales',
-      tier: 'Pro',
-      url: 'https://gj-isitt-roofing.netlify.app/',
-      description: 'Father and son roofers since 1975. Six-page build with service categories, gallery, area coverage across Carmarthenshire, storm damage emergency banner, RoofingContractor schema with aggregateRating, and 20-year guarantee messaging.',
-      previewDesktop: '/isitt-preview-desktop.png',
-      previewMobile: '/isitt-preview-mobile.png',
-    },
-  ];
+  /* ---- setKey helper (tweaks) ---- */
+  function setKey(key: string, val: string) {
+    if (key === 'hero') setHeroVariant(val as typeof heroVariant);
+    if (key === 'theme') setTheme(val as typeof theme);
+    if (key === 'fonts') setFonts(val as typeof fonts);
+    try { window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: val } }, '*'); } catch (_) {}
+  }
+
+  const filteredPortfolio = activeFilter === 'all'
+    ? portfolio
+    : portfolio.filter(p => p.tradeFilter === activeFilter);
+
+  const portfolioCounts = {
+    all: portfolio.length,
+    plumbing: portfolio.filter(p => p.tradeFilter === 'plumbing').length,
+    roofing: portfolio.filter(p => p.tradeFilter === 'roofing').length,
+    electrical: portfolio.filter(p => p.tradeFilter === 'electrical').length,
+    building: portfolio.filter(p => p.tradeFilter === 'building').length,
+    landscaping: portfolio.filter(p => p.tradeFilter === 'landscaping').length,
+  };
 
   return (
-    <div className="min-h-screen font-sans text-brand-dark selection:bg-brand-orange selection:text-white">
+    <>
+      {/* ============ TAPE ============ */}
+      <div className="tape">
+        <div className="tape-track">
+          <span>UK trades · websites that book jobs · est. 2021 · no contracts · hosting included · built in britain · free quote</span>
+          <span>UK trades · websites that book jobs · est. 2021 · no contracts · hosting included · built in britain · free quote</span>
+        </div>
+      </div>
 
-      {/* Nav */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          <div className="flex items-center">
-            <img src="/Logo (black).svg" alt="Tradies Toolbox" className="h-8 w-auto" />
+      {/* ============ NAV ============ */}
+      <nav className="nav">
+        <div className="container nav-inner">
+          <a href="#top" className="brand">
+            <span className="brand-mark"></span>
+            TRADIES TOOLBOX
+          </a>
+          <div className="nav-links">
+            <a href="#services" data-link="">Services</a>
+            <a href="#process" data-link="">Process</a>
+            <a href="#portfolio" data-link="">Work</a>
+            <a href="#pricing" data-link="">Pricing</a>
+            <a href="#faq" data-link="">FAQ</a>
           </div>
-
-          <div className="hidden md:flex items-center gap-8 font-medium text-sm">
-            <a href="#how-it-works" className="hover:text-brand-orange transition-colors">How It Works</a>
-            <a href="#portfolio" className="hover:text-brand-orange transition-colors">Our Work</a>
-            <a href="#pricing" className="hover:text-brand-orange transition-colors">Pricing</a>
-            <a href="#start-build" className="bg-brand-dark text-white px-5 py-2.5 rounded-full hover:bg-brand-orange transition-colors font-semibold shadow-lg shadow-brand-dark/10">
-              Start Your Build
-            </a>
-          </div>
-
-          <button className="md:hidden p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <a href="#contact" className="btn btn-primary btn-sm nav-cta">
+            Get a free quote <span className="btn-arrow"></span>
+          </a>
         </div>
       </nav>
 
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden"
-          >
-            <div className="flex flex-col gap-6 text-xl font-display font-bold">
-              <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)}>How It Works</a>
-              <a href="#portfolio" onClick={() => setMobileMenuOpen(false)}>Our Work</a>
-              <a href="#pricing" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
-              <a href="#start-build" onClick={() => setMobileMenuOpen(false)} className="bg-brand-orange text-white px-6 py-4 rounded-xl mt-4 text-center">
-                Start Your Build
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <main id="top">
 
-      {/* Hero */}
-      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-20 overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:22px_22px] opacity-40" />
-        <div className="absolute top-0 right-0 -z-10 w-[900px] h-[900px] bg-brand-orange/[0.06] rounded-full blur-3xl translate-x-1/4 -translate-y-1/3" />
-        <div className="absolute bottom-0 left-0 -z-10 w-[700px] h-[700px] bg-brand-dark/[0.04] rounded-full blur-3xl -translate-x-1/3 translate-y-1/3" />
+        {/* ============ HERO ============ */}
+        <section className="hero" data-variant={heroVariant}>
+          <div className="hero-grid-bg"></div>
+          <div className="container">
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="text-center">
-            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-brand-dark font-semibold text-sm mb-6 border border-gray-200 shadow-sm">
-              <Zap className="w-4 h-4 text-brand-orange" />
-              For UK tradies
-            </motion.div>
-
-            <motion.h1
-              variants={fadeInUp}
-              className="text-[2.5rem] sm:text-6xl lg:text-8xl font-bold leading-[1.02] tracking-[-0.03em] mb-6 max-w-5xl mx-auto"
-            >
-              Websites built
-              <br />
-              <span className="whitespace-nowrap">for the <span className="serif-accent text-brand-orange">trades</span>.</span>
-              <br />
-              <span className="text-brand-slate">Booked jobs, not busywork.</span>
-            </motion.h1>
-
-            <motion.p variants={fadeInUp} className="text-base lg:text-lg text-brand-slate mb-8 leading-relaxed max-w-2xl mx-auto">
-              Ranked on Google. Built to turn visits into calls.
-              <br />
-              Delivered fully async — no meetings, no time off the tools.
-            </motion.p>
-
-            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Magnetic strength={0.12}>
-                <a href="#start-build" className="bg-brand-orange text-white px-10 py-5 rounded-2xl font-bold text-base hover:bg-[#e66000] transition-colors shadow-xl shadow-brand-orange/25 inline-flex items-center justify-center gap-2">
-                  Start Your Build <ArrowRight className="w-5 h-5" />
-                </a>
-              </Magnetic>
-              <Magnetic strength={0.08}>
-                <a href="#pricing" className="bg-white text-brand-dark border border-gray-200 px-10 py-5 rounded-2xl font-bold text-base hover:border-brand-dark transition-colors inline-flex items-center justify-center gap-2 shadow-sm">
-                  View Pricing
-                </a>
-              </Magnetic>
-            </motion.div>
-
-            <motion.div variants={fadeInUp} className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-[15px] text-brand-dark font-semibold justify-center">
-              {['Trades only', 'You own the site', 'Fully async', 'AI-powered'].map(t => (
-                <span key={t} className="flex items-center gap-2">
-                  <CheckCircle2 className="w-[18px] h-[18px] text-brand-orange" />
-                  {t}
-                </span>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Numbers strip */}
-      <section className="border-y border-gray-200 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { n: 5, suffix: '', label: 'Day delivery' },
-            { n: 100, suffix: '%', label: 'Bespoke builds' },
-            { n: 3, suffix: '', label: 'Sites live' },
-            { n: 0, suffix: '', label: 'Sales calls' },
-          ].map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.08} className="text-center">
-              <div className="text-5xl lg:text-6xl font-bold tracking-tight">
-                <CountUp end={s.n} suffix={s.suffix} />
-              </div>
-              <div className="text-sm text-brand-slate mt-2 font-medium uppercase tracking-wider">{s.label}</div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section id="how-it-works" className="py-32 lg:py-40 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="max-w-3xl mb-20">
-            <h2 className="text-5xl lg:text-6xl font-bold mb-5 tracking-[-0.025em]">
-              How it <span className="serif-accent text-brand-orange">works</span>
-            </h2>
-            <p className="text-xl text-brand-slate leading-relaxed">The whole process runs by message. No calls, no meetings, no waiting around.</p>
-          </Reveal>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                n: '1',
-                icon: <Globe className="w-6 h-6" />,
-                title: 'Fill in the form',
-                body: 'Tell us your trade, your area, and your current site if you have one. Takes 3 minutes.',
-              },
-              {
-                n: '2',
-                icon: <Wrench className="w-6 h-6" />,
-                title: 'We research and build',
-                body: "We analyse your competitors, extract your brand, and build a site designed to beat what's already out there.",
-              },
-              {
-                n: '3',
-                icon: <CheckCircle2 className="w-6 h-6" />,
-                title: 'Review and go live',
-                body: "You get a preview link. Approve it or send feedback by message. We handle the rest — including going live on your domain.",
-                highlight: true,
-              },
-            ].map(step => (
-              <motion.div
-                key={step.n}
-                whileHover={{ y: -4 }}
-                className={`rounded-3xl p-8 border ${step.highlight ? 'bg-brand-orange text-white border-brand-orange shadow-xl shadow-brand-orange/20' : 'bg-gray-50 border-gray-100'}`}
-              >
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-6 font-display font-bold text-lg ${step.highlight ? 'bg-white text-brand-orange' : 'bg-brand-dark text-white'}`}>
-                  {step.n}
+            {/* Variant A: Editorial split */}
+            <div className="hero-editorial">
+              <div className="hero-copy">
+                <div className="hero-eyebrow-row">
+                  <span className="dot"></span>
+                  <span>Booking new projects · Spring 2026</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                <p className={`leading-relaxed text-sm ${step.highlight ? 'text-orange-50' : 'text-brand-slate'}`}>{step.body}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Portfolio */}
-      <section id="portfolio" className="py-32 lg:py-40 bg-brand-light border-y border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="max-w-3xl mb-20">
-            <h2 className="text-5xl lg:text-6xl font-bold mb-5 tracking-[-0.025em]">
-              Our <span className="serif-accent text-brand-orange">work</span>
-            </h2>
-            <p className="text-xl text-brand-slate leading-relaxed">Every site is built from scratch — researched, designed, and optimised for local search.</p>
-          </Reveal>
-
-          <div className="flex gap-8 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-thin -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-            {portfolio.map((p, i) => {
-              const tierClass = p.tier === 'Pro'
-                ? 'bg-brand-dark text-white border-brand-dark'
-                : 'bg-brand-orange/10 text-brand-orange border-brand-orange/20';
-              return (
-              <Reveal key={p.name} delay={i * 0.08} className="shrink-0 w-[85vw] sm:w-[70vw] lg:w-[560px] snap-start">
-                <article className="bg-white rounded-3xl overflow-hidden shadow-xl shadow-brand-dark/5 border border-gray-100 flex flex-col h-full">
-                  {/* Desktop preview with browser chrome */}
-                  <div className="bg-gray-100 border-b border-gray-200">
-                    <div className="flex items-center gap-2 px-4 py-3">
-                      <div className="flex gap-1.5">
-                        <div className="w-3 h-3 rounded-full bg-red-400" />
-                        <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                        <div className="w-3 h-3 rounded-full bg-green-400" />
-                      </div>
-                      <div className="flex-1 bg-white rounded-md px-3 py-1 text-xs text-gray-400 font-mono truncate border border-gray-200">
-                        {p.url ?? 'coming soon'}
-                      </div>
-                    </div>
-                    <div className="bg-white">
-                      {p.previewDesktop ? (
-                        <img
-                          src={p.previewDesktop}
-                          alt={`${p.name} desktop website preview`}
-                          className="w-full h-auto block"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="flex flex-col items-center justify-center gap-2 text-brand-slate bg-gray-50 py-32">
-                          <Globe className="w-8 h-8 opacity-30" />
-                          <span className="text-xs font-medium opacity-50">Coming soon</span>
-                        </div>
-                      )}
-                    </div>
+                <h1 className="hero-title">
+                  Websites<br />
+                  <span className="hi">built</span><br />
+                  <span className="stroke">for the trades.</span>
+                </h1>
+                <p className="hero-sub">
+                  Proper websites for plumbers, sparks, builders &amp; everyone on the tools. Fast, findable, and built to bring jobs in while you're out fixing things.
+                </p>
+                <div className="hero-cta">
+                  <a href="#contact" className="btn btn-primary">Start your site <span className="btn-arrow"></span></a>
+                  <a href="#portfolio" className="btn btn-ghost">See the work</a>
+                </div>
+                <div className="hero-meta">
+                  <div><span className="num">240+</span><span className="lbl">Trades online</span></div>
+                  <div><span className="num">5-7d</span><span className="lbl">Avg. build time</span></div>
+                  <div><span className="num">£0</span><span className="lbl">Upfront</span></div>
+                </div>
+              </div>
+              <div className="mockup-wrap">
+                <div className="hero-float-badge b1">booking form ✓</div>
+                <div className="hero-float-badge b2">#1 in local search</div>
+                <div className="site-mockup">
+                  <div className="mockup-bar">
+                    <div className="dots"><span></span><span></span><span></span></div>
+                    <div className="url">moorland-plumbing.co.uk</div>
                   </div>
+                  <div className="mockup-body">
+                    <div className="mock-hero">
+                      <div className="mock-hero-kicker">Moorland Plumbing · Sheffield</div>
+                      <div className="mock-hero-title">Emergency plumbers,<br />on call 24/7.</div>
+                      <div className="mock-hero-sub">Gas Safe registered. Boilers, leaks, full refits.</div>
+                    </div>
+                    <div className="mock-grid">
+                      <div className="mock-card"><span className="mock-icon"></span><strong>Boilers</strong></div>
+                      <div className="mock-card"><span className="mock-icon"></span><strong>Bathrooms</strong></div>
+                      <div className="mock-card"><span className="mock-icon"></span><strong>Leaks</strong></div>
+                    </div>
+                    <div className="mock-lines"><span></span><span></span><span></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                  {/* Bottom row: phone mockup + body */}
-                  <div className="grid sm:grid-cols-[auto_1fr] gap-8 p-8 flex-1">
-                    {/* Phone mockup */}
-                    <div className="flex sm:block justify-center">
-                      <div className="relative bg-brand-dark rounded-[2rem] p-1.5 shadow-xl shadow-brand-dark/20" style={{ width: '160px' }}>
-                        <div className="bg-white rounded-[1.5rem] overflow-hidden" style={{ aspectRatio: '600 / 1300' }}>
-                          {p.previewMobile ? (
-                            <img
-                              src={p.previewMobile}
-                              alt={`${p.name} mobile website preview`}
-                              className="w-full h-full object-cover object-top"
-                              loading="lazy"
-                            />
-                          ) : (
-                            <div className="w-full h-full flex flex-col items-center justify-center gap-2 text-brand-slate bg-gray-50">
-                              <Globe className="w-6 h-6 opacity-30" />
+            {/* Variant B: Blocks / trade picker */}
+            <div className="hero-blocks">
+              <div className="hero-eyebrow-row">
+                <span className="dot"></span>
+                <span>Pick your trade · We build sites tuned to it</span>
+              </div>
+              <div className="hero-blocks-top">
+                <h1 className="hero-title">
+                  Your trade<br />
+                  deserves a <span className="hi">proper</span><br />
+                  <span className="stroke">website.</span>
+                </h1>
+                <p className="hero-sub">
+                  Not a template. Not a drag-and-drop mess. A site engineered around how your customers actually find and hire you.
+                </p>
+              </div>
+
+              <div className="trade-picker">
+                {Object.entries({
+                  plumbers: { label: 'Plumbers', n: '01 / 06', svg: <svg viewBox="0 0 24 24"><path d="M5 4v6a4 4 0 0 0 4 4h2v6M13 4h6v6M19 10l-6 6" /></svg> },
+                  electricians: { label: 'Electricians', n: '02 / 06', svg: <svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-2 8 9-12h-7z" /></svg> },
+                  builders: { label: 'Builders', n: '03 / 06', svg: <svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12M9 21v-8h6v8" /></svg> },
+                  roofers: { label: 'Roofers', n: '04 / 06', svg: <svg viewBox="0 0 24 24"><path d="M2 12 12 4l10 8M5 10v10h14V10" /></svg> },
+                  decorators: { label: 'Decorators', n: '05 / 06', svg: <svg viewBox="0 0 24 24"><path d="M3 8h14v4H3zM7 12v8h6v-8M17 10V6a2 2 0 0 1 2-2h2" /></svg> },
+                  landscapers: { label: 'Landscapers', n: '06 / 06', svg: <svg viewBox="0 0 24 24"><path d="M12 22V8M5 12c0-4 3-7 7-7s7 3 7 7-3 7-7 7M3 22h18" /></svg> },
+                }).map(([key, val]) => (
+                  <button
+                    key={key}
+                    className="trade-pill"
+                    onClick={() => {
+                      document.querySelectorAll('.trade-picker .trade-pill').forEach(x => x.classList.remove('active'));
+                      (document.querySelector(`.trade-pill[data-trade="${key}"]`) as HTMLElement)?.classList.add('active');
+                      const c = tradeColors[key];
+                      if (c) document.documentElement.style.setProperty('--hi', c);
+                    }}
+                    data-trade={key}
+                  >
+                    <span className="pill-ico">{val.svg}</span>
+                    <span>{val.label}</span>
+                    <span className="num">{val.n}</span>
+                  </button>
+                ))}
+              </div>
+
+              <div className="hero-blocks-cta">
+                <div className="hero-cta">
+                  <a href="#contact" className="btn btn-primary">Get a free quote <span className="btn-arrow"></span></a>
+                  <a href="#pricing" className="btn btn-ghost">See pricing</a>
+                </div>
+                <div className="hero-meta">
+                  <div><span className="num">240+</span><span className="lbl">Trades online</span></div>
+                  <div><span className="num">5-7d</span><span className="lbl">Build time</span></div>
+                  <div><span className="num">4.9★</span><span className="lbl">Client rating</span></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Variant C: Ticker */}
+            <div className="hero-ticker">
+              <div className="hero-eyebrow-row">
+                <span className="dot"></span>
+                <span>Websites built for the trades · UK-wide</span>
+              </div>
+              <div className="ticker-row">
+                <span>PLUMBERS</span>
+                <span className="ticker-divider">◆</span>
+                <span className="stroke">SPARKS</span>
+                <span className="ticker-divider">◆</span>
+                <span className="hi">BUILDERS</span>
+                <span className="ticker-divider">◆</span>
+                <span>ROOFERS</span>
+              </div>
+              <div className="ticker-row reverse">
+                <span className="stroke">DECORATORS</span>
+                <span className="ticker-divider">◆</span>
+                <span className="hi">GAS ENGINEERS</span>
+                <span className="ticker-divider">◆</span>
+                <span>JOINERS</span>
+                <span className="ticker-divider">◆</span>
+                <span className="stroke">LANDSCAPERS</span>
+              </div>
+              <div className="ticker-row">
+                <span className="hi">TILERS</span>
+                <span className="ticker-divider">◆</span>
+                <span>PLASTERERS</span>
+                <span className="ticker-divider">◆</span>
+                <span className="stroke">HANDYMEN</span>
+                <span className="ticker-divider">◆</span>
+                <span className="hi">PAVERS</span>
+              </div>
+              <div className="ticker-bottom">
+                <p className="hero-sub">
+                  Every trade gets its own tuned site — same toolbox, different tools. Built in the UK, by people who've run trade businesses.
+                </p>
+                <div className="hero-cta">
+                  <a href="#contact" className="btn btn-primary">Start your site <span className="btn-arrow"></span></a>
+                </div>
+                <div className="hero-meta">
+                  <div><span className="num">240+</span><span className="lbl">Trades online</span></div>
+                  <div><span className="num">£0</span><span className="lbl">Upfront</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* ============ TRUST ============ */}
+        <section className="trust">
+          <div className="container trust-inner">
+            <div className="trust-lbl">Trusted by trades across the UK</div>
+            <div className="trust-logos">
+              <div className="trust-logo"><span className="glyph"></span>GLJ PLUMBING</div>
+              <div className="trust-logo"><span className="glyph circle"></span>ANDY JOHN</div>
+              <div className="trust-logo"><span className="glyph diamond"></span>PARAGON</div>
+              <div className="trust-logo"><span className="glyph tri"></span>GJ ISITT</div>
+              <div className="trust-logo"><span className="glyph"></span>NORTHWORKS</div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============ SERVICES ============ */}
+        <section id="services" className="services">
+          <div className="container">
+            <div className="section-head">
+              <div>
+                <div className="eyebrow">What we build · 01</div>
+                <h2 className="section-title">Everything your trade needs online.</h2>
+              </div>
+              <p className="section-lede">
+                Every package includes the essentials — bespoke design, conversion copy, and pro trade photography. Pick Pro and you get the full local-SEO stack, the branded kit, and the growth tools too.
+              </p>
+            </div>
+
+            <div className="services-grid">
+              <article className="svc">
+                <div className="svc-num">01 / Design <span className="tick"></span></div>
+                <h3>Bespoke, no templates.</h3>
+                <p>Every site is drawn up around your trade, your patch, and the way your customers actually search. Fast on mobile, guaranteed.</p>
+                <ul>
+                  <li>Bespoke design — zero templates</li>
+                  <li>Conversion copy written for you</li>
+                  <li>Pro trade photography throughout</li>
+                  <li>Simple logo if you don't have one</li>
+                </ul>
+                <div className="svc-tag">Included · Starter &amp; Pro</div>
+              </article>
+
+              <article className="svc is-featured">
+                <div className="svc-num">02 / Local SEO <span className="tick"></span></div>
+                <h3>Own every town you cover.</h3>
+                <p>A dedicated page for every service and every town in your patch. Pro is built to rank for every search that matters to your trade.</p>
+                <ul>
+                  <li>Service page per offering (6-10 pages)</li>
+                  <li>Location page per town you cover</li>
+                  <li>Interactive service area map</li>
+                  <li>Google Business Profile starter kit</li>
+                </ul>
+                <div className="svc-tag">Pro package</div>
+              </article>
+
+              <article className="svc">
+                <div className="svc-num">03 / Lead capture <span className="tick"></span></div>
+                <h3>Turn visitors into calls.</h3>
+                <p>Every page wired for enquiries — the click-to-call, the WhatsApp tap, the form. No dead-ends, no missed leads.</p>
+                <ul>
+                  <li>Click-to-call + WhatsApp tap</li>
+                  <li>Smart contact form</li>
+                  <li>Recent Jobs page (if you have photos)</li>
+                  <li>All your services on one section</li>
+                </ul>
+                <div className="svc-tag">Included · Starter &amp; Pro</div>
+              </article>
+
+              <article className="svc">
+                <div className="svc-num">04 / Reviews engine <span className="tick"></span></div>
+                <h3>More 5-stars, less nagging.</h3>
+                <p>A print-ready review card you leave on the job. Customers scan, leave a Google review in 10 seconds, and you climb the local pack.</p>
+                <ul>
+                  <li>Print-ready review QR card</li>
+                  <li>One-scan Google review flow</li>
+                  <li>10-second customer experience</li>
+                  <li>Compounding local SEO boost</li>
+                </ul>
+                <div className="svc-tag">Pro package</div>
+              </article>
+
+              <article className="svc">
+                <div className="svc-num">05 / Branded kit <span className="tick"></span></div>
+                <h3>Look the part off-site too.</h3>
+                <p>The small touches that make a trade business look proper — email, invoices, socials. Done for you, ready to use.</p>
+                <ul>
+                  <li>Branded email signature</li>
+                  <li>Branded invoice PDF template</li>
+                  <li>10 ready-to-post social media posts</li>
+                  <li>Consistent across every touchpoint</li>
+                </ul>
+                <div className="svc-tag">Pro package</div>
+              </article>
+
+              <article className="svc">
+                <div className="svc-num">06 / Care Plan <span className="tick"></span></div>
+                <h3>Hosting, edits &amp; support.</h3>
+                <p>Optional monthly plan — we host it, keep it safe, and make unlimited edits for you. Cancel any time, no lock-in.</p>
+                <ul>
+                  <li>UK hosting, SSL &amp; backups</li>
+                  <li>Unlimited small edits</li>
+                  <li>Monthly performance report</li>
+                  <li>Same-day priority support</li>
+                </ul>
+                <div className="svc-tag">Add-on · £65/mo</div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        {/* ============ PROCESS ============ */}
+        <section id="process" className="process">
+          <div className="container">
+            <div className="section-head">
+              <div>
+                <div className="eyebrow">How it works · 02</div>
+                <h2 className="section-title">Three steps. No faff.</h2>
+              </div>
+              <p className="section-lede">
+                The whole process runs by message. No calls, no meetings, no waiting around. Most sites go from form to live in 5-7 days.
+              </p>
+            </div>
+
+            <div className="process-timeline">
+              <div className="process-line">
+                <div className="process-line-fill" style={{ width: processFillWidth }}></div>
+              </div>
+              <div className="process-grid">
+                {[
+                  { n: '01', lbl: 'Start', h3: 'Fill in the form.', p: 'Tell us your trade, your area, and your current site if you have one. Takes 3 minutes. No follow-up call required.', dur: 'Day 1 · 3 mins' },
+                  { n: '02', lbl: 'Work', h3: 'We research and build.', p: 'We analyse your competitors, extract your brand, and build a site designed to beat what\'s already out there.', dur: 'Day 2-6 · async' },
+                  { n: '03', lbl: 'Launch', h3: 'Review and go live.', p: 'You get a preview link. Approve it or send feedback by message. We handle the rest — including going live on your domain.', dur: 'Day 7 · done' },
+                ].map((step, i) => (
+                  <article
+                    key={step.n}
+                    className={`step${activeStep === i ? ' active' : ''}`}
+                    onClick={() => {
+                      if (stepTimerRef.current) clearInterval(stepTimerRef.current);
+                      setActiveStep(i);
+                      stepTimerRef.current = setInterval(() => {
+                        setActiveStep(prev => (prev + 1) % 3);
+                      }, 4000);
+                    }}
+                  >
+                    <div className="step-head">
+                      <div className="step-num">{step.n}</div>
+                      <div className="step-lbl">{step.lbl}</div>
+                    </div>
+                    <h3>{step.h3}</h3>
+                    <p>{step.p}</p>
+                    <div className="step-dur">{step.dur}</div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============ PORTFOLIO ============ */}
+        <section id="portfolio" className="portfolio">
+          <div className="container">
+            <div className="section-head">
+              <div>
+                <div className="eyebrow">Recent work · 03</div>
+                <h2 className="section-title">Sites we've built for trades.</h2>
+              </div>
+              <p className="section-lede">
+                A sample of what's live. Real projects, real clients, real results.
+              </p>
+            </div>
+
+            <div className="portfolio-filters">
+              {([
+                ['all', 'All'],
+                ['plumbing', 'Plumbing'],
+                ['roofing', 'Roofing'],
+                ['electrical', 'Electrical'],
+                ['building', 'Building'],
+                ['landscaping', 'Landscaping'],
+              ] as [string, string][]).map(([filter, label]) => (
+                <button
+                  key={filter}
+                  className={`filter-chip${activeFilter === filter ? ' active' : ''}`}
+                  onClick={() => setActiveFilter(filter)}
+                >
+                  {label} <span className="count">{portfolioCounts[filter as keyof typeof portfolioCounts] ?? 0}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="work-grid">
+              {filteredPortfolio.map(p => (
+                <article
+                  key={p.name}
+                  className="work"
+                  data-trade={p.tradeFilter}
+                  style={{ '--accent': p.accent, '--accent-2': p.accent2 } as React.CSSProperties}
+                >
+                  <div className="work-devices">
+                    <div className="device-desktop">
+                      <div className="dt-bar">
+                        <span className="dt-dots"><i></i><i></i><i></i></span>
+                        <span className="dt-url">{p.url ?? 'coming-soon.co.uk'}</span>
+                      </div>
+                      <div className="dt-screen">
+                        {p.previewDesktop ? (
+                          <img src={p.previewDesktop} alt={`${p.name} desktop preview`} style={{ width: '100%', display: 'block', borderRadius: 0 }} loading="lazy" />
+                        ) : (
+                          <>
+                            <div className="bs-nav"><span className="bs-logo">{p.navLabel}</span><span className="bs-cta">{p.navCta}</span></div>
+                            <div className="bs-hero">
+                              <div className="bs-eyebrow">{p.eyebrow}</div>
+                              <div className="bs-h1">{p.h1.replace(/\n/g, ' ')}</div>
+                              <div className="bs-row"><span className="bs-pill">{p.pill}</span><span className="bs-btn">Get a quote →</span></div>
                             </div>
+                            <div className="bs-strip">{p.strip.map(s => <span key={s}>{s}</span>)}</div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                    <div className="device-mobile">
+                      <div className="mb-frame">
+                        <div className="mb-notch"></div>
+                        <div className="mb-screen">
+                          {p.previewMobile ? (
+                            <img src={p.previewMobile} alt={`${p.name} mobile preview`} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', borderRadius: '12px 12px 0 0' }} loading="lazy" />
+                          ) : (
+                            <>
+                              <div className="mb-bar">9:41 ▾</div>
+                              <div className="mb-nav"><span>{p.navLabel}</span><span>☰</span></div>
+                              <div className="mb-hero">
+                                <div className="mb-eyebrow">{p.mbEyebrow}</div>
+                                <div className="mb-h1">{p.mbH1.split('\n').map((line, i) => <React.Fragment key={i}>{line}{i === 0 && <br />}</React.Fragment>)}</div>
+                                <div className="mb-cta">{p.mbCta}</div>
+                              </div>
+                              <div className="mb-pills"><span>{p.mbPills[0]}</span><span>{p.mbPills[1]}</span></div>
+                            </>
                           )}
                         </div>
                       </div>
                     </div>
-
-                    {/* Body */}
-                    <div className="flex flex-col">
-                      <div className="flex items-start justify-between gap-4 mb-3">
-                        <div>
-                          <h3 className="font-bold text-xl leading-tight">{p.name}</h3>
-                          <p className="text-sm text-brand-slate mt-1">{p.trade} · {p.location}</p>
+                  </div>
+                  <div className="work-meta">
+                    <div className="wm-top">
+                      <div>
+                        <h4>{p.name}</h4>
+                        <div className="loc">
+                          {p.location} · {p.year}
+                          {p.result && <> · <span className="hi-text">{p.result}</span></>}
                         </div>
-                        <span className={`shrink-0 text-xs font-bold px-3 py-1 rounded-full border ${tierClass}`}>{p.tier}</span>
                       </div>
-                      <p className="text-base text-brand-slate leading-relaxed mb-6 flex-1">{p.description}</p>
-                      {p.url ? (
-                        <a
-                          href={p.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-sm font-bold text-brand-orange link-underline self-start"
-                        >
-                          View live site <ExternalLink className="w-4 h-4" />
-                        </a>
-                      ) : (
-                        <span className="inline-flex items-center gap-2 text-sm font-medium text-brand-slate opacity-50">
-                          <Clock className="w-4 h-4" /> Deploying soon
-                        </span>
-                      )}
+                      <span className="trade-tag">{p.tradeTag}</span>
                     </div>
+                    {p.url ? (
+                      <a href={p.url} target="_blank" rel="noopener noreferrer" className="live-link">
+                        <span className="live-dot"></span>
+                        View live site
+                        <span className="live-arrow">↗</span>
+                      </a>
+                    ) : (
+                      <span className="live-link" style={{ opacity: 0.5, cursor: 'default' }}>
+                        <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#aaa', display: 'inline-block' }}></span>
+                        Coming soon
+                      </span>
+                    )}
                   </div>
                 </article>
-              </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section id="pricing" className="py-32 lg:py-40 bg-brand-light border-y border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="max-w-3xl mb-20">
-            <h2 className="text-5xl lg:text-6xl font-bold mb-5 tracking-[-0.025em]">
-              Simple <span className="serif-accent text-brand-orange">pricing</span>
-            </h2>
-            <p className="text-xl text-brand-slate leading-relaxed">
-              One-off builds. You own the site outright.
-              <br />
-              Care Plan is optional — cancel any time, no lock-in.
-            </p>
-          </Reveal>
-
-          <div className="grid lg:grid-cols-2 gap-6 mb-10">
-            {/* Starter */}
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex flex-col">
-              <h3 className="text-xl font-bold mb-1">Starter</h3>
-              <div className="text-4xl font-display font-bold mb-1">£497</div>
-              <p className="text-sm text-brand-slate mb-6">One sharp single-page site, built to rank in your home town and turn visitors into calls. Live in 5 days.</p>
-              <ul className="space-y-3 mb-8 flex-1 text-sm">
-                {[
-                  'Bespoke design — no templates',
-                  'Ranks for your trade in your home town',
-                  'Single-page site (everything on one scrolling home)',
-                  'All your services on one section',
-                  'Click-to-call, WhatsApp + contact form',
-                  'Professional trade photography throughout',
-                  'Conversion copy written for you',
-                  'Simple logo included (if you don\'t have one)',
-                  '1 round of revisions',
-                  'Live in 5 days',
-                ].map(f => (
-                  <li key={f} className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <div className="mb-4 p-3 rounded-xl bg-brand-light border border-dashed border-gray-300 text-xs">
-                <span className="font-bold text-brand-dark">+ Care Plan £65/mo</span>
-                <span className="text-brand-slate"> (recommended)</span>
-                <div className="text-brand-slate mt-0.5">Hosting, unlimited edits & priority support.</div>
-              </div>
-              <a href="#start-build" className="block text-center bg-gray-100 text-brand-dark font-bold py-3.5 rounded-xl hover:bg-gray-200 transition-colors text-sm">
-                Get Started
-              </a>
-            </div>
-
-            {/* Pro */}
-            <div className="bg-brand-dark text-white rounded-3xl p-8 shadow-xl relative overflow-hidden flex flex-col">
-              <div className="absolute top-0 right-0 bg-brand-orange text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-wider">Most Popular</div>
-              <h3 className="text-xl font-bold mb-1">Pro</h3>
-              <div className="text-4xl font-display font-bold mb-1">£797</div>
-              <p className="text-sm text-gray-300 mb-6">Built to own every search term across every town you cover. The last website you'll ever need.</p>
-              <ul className="space-y-3 mb-8 flex-1 text-sm text-gray-200">
-                {[
-                  'Everything in Starter',
-                  'A dedicated page for every service you offer (6–10 pages)',
-                  'A dedicated page for every town you cover',
-                  'Interactive service area map',
-                  'Google Business Profile starter kit — we write it, you paste it in',
-                  'Print-ready review card — customers scan, leave a Google review in 10 seconds',
-                  'Branded email signature',
-                  'Branded invoice PDF template',
-                  '10 ready-to-post social media posts',
-                  'Recent Jobs page (if you have photos)',
-                  'Guaranteed to load fast on mobile',
-                  'First month of AI Receptionist free (launching soon)',
-                  'First month of Care Plan free',
-                  '2 rounds of revisions',
-                  'Live in 7 days',
-                ].map(f => (
-                  <li key={f} className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <div className="mb-4 p-3 rounded-xl bg-white/5 border border-dashed border-white/20 text-xs">
-                <span className="font-bold text-white">+ Care Plan £65/mo</span>
-                <span className="text-gray-400"> (first month free, recommended)</span>
-                <div className="text-gray-400 mt-0.5">Hosting, unlimited edits & priority support.</div>
-              </div>
-              <a href="#start-build" className="block text-center bg-brand-orange text-white font-bold py-3.5 rounded-xl hover:bg-[#e66000] transition-colors shadow-lg shadow-brand-orange/20 text-sm">
-                Get Started
-              </a>
-            </div>
-          </div>
-
-          {/* Add-ons */}
-          <div className="bg-white rounded-2xl p-6 border border-gray-100 max-w-2xl">
-            <h4 className="font-bold mb-4 text-sm uppercase tracking-wider text-brand-slate">Add-ons</h4>
-            <div className="space-y-3">
-              {[
-                { label: 'AI Receptionist', desc: '24/7 call answering, books jobs, and auto-sends review requests after every job. Launching soon — Pro customers get their first month free at launch', price: '£97/mo' },
-                { label: 'Rush Delivery', desc: '24–48hr turnaround. One rush slot per week, subject to availability.', price: '+£197' },
-                { label: 'Care Plan', desc: 'Hosting, SSL & backups · Unlimited small edits · Monthly performance report · Same-day priority support', price: '£65/mo' },
-              ].map(a => (
-                <div key={a.label} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
-                  <div>
-                    <span className="font-bold text-sm">{a.label}</span>
-                    <span className="text-brand-slate text-sm ml-2">{a.desc}</span>
-                  </div>
-                  <span className="font-bold text-brand-orange text-sm">{a.price}</span>
-                </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Testimonials */}
-      <section id="results" className="py-32 lg:py-40 bg-brand-dark text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="max-w-3xl mb-20">
-            <h2 className="text-5xl lg:text-6xl font-bold mb-5 tracking-[-0.025em]">
-              Real <span className="serif-accent text-brand-orange">results</span>
-            </h2>
-            <p className="text-xl text-gray-300 leading-relaxed">What trades businesses say after going live.</p>
-          </Reveal>
+        {/* ============ PRICING ============ */}
+        <section id="pricing" className="pricing">
+          <div className="container">
+            <div className="section-head">
+              <div>
+                <div className="eyebrow">Pricing · 04</div>
+                <h2 className="section-title">Simple pricing.</h2>
+              </div>
+              <p className="section-lede">
+                One-off builds. You own the site outright. Care Plan is optional — cancel any time, no lock-in.
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              {
-                quote: "Didn't have to sit through a single sales call. Filled in the form on my lunch break, had a preview site in 5 days. Best money I've spent on marketing.",
-                name: 'Mike T.',
-                role: 'Owner, Precision Plumbing',
-              },
-              {
-                quote: "The site looks properly professional — way better than what I had on Wix. Already had 3 enquiries in the first week from Google.",
-                name: 'Dave R.',
-                role: 'Apex Roofing Solutions',
-              },
-            ].map(t => (
-              <div key={t.name} className="bg-white/5 p-8 rounded-3xl border border-white/10">
-                <div className="flex gap-1 text-brand-orange mb-6">
-                  {[1, 2, 3, 4, 5].map(i => <Star key={i} className="w-4 h-4 fill-current" />)}
+            <div className="tiers tiers-2">
+              <div className="tier">
+                <div className="tier-head">
+                  <div>
+                    <div className="tier-name">Starter</div>
+                  </div>
                 </div>
-                <p className="text-lg font-medium mb-8 leading-relaxed text-gray-200">"{t.quote}"</p>
-                <div>
-                  <p className="font-bold text-sm">{t.name}</p>
-                  <p className="text-gray-400 text-xs mt-0.5">{t.role}</p>
+                <div className="tier-price">
+                  <span className="cur">£</span><span className="num">497</span>
+                </div>
+                <p className="tier-blurb">One sharp single-page site, built to rank in your home town and turn visitors into calls. Live in 5 days.</p>
+                <ul className="tier-features">
+                  {[
+                    'Bespoke design — no templates',
+                    'Ranks for your trade in your home town',
+                    'Single-page site (everything on one scrolling home)',
+                    'All your services on one section',
+                    'Click-to-call, WhatsApp + contact form',
+                    'Professional trade photography throughout',
+                    'Conversion copy written for you',
+                    "Simple logo included (if you don't have one)",
+                    '1 round of revisions',
+                    'Live in 5 days',
+                  ].map(f => <li key={f}>{f}</li>)}
+                </ul>
+                <div className="tier-spacer"></div>
+                <div className="care-addon">
+                  <div className="care-title">+ Care Plan <span className="care-price">£65/mo</span> <span className="care-rec">(recommended)</span></div>
+                  <div className="care-sub">Hosting, unlimited edits &amp; priority support.</div>
+                </div>
+                <a href="#contact" className="btn btn-ghost btn-full">Get Started <span className="btn-arrow"></span></a>
+              </div>
+
+              <div className="tier featured">
+                <div className="tier-ribbon">Most Popular</div>
+                <div className="tier-head">
+                  <div>
+                    <div className="tier-name">Pro</div>
+                  </div>
+                </div>
+                <div className="tier-price">
+                  <span className="cur">£</span><span className="num">797</span>
+                </div>
+                <p className="tier-blurb">Built to own every search term across every town you cover. The last website you'll ever need.</p>
+                <ul className="tier-features">
+                  {[
+                    'Everything in Starter',
+                    'A dedicated page for every service you offer (6-10 pages)',
+                    'A dedicated page for every town you cover',
+                    'Interactive service area map',
+                    'Google Business Profile starter kit — we write it, you paste it in',
+                    'Print-ready review card — customers scan, leave a Google review in 10 seconds',
+                    'Branded email signature',
+                    'Branded invoice PDF template',
+                    '10 ready-to-post social media posts',
+                    'Recent Jobs page (if you have photos)',
+                    'Guaranteed to load fast on mobile',
+                    'First month of AI Receptionist free (launching soon)',
+                    'First month of Care Plan free',
+                    '2 rounds of revisions',
+                    'Live in 7 days',
+                  ].map(f => <li key={f}>{f}</li>)}
+                </ul>
+                <div className="care-addon">
+                  <div className="care-title">+ Care Plan <span className="care-price">£65/mo</span> <span className="care-rec">(first month free, recommended)</span></div>
+                  <div className="care-sub">Hosting, unlimited edits &amp; priority support.</div>
+                </div>
+                <a href="#contact" className="btn btn-primary btn-full">Get Started <span className="btn-arrow"></span></a>
+              </div>
+            </div>
+
+            <div className="addons">
+              <div className="addons-label">Add-ons</div>
+              <div className="addon-row">
+                <div className="addon-name">AI Receptionist</div>
+                <div className="addon-desc">24/7 call answering, books jobs, and auto-sends review requests after every job. Launching soon — Pro customers get their first month free at launch.</div>
+                <div className="addon-price">£97/mo</div>
+              </div>
+              <div className="addon-row">
+                <div className="addon-name">Rush Delivery</div>
+                <div className="addon-desc">24-48hr turnaround. One rush slot per week, subject to availability.</div>
+                <div className="addon-price">+£197</div>
+              </div>
+              <div className="addon-row">
+                <div className="addon-name">Care Plan</div>
+                <div className="addon-desc">Hosting, SSL &amp; backups · Unlimited small edits · Monthly performance report · Same-day priority support</div>
+                <div className="addon-price">£65/mo</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============ FAQ ============ */}
+        <section id="faq" className="faq">
+          <div className="container">
+            <div className="section-head">
+              <div>
+                <div className="eyebrow">FAQ · 05</div>
+                <h2 className="section-title">Fair questions, straight answers.</h2>
+              </div>
+              <p className="section-lede">
+                The stuff trades actually ask us. Nothing missing? Give us a ring and we'll answer honestly — even if the honest answer is "we're not right for you."
+              </p>
+            </div>
+
+            <div className="faq-grid">
+              <div className="faq-side">
+                <p style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 12 }}>Still stuck?</p>
+                <h3 style={{ fontSize: 32, letterSpacing: '-0.02em', marginBottom: 24 }}>Ring us on a tea break.</h3>
+                <p style={{ fontSize: 15, color: 'var(--muted)', lineHeight: 1.6, marginBottom: 28, maxWidth: '40ch' }}>
+                  We pick up the phone. Honest. We won't put you on hold, won't palm you off to a chatbot, and won't read a script at you.
+                </p>
+                <a href="tel:08001234567" className="btn btn-dark">0800 123 4567</a>
+              </div>
+
+              <div className="faq-list">
+                {[
+                  { n: '01', q: 'How long does a website take to build?', a: 'Most trade sites go from form submission to live in 5-7 days. The whole thing runs by message, so there\'s no call to book or meeting to attend — as soon as you send the form we start researching and building.' },
+                  { n: '02', q: 'What do I actually need to give you?', a: 'The basics: your logo (or we\'ll make one), contact details, a rough list of services, and the areas you cover. We\'ll guide you through the rest — copy, photos, accreditations. No forms, no homework.' },
+                  { n: '03', q: 'Will it actually bring in jobs?', a: 'Yes — if your trade has local demand, a proper site plus our SEO programme typically doubles or triples enquiries within 3-6 months. We share real numbers from real clients on the call. No promises we can\'t back with data.' },
+                  { n: '04', q: 'Do I own the website?', a: 'Yes. The domain is yours, the content is yours, and if you ever leave we\'ll hand over an export so you can move it anywhere. No lock-in, no hostage situations.' },
+                  { n: '05', q: 'What if I already have a website?', a: "We'll take a look and tell you honestly whether it needs replacing or just a tune-up. Sometimes the existing site is fine and you just need SEO. We'll say so and save you money." },
+                  { n: '06', q: 'Is there a long contract?', a: "The site build is a one-off payment — you own it outright. Care Plan is month-to-month, cancel any time. No auto-renew traps." },
+                ].map((item, i) => (
+                  <div key={item.n} className={`faq-item${openFaq === i ? ' open' : ''}`}>
+                    <button className="faq-q" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+                      <span><span className="q-num">{item.n}</span>{item.q}</span>
+                      <span className="q-toggle">+</span>
+                    </button>
+                    <div className="faq-a">{item.a}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============ CONTACT ============ */}
+        <section id="contact" className="contact">
+          <div className="container contact-grid">
+            <div className="contact-left">
+              <div className="eyebrow">Let's talk · 06</div>
+              <h2>Start your build.</h2>
+              <p>Pick your package, tell us about your business, and we'll get to work. No calls, no back-and-forth.</p>
+              <div className="contact-deets">
+                <div className="row"><span className="lbl">Email</span><span className="val">hello@tradiestoolbox.co.uk</span></div>
+                <div className="row"><span className="lbl">Based</span><span className="val">South Wales · serving UK-wide</span></div>
+              </div>
+            </div>
+
+            {submitted ? (
+              <div className="contact-form" style={{ alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+                <div style={{ fontFamily: 'var(--display)', fontSize: 22, fontWeight: 800, padding: '40px 0' }}>
+                  Cheers — we'll be in touch within 1 working day to get started.
                 </div>
               </div>
+            ) : (
+              <form className="contact-form" onSubmit={handleSubmit}>
+                <div className="field-row">
+                  <div className="field">
+                    <label>Business name</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Apex Plumbing"
+                      required
+                      value={formData.businessName}
+                      onChange={e => setFormData({ ...formData, businessName: e.target.value })}
+                    />
+                  </div>
+                  <div className="field">
+                    <label>Trade</label>
+                    <select
+                      required
+                      value={formData.trade}
+                      onChange={e => setFormData({ ...formData, trade: e.target.value })}
+                    >
+                      <option value="" disabled>Select your trade…</option>
+                      <option>Plumber</option>
+                      <option>Electrician</option>
+                      <option>Builder</option>
+                      <option>Roofer</option>
+                      <option>Decorator</option>
+                      <option>Landscaper</option>
+                      <option>Gas Engineer</option>
+                      <option>Joiner / Carpenter</option>
+                      <option>Tiler</option>
+                      <option>Plasterer</option>
+                      <option>Handyman</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="field">
+                  <label>Location / service area</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Manchester &amp; surrounding areas"
+                    required
+                    value={formData.location}
+                    onChange={e => setFormData({ ...formData, location: e.target.value })}
+                  />
+                </div>
+                <div className="field">
+                  <label>Current website <span className="field-opt">(optional)</span></label>
+                  <input
+                    type="url"
+                    placeholder="https://www.yoursite.com"
+                    value={formData.currentSite}
+                    onChange={e => setFormData({ ...formData, currentSite: e.target.value })}
+                  />
+                </div>
+                <div className="field">
+                  <label>Package interested in</label>
+                  <select
+                    required
+                    value={formData.package}
+                    onChange={e => setFormData({ ...formData, package: e.target.value })}
+                  >
+                    <option value="" disabled>Select a package…</option>
+                    <option>Starter — £497</option>
+                    <option>Pro — £797</option>
+                    <option>Not sure — help me decide</option>
+                  </select>
+                </div>
+                <div className="field">
+                  <label>Your email</label>
+                  <input
+                    type="email"
+                    placeholder="you@example.com"
+                    required
+                    value={formData.email}
+                    onChange={e => setFormData({ ...formData, email: e.target.value })}
+                  />
+                </div>
+                <button type="submit" className="btn btn-dark btn-full btn-submit" disabled={submitting}>
+                  <span className="submit-ico">➤</span> {submitting ? 'Sending…' : 'Confirm my order'}
+                </button>
+                {submitError && (
+                  <p style={{ color: '#ff6b6b', fontSize: 13, margin: 0, textAlign: 'center' }}>{submitError}</p>
+                )}
+                <p className="form-foot">
+                  We'll be in touch within 1 working day to get started. No calls, no spam.{' '}
+                  <Link to="/privacy">Privacy policy</Link>.
+                </p>
+              </form>
+            )}
+          </div>
+        </section>
+
+        {/* ============ FOOTER ============ */}
+        <footer>
+          <div className="container">
+            <div className="footer-grid">
+              <div className="footer-brand">
+                <a href="#top" className="brand">
+                  <span className="brand-mark"></span>
+                  TRADIES TOOLBOX
+                </a>
+                <p>Websites, SEO &amp; branding for UK trades. South Wales–based, working nationwide. Built by people who've run trade businesses themselves.</p>
+              </div>
+              <div className="footer-col">
+                <h5>Services</h5>
+                <ul>
+                  <li><a href="#services">Websites</a></li>
+                  <li><a href="#services">Local SEO</a></li>
+                  <li><a href="#services">Branding</a></li>
+                  <li><a href="#services">Photography</a></li>
+                  <li><a href="#services">Hosting</a></li>
+                </ul>
+              </div>
+              <div className="footer-col">
+                <h5>Trades we serve</h5>
+                <ul>
+                  <li><a href="#services">Plumbers</a></li>
+                  <li><a href="#services">Electricians</a></li>
+                  <li><a href="#services">Builders</a></li>
+                  <li><a href="#services">Roofers</a></li>
+                  <li><a href="#services">Landscapers</a></li>
+                </ul>
+              </div>
+              <div className="footer-col">
+                <h5>Company</h5>
+                <ul>
+                  <li><a href="#process">How it works</a></li>
+                  <li><a href="#portfolio">Work</a></li>
+                  <li><a href="#pricing">Pricing</a></li>
+                  <li><a href="#faq">FAQ</a></li>
+                  <li><a href="#contact">Contact</a></li>
+                  <li><Link to="/privacy">Privacy</Link></li>
+                </ul>
+              </div>
+            </div>
+            <div className="footer-bottom">
+              <div>© 2026 Tradies Toolbox Ltd · South Wales, UK</div>
+              <div>Built on the tools</div>
+            </div>
+          </div>
+        </footer>
+
+      </main>
+
+      {/* ============ TWEAKS PANEL ============ */}
+      <div className={`tweaks${tweaksOpen ? ' open' : ''}`}>
+        <div className="tweaks-head">
+          <span>Tweaks</span>
+          <button className="tweaks-close" onClick={() => setTweaksOpen(false)}>×</button>
+        </div>
+        <div className="tweaks-row">
+          <label>Hero layout</label>
+          <div className="tweaks-chips">
+            {(['editorial', 'blocks', 'ticker'] as const).map(v => (
+              <button key={v} className={heroVariant === v ? 'active' : ''} onClick={() => setKey('hero', v)}>
+                {v === 'editorial' ? 'Editorial' : v === 'blocks' ? 'Trade picker' : 'Ticker'}
+              </button>
             ))}
           </div>
         </div>
-      </section>
-
-      {/* AI Receptionist teaser */}
-      <section className="py-20 lg:py-24 bg-brand-dark text-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-              <div className="flex-1">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-bold uppercase tracking-wider mb-4">
-                  <Mic className="w-3.5 h-3.5 text-brand-orange" />
-                  Coming Soon
-                </div>
-                <h3 className="text-3xl lg:text-4xl font-bold tracking-[-0.02em] mb-3">
-                  AI Receptionist — never miss a job again.
-                </h3>
-                <p className="text-gray-300 leading-relaxed max-w-xl">
-                  Answers your calls 24/7, qualifies leads, books jobs into your calendar, and sends review requests after every job. Pro customers get their first month free at launch.
-                </p>
-              </div>
-              <a href="#start-build" className="shrink-0 inline-flex items-center justify-center gap-2 bg-brand-orange text-white font-bold px-7 py-4 rounded-2xl hover:bg-[#e66000] transition-colors shadow-lg shadow-brand-orange/20">
-                Join the Waitlist <ArrowRight className="w-5 h-5" />
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Get Started Form */}
-      <section id="start-build" className="py-32 lg:py-40 bg-white">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="mb-14">
-            <h2 className="text-5xl lg:text-6xl font-bold mb-4 tracking-[-0.025em]">
-              Start your <span className="serif-accent text-brand-orange">build</span>
-            </h2>
-            <p className="text-lg text-brand-slate">
-              Pick your package, tell us about your business, and we'll get to work.
-              <br />
-              No calls, no back-and-forth.
-            </p>
-          </Reveal>
-
-          {submitted ? (
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-green-50 border border-green-200 rounded-2xl p-8 text-center"
-            >
-              <CheckCircle2 className="w-12 h-12 text-green-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">You're in — we'll be in touch!</h3>
-              <p className="text-brand-slate text-sm">We've received your order. We'll kick off your build within 1 working day.</p>
-            </motion.div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-sm font-bold mb-1.5">Business Name</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Apex Plumbing"
-                    value={formData.businessName}
-                    onChange={e => setFormData({ ...formData, businessName: e.target.value })}
-                    className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition-all text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold mb-1.5">Trade</label>
-                  <select
-                    required
-                    value={formData.trade}
-                    onChange={e => setFormData({ ...formData, trade: e.target.value })}
-                    className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition-all appearance-none text-sm"
-                  >
-                    <option value="">Select your trade...</option>
-                    {['Plumber', 'Electrician', 'Roofer', 'HVAC / Heating Engineer', 'Carpenter', 'Builder', 'Landscaper', 'Other'].map(t => (
-                      <option key={t}>{t}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-bold mb-1.5">Location / Service Area</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. Manchester & surrounding areas"
-                  value={formData.location}
-                  onChange={e => setFormData({ ...formData, location: e.target.value })}
-                  className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition-all text-sm"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-bold mb-1.5">Current Website <span className="font-normal text-brand-slate">(optional)</span></label>
-                <input
-                  type="url"
-                  placeholder="https://www.yoursite.com"
-                  value={formData.currentSite}
-                  onChange={e => setFormData({ ...formData, currentSite: e.target.value })}
-                  className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition-all text-sm"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-bold mb-1.5">Package Interested In</label>
-                <select
-                  required
-                  value={formData.package}
-                  onChange={e => setFormData({ ...formData, package: e.target.value })}
-                  className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition-all appearance-none text-sm"
-                >
-                  <option value="">Select a package...</option>
-                  <option>Starter — £497</option>
-                  <option>Pro — £797</option>
-                  <option>Not sure yet</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-bold mb-1.5">Your Email</label>
-                <input
-                  type="email"
-                  required
-                  placeholder="you@example.com"
-                  value={formData.email}
-                  onChange={e => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-brand-orange outline-none transition-all text-sm"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={submitting}
-                className="w-full bg-brand-dark text-white px-8 py-4 rounded-xl font-bold hover:bg-gray-800 transition-colors flex items-center justify-center gap-2 shadow-lg disabled:opacity-60"
-              >
-                {submitting ? 'Processing...' : <><Send className="w-4 h-4" /> Confirm My Order</>}
+        <div className="tweaks-row">
+          <label>Theme</label>
+          <div className="tweaks-chips">
+            {(['light', 'dark'] as const).map(v => (
+              <button key={v} className={theme === v ? 'active' : ''} onClick={() => setKey('theme', v)}>
+                {v.charAt(0).toUpperCase() + v.slice(1)}
               </button>
-
-              {submitError && (
-                <p className="text-sm text-center text-red-600 bg-red-50 rounded-lg py-2 px-3">{submitError}</p>
-              )}
-              <p className="text-xs text-center text-brand-slate">We'll be in touch within 1 working day to get started. No calls, no spam. <Link to="/privacy" className="underline hover:text-brand-dark">Privacy policy</Link>.</p>
-            </form>
-          )}
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-brand-dark text-gray-400 py-10 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center">
-            <img src="/Logo (white).svg" alt="Tradies Toolbox" className="h-7 w-auto" />
+            ))}
           </div>
-          <div className="flex gap-6 text-sm">
-            <a href="#how-it-works" className="hover:text-white transition-colors">How It Works</a>
-            <a href="#portfolio" className="hover:text-white transition-colors">Our Work</a>
-            <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
-            <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-          </div>
-          <p className="text-xs">© 2026 Tradies Toolbox. tradiestoolbox.co.uk</p>
         </div>
-      </footer>
-
-    </div>
+        <div className="tweaks-row">
+          <label>Font pairing</label>
+          <div className="tweaks-chips">
+            {([
+              ['display-sans', 'Archivo / Inter'],
+              ['condensed-serif', 'Narrow / Fraunces'],
+              ['mono-grotesk', 'Grotesk / Plex Mono'],
+            ] as const).map(([v, label]) => (
+              <button key={v} className={fonts === v ? 'active' : ''} onClick={() => setKey('fonts', v)}>
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
