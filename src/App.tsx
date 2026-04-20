@@ -329,7 +329,6 @@ export default function App() {
                 <div className="hero-meta">
                   <div><span className="num">240+</span><span className="lbl">Trades online</span></div>
                   <div><span className="num">5-7d</span><span className="lbl">Avg. build time</span></div>
-                  <div><span className="num">£0</span><span className="lbl">Upfront</span></div>
                 </div>
               </div>
               <div className="mockup-wrap">
@@ -449,14 +448,11 @@ export default function App() {
               </div>
               <div className="ticker-bottom">
                 <p className="hero-sub">
-                  Every trade gets its own tuned site — same toolbox, different tools. Built in the UK, by people who've run trade businesses.
+                  Every trade gets its own tuned site — same toolbox, different tools. Built in the UK, made to book jobs.
                 </p>
-                <div className="hero-cta">
-                  <a href="#contact" className="btn btn-primary">Start your site <span className="btn-arrow"></span></a>
-                </div>
                 <div className="hero-meta">
                   <div><span className="num">240+</span><span className="lbl">Trades online</span></div>
-                  <div><span className="num">£0</span><span className="lbl">Upfront</span></div>
+                  <div><span className="num">7d</span><span className="lbl">Go live</span></div>
                 </div>
               </div>
             </div>
