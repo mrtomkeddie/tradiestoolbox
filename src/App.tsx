@@ -369,7 +369,7 @@ export default function App() {
                   <span className="stroke">website.</span>
                 </h1>
                 <p className="hero-sub">
-                  Not a template. Not a drag-and-drop mess. A site engineered around how your customers actually find and hire you.
+                  Not a drag-and-drop mess. A site tuned to your trade and engineered around how your customers actually find and hire you.
                 </p>
               </div>
 
@@ -483,17 +483,17 @@ export default function App() {
                 <h2 className="section-title">Everything your trade needs online.</h2>
               </div>
               <p className="section-lede">
-                Every package includes the essentials — bespoke design, conversion copy, and pro trade photography. Pick Pro and you get the full local-SEO stack, the branded kit, and the growth tools too.
+                Every package includes the essentials — a hero pattern tuned to your trade, conversion copy, and pro trade photography. Pick Pro and you get the full local-SEO stack, the branded kit, and the growth tools too.
               </p>
             </div>
 
             <div className="services-grid">
               <article className="svc">
                 <div className="svc-num">01 / Design <span className="tick"></span></div>
-                <h3>Bespoke, no templates.</h3>
+                <h3>Tuned to your trade.</h3>
                 <p>Every site is drawn up around your trade, your patch, and the way your customers actually search. Fast on mobile, guaranteed.</p>
                 <ul>
-                  <li>Bespoke design — zero templates</li>
+                  <li>Hero pattern picked for your trade</li>
                   <li>Conversion copy written for you</li>
                   <li>Pro trade photography throughout</li>
                   <li>Simple logo if you don't have one</li>
@@ -757,7 +757,7 @@ export default function App() {
                 <p className="tier-blurb">One sharp single-page site, built to rank in your home town and turn visitors into calls. Live in 5 days.</p>
                 <ul className="tier-features">
                   {[
-                    'Bespoke design — no templates',
+                    'Hero pattern tuned to your trade',
                     'Ranks for your trade in your home town',
                     'Single-page site (everything on one scrolling home)',
                     'All your services on one section',
