@@ -130,8 +130,8 @@ export default function App() {
       {/* ============ TAPE ============ */}
       <div className="tape">
         <div className="tape-track">
-          <span>UK trades · websites that book jobs · est. 2021 · no contracts · hosting included · built in britain · fixed pricing</span>
-          <span>UK trades · websites that book jobs · est. 2021 · no contracts · hosting included · built in britain · fixed pricing</span>
+          <span>UK trades · websites that book jobs · est. 2026 · no contracts · hosting included · built in britain · fixed pricing</span>
+          <span>UK trades · websites that book jobs · est. 2026 · no contracts · hosting included · built in britain · fixed pricing</span>
         </div>
       </div>
 
@@ -180,8 +180,8 @@ export default function App() {
                   <a href="#pricing" className="btn btn-ghost">See pricing</a>
                 </div>
                 <div className="hero-meta">
-                  <div><span className="num">240+</span><span className="lbl">Trades online</span></div>
-                  <div><span className="num">5-7d</span><span className="lbl">Avg. build time</span></div>
+                  <div><span className="num">5-7d</span><span className="lbl">Go live</span></div>
+                  <div><span className="num">0</span><span className="lbl">Contracts</span></div>
                 </div>
               </div>
               <div className="mockup-wrap">
@@ -259,9 +259,8 @@ export default function App() {
                   <a href="#pricing" className="btn btn-ghost">See pricing</a>
                 </div>
                 <div className="hero-meta">
-                  <div><span className="num">240+</span><span className="lbl">Trades online</span></div>
                   <div><span className="num">5-7d</span><span className="lbl">Build time</span></div>
-                  <div><span className="num">4.9★</span><span className="lbl">Client rating</span></div>
+                  <div><span className="num">0</span><span className="lbl">Contracts</span></div>
                 </div>
               </div>
             </div>
@@ -304,8 +303,8 @@ export default function App() {
                   Every trade gets its own tuned site — same toolbox, different tools. Built in the UK, made to book jobs.
                 </p>
                 <div className="hero-meta">
-                  <div><span className="num">240+</span><span className="lbl">Trades online</span></div>
-                  <div><span className="num">7d</span><span className="lbl">Go live</span></div>
+                  <div><span className="num">5-7d</span><span className="lbl">Go live</span></div>
+                  <div><span className="num">0</span><span className="lbl">Contracts</span></div>
                 </div>
               </div>
             </div>
@@ -322,7 +321,6 @@ export default function App() {
               <div className="trust-logo"><span className="glyph circle"></span>ANDY JOHN</div>
               <div className="trust-logo"><span className="glyph diamond"></span>PARAGON</div>
               <div className="trust-logo"><span className="glyph tri"></span>GJ ISITT</div>
-              <div className="trust-logo"><span className="glyph"></span>NORTHWORKS</div>
             </div>
           </div>
         </section>
@@ -336,7 +334,7 @@ export default function App() {
                 <h2 className="section-title">Everything your trade needs online.</h2>
               </div>
               <p className="section-lede">
-                Every package includes design, copy, and photography. Pro adds the full local-SEO stack, branded kit, and growth tools.
+                Every package includes design, copy, and professional imagery. Pro adds the full local-SEO stack, branded kit, and growth tools.
               </p>
             </div>
 
@@ -566,7 +564,7 @@ export default function App() {
                 {[
                   { n: '01', q: 'How long does a website take to build?', a: 'Most trade sites go from form submission to live in 5-7 days. The whole thing runs by message, so there\'s no call to book or meeting to attend — as soon as you send the form we start researching and building.' },
                   { n: '02', q: 'What do I actually need to give you?', a: 'The basics: your logo (or we\'ll make one), contact details, a rough list of services, and the areas you cover. We\'ll guide you through the rest — copy, photos, accreditations. No forms, no homework.' },
-                  { n: '03', q: 'Will it actually bring in jobs?', a: 'Yes — if your trade has local demand, a proper site plus our SEO programme typically doubles or triples enquiries within 3-6 months. We share real numbers from real clients on the call. No promises we can\'t back with data.' },
+                  { n: '03', q: 'Will it actually bring in jobs?', a: 'Yes — if your trade has local demand online, a proper site puts you in front of people actively searching for your services. Most trades are losing jobs to competitors with better-looking sites, not because they\'re worse at the trade. A site that ranks and converts fixes that.' },
                   { n: '04', q: 'Do I own the website?', a: 'Yes. The domain is yours, the content is yours, and if you ever leave we\'ll hand over an export so you can move it anywhere. No lock-in, no hostage situations.' },
                   { n: '05', q: 'What if I already have a website?', a: "We'll take a look and tell you honestly whether it needs replacing or just a tune-up. Sometimes the existing site is fine and you just need SEO. We'll say so and save you money." },
                   { n: '06', q: 'Is there a long contract?', a: "The site build is a one-off payment — you own it outright. Care Plan is month-to-month, cancel any time. No auto-renew traps." },
@@ -705,7 +703,7 @@ export default function App() {
                   <span className="brand-mark"></span>
                   TRADIES TOOLBOX
                 </a>
-                <p>Websites, SEO &amp; branding for UK trades. South Wales–based, working nationwide. Built by people who've run trade businesses themselves.</p>
+                <p>Websites, SEO &amp; branding for UK trades. South Wales–based, working nationwide. Built to win more jobs.</p>
               </div>
               <div className="footer-col">
                 <h5>Services</h5>
