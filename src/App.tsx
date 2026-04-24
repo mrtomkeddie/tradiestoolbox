@@ -3,136 +3,6 @@ import { Link } from 'react-router-dom';
 import './design.css';
 
 /* =========================================================
-   Portfolio data (real projects)
-   ========================================================= */
-interface PortfolioItem {
-  name: string;
-  trade: string;
-  location: string;
-  year: string;
-  tier: 'Starter' | 'Pro';
-  url: string | null;
-  result?: string;
-  tradeTag: string;
-  tradeFilter: string;
-  accent: string;
-  accent2: string;
-  // Device mockup content
-  navLabel: string;
-  navCta: string;
-  eyebrow: string;
-  h1: string;
-  pill: string;
-  strip: string[];
-  mbEyebrow: string;
-  mbH1: string;
-  mbCta: string;
-  mbPills: [string, string];
-  previewDesktop: string | null;
-  previewMobile: string | null;
-}
-
-const portfolio: PortfolioItem[] = [
-  {
-    name: 'GLJ Plumbing',
-    trade: 'Plumber & Bathroom Specialist',
-    location: 'Llanelli, South Wales',
-    year: '2025',
-    tier: 'Pro',
-    url: 'https://glj-plumbing-portfolio.netlify.app/',
-    result: '3× enquiries',
-    tradeTag: 'Plumbing',
-    tradeFilter: 'plumbing',
-    accent: '#1f6feb',
-    accent2: '#0b3a8a',
-    navLabel: 'GLJ PLUMBING',
-    navCta: 'CALL 24/7',
-    eyebrow: 'GAS SAFE · EST. 1993',
-    h1: 'Family plumbers,\nLlanelli.',
-    pill: '★ 4.9 / Gas Safe',
-    strip: ['BOILERS', 'BATHROOMS', 'LEAKS', 'HEATING'],
-    mbEyebrow: 'GAS SAFE',
-    mbH1: 'Family\nplumbers.',
-    mbCta: 'CALL NOW',
-    mbPills: ['★ 4.9', 'Gas Safe'],
-    previewDesktop: '/glj-preview-desktop.png',
-    previewMobile: '/glj-preview-mobile.png',
-  },
-  {
-    name: 'Andy John Plumbing',
-    trade: 'Plumber, Heating & Gas Engineer',
-    location: 'Swansea, South Wales',
-    year: '2025',
-    tier: 'Pro',
-    url: 'https://andy-john-plumbing.netlify.app/',
-    tradeTag: 'Plumbing',
-    tradeFilter: 'plumbing',
-    accent: '#dc2626',
-    accent2: '#651010',
-    navLabel: 'ANDY JOHN',
-    navCta: 'EMERGENCY',
-    eyebrow: '24/7 · GAS SAFE · TRUSTMARK',
-    h1: "Swansea's highest-rated\nplumber.",
-    pill: '★ 5.0 / 64 reviews',
-    strip: ['BOILERS', 'GAS', 'HEATING', 'EMERGENCY'],
-    mbEyebrow: '24/7',
-    mbH1: 'Top-rated\nplumber.',
-    mbCta: 'CALL NOW',
-    mbPills: ['★ 5.0', 'Gas Safe'],
-    previewDesktop: '/andy-john-preview-desktop.png',
-    previewMobile: '/andy-john-preview-mobile.png',
-  },
-  {
-    name: 'Paragon Plumbing',
-    trade: 'Gas Safe Plumber & Heating Engineer',
-    location: 'Swansea & Pontardawe',
-    year: '2025',
-    tier: 'Starter',
-    url: 'https://paragon-plumbing-portfolio.netlify.app/',
-    tradeTag: 'Plumbing',
-    tradeFilter: 'plumbing',
-    accent: '#2563eb',
-    accent2: '#1e3a8a',
-    navLabel: 'PARAGON',
-    navCta: 'FREE QUOTE',
-    eyebrow: 'GAS SAFE · SAME-DAY',
-    h1: 'Gas Safe plumbers,\nSwansea.',
-    pill: '★ 5.0 / 39 reviews',
-    strip: ['BOILERS', 'GAS', 'HEATING', 'LEAKS'],
-    mbEyebrow: 'SAME-DAY',
-    mbH1: 'Gas Safe\nSwansea.',
-    mbCta: 'QUOTE NOW',
-    mbPills: ['★ 5.0', 'Yell'],
-    previewDesktop: '/paragon-preview-desktop.png',
-    previewMobile: '/paragon-preview-mobile.png',
-  },
-  {
-    name: 'G J Isitt & Son Roofing',
-    trade: 'Roofer',
-    location: 'Carmarthen, West Wales',
-    year: '2025',
-    tier: 'Pro',
-    url: 'https://gj-isitt-roofing.netlify.app/',
-    tradeTag: 'Roofing',
-    tradeFilter: 'roofing',
-    accent: '#2f5d3a',
-    accent2: '#16321e',
-    navLabel: 'GJ ISITT',
-    navCta: 'FREE SURVEY',
-    eyebrow: 'EST. 1975 · 20-YR GUARANTEE',
-    h1: 'Roofers since 1975,\nCarmarthen.',
-    pill: '20-year guarantee',
-    strip: ['SLATE', 'TILE', 'FLAT', 'REPAIRS'],
-    mbEyebrow: '20 YR',
-    mbH1: 'Roofers\nsince 1975.',
-    mbCta: 'FREE SURVEY',
-    mbPills: ['Slate', 'Flat'],
-    previewDesktop: '/isitt-preview-desktop.png',
-    previewMobile: '/isitt-preview-mobile.png',
-  },
-];
-
-/* =========================================================
    Trade picker colours (hero variant B)
    ========================================================= */
 const tradeColors: Record<string, string> = {
@@ -166,9 +36,6 @@ export default function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [fonts, setFonts] = useState<'display-sans' | 'condensed-serif' | 'mono-grotesk'>('display-sans');
   const [tweaksOpen, setTweaksOpen] = useState(false);
-
-  /* ---- portfolio filter ---- */
-  const [activeFilter, setActiveFilter] = useState<string>('all');
 
   /* ---- process step ---- */
   const [activeStep, setActiveStep] = useState(0);
@@ -207,7 +74,7 @@ export default function App() {
 
   /* ---- Scroll spy ---- */
   useEffect(() => {
-    const sectionIds = ['services', 'process', 'portfolio', 'pricing', 'faq'];
+    const sectionIds = ['services', 'process', 'pricing', 'faq'];
     const sections = sectionIds.map(id => document.getElementById(id));
     const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-links a[data-link]');
 
@@ -258,26 +125,13 @@ export default function App() {
     try { window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: val } }, '*'); } catch (_) {}
   }
 
-  const filteredPortfolio = activeFilter === 'all'
-    ? portfolio
-    : portfolio.filter(p => p.tradeFilter === activeFilter);
-
-  const portfolioCounts = {
-    all: portfolio.length,
-    plumbing: portfolio.filter(p => p.tradeFilter === 'plumbing').length,
-    roofing: portfolio.filter(p => p.tradeFilter === 'roofing').length,
-    electrical: portfolio.filter(p => p.tradeFilter === 'electrical').length,
-    building: portfolio.filter(p => p.tradeFilter === 'building').length,
-    landscaping: portfolio.filter(p => p.tradeFilter === 'landscaping').length,
-  };
-
   return (
     <>
       {/* ============ TAPE ============ */}
       <div className="tape">
         <div className="tape-track">
-          <span>UK trades · websites that book jobs · est. 2021 · no contracts · hosting included · built in britain · free quote</span>
-          <span>UK trades · websites that book jobs · est. 2021 · no contracts · hosting included · built in britain · free quote</span>
+          <span>UK trades · websites that book jobs · est. 2021 · no contracts · hosting included · built in britain · fixed pricing</span>
+          <span>UK trades · websites that book jobs · est. 2021 · no contracts · hosting included · built in britain · fixed pricing</span>
         </div>
       </div>
 
@@ -291,7 +145,6 @@ export default function App() {
           <div className="nav-links">
             <a href="#services" data-link="">Services</a>
             <a href="#process" data-link="">Process</a>
-            <a href="#portfolio" data-link="">Work</a>
             <a href="#pricing" data-link="">Pricing</a>
             <a href="#faq" data-link="">FAQ</a>
           </div>
@@ -324,7 +177,7 @@ export default function App() {
                 </p>
                 <div className="hero-cta">
                   <a href="#contact" className="btn btn-primary">Start your site <span className="btn-arrow"></span></a>
-                  <a href="#portfolio" className="btn btn-ghost">See the work</a>
+                  <a href="#pricing" className="btn btn-ghost">See pricing</a>
                 </div>
                 <div className="hero-meta">
                   <div><span className="num">240+</span><span className="lbl">Trades online</span></div>
@@ -402,7 +255,7 @@ export default function App() {
 
               <div className="hero-blocks-cta">
                 <div className="hero-cta">
-                  <a href="#contact" className="btn btn-primary">Get a free quote <span className="btn-arrow"></span></a>
+                  <a href="#contact" className="btn btn-primary">Start your site <span className="btn-arrow"></span></a>
                   <a href="#pricing" className="btn btn-ghost">See pricing</a>
                 </div>
                 <div className="hero-meta">
@@ -483,7 +336,7 @@ export default function App() {
                 <h2 className="section-title">Everything your trade needs online.</h2>
               </div>
               <p className="section-lede">
-                Every package includes the essentials — a hero pattern tuned to your trade, conversion copy, and pro trade photography. Pick Pro and you get the full local-SEO stack, the branded kit, and the growth tools too.
+                Every package includes design, copy, and photography. Pro adds the full local-SEO stack, branded kit, and growth tools.
               </p>
             </div>
 
@@ -491,78 +344,42 @@ export default function App() {
               <article className="svc">
                 <div className="svc-num">01 / Design <span className="tick"></span></div>
                 <h3>Tuned to your trade.</h3>
-                <p>Every site is drawn up around your trade, your patch, and the way your customers actually search. Fast on mobile, guaranteed.</p>
-                <ul>
-                  <li>Hero pattern picked for your trade</li>
-                  <li>Conversion copy written for you</li>
-                  <li>Pro trade photography throughout</li>
-                  <li>Simple logo if you don't have one</li>
-                </ul>
+                <p>Hero, copy, photography and logo. Done for you, built to convert — not a template dropped into your name.</p>
                 <div className="svc-tag">Included · Starter &amp; Pro</div>
               </article>
 
               <article className="svc is-featured">
                 <div className="svc-num">02 / Local SEO <span className="tick"></span></div>
                 <h3>Own every town you cover.</h3>
-                <p>A dedicated page for every service and every town in your patch. Pro is built to rank for every search that matters to your trade.</p>
-                <ul>
-                  <li>Service page per offering (6-10 pages)</li>
-                  <li>Location page per town you cover</li>
-                  <li>Interactive service area map</li>
-                  <li>Google Business Profile starter kit</li>
-                </ul>
+                <p>A dedicated page for every service and every town in your patch. Built to rank for every search that matters.</p>
                 <div className="svc-tag">Pro package</div>
               </article>
 
               <article className="svc">
                 <div className="svc-num">03 / Lead capture <span className="tick"></span></div>
                 <h3>Turn visitors into calls.</h3>
-                <p>Every page wired for enquiries — the click-to-call, the WhatsApp tap, the form. No dead-ends, no missed leads.</p>
-                <ul>
-                  <li>Click-to-call + WhatsApp tap</li>
-                  <li>Smart contact form</li>
-                  <li>Recent Jobs page (if you have photos)</li>
-                  <li>All your services on one section</li>
-                </ul>
+                <p>Click-to-call, WhatsApp tap, contact form. Every page wired to bring the phone in — no dead ends.</p>
                 <div className="svc-tag">Included · Starter &amp; Pro</div>
               </article>
 
               <article className="svc">
                 <div className="svc-num">04 / Reviews engine <span className="tick"></span></div>
                 <h3>More 5-stars, less nagging.</h3>
-                <p>A print-ready review card you leave on the job. Customers scan, leave a Google review in 10 seconds, and you climb the local pack.</p>
-                <ul>
-                  <li>Print-ready review QR card</li>
-                  <li>One-scan Google review flow</li>
-                  <li>10-second customer experience</li>
-                  <li>Compounding local SEO boost</li>
-                </ul>
+                <p>A print-ready card you leave on the job. Customers scan and leave a Google review in 10 seconds.</p>
                 <div className="svc-tag">Pro package</div>
               </article>
 
               <article className="svc">
                 <div className="svc-num">05 / Branded kit <span className="tick"></span></div>
                 <h3>Look the part off-site too.</h3>
-                <p>The small touches that make a trade business look proper — email, invoices, socials. Done for you, ready to use.</p>
-                <ul>
-                  <li>Branded email signature</li>
-                  <li>Branded invoice PDF template</li>
-                  <li>10 ready-to-post social media posts</li>
-                  <li>Consistent across every touchpoint</li>
-                </ul>
+                <p>Branded email signature, invoice template, and 10 ready-to-post social media posts. Consistent everywhere.</p>
                 <div className="svc-tag">Pro package</div>
               </article>
 
               <article className="svc">
                 <div className="svc-num">06 / Care Plan <span className="tick"></span></div>
                 <h3>Hosting, edits &amp; support.</h3>
-                <p>Optional monthly plan — we host it, keep it safe, and make unlimited edits for you. Cancel any time, no lock-in.</p>
-                <ul>
-                  <li>UK hosting, SSL &amp; backups</li>
-                  <li>Unlimited small edits</li>
-                  <li>Monthly performance report</li>
-                  <li>Same-day priority support</li>
-                </ul>
+                <p>We host it, keep it safe, and make unlimited edits for you. Cancel any time, no lock-in.</p>
                 <div className="svc-tag">Add-on · £65/mo</div>
               </article>
             </div>
@@ -617,126 +434,12 @@ export default function App() {
           </div>
         </section>
 
-        {/* ============ PORTFOLIO ============ */}
-        <section id="portfolio" className="portfolio">
-          <div className="container">
-            <div className="section-head">
-              <div>
-                <div className="eyebrow">Recent work · 03</div>
-                <h2 className="section-title">Sites we've built for trades.</h2>
-              </div>
-              <p className="section-lede">
-                A sample of what's live. Real projects, real clients, real results.
-              </p>
-            </div>
-
-            <div className="portfolio-filters">
-              {([
-                ['all', 'All'],
-                ['plumbing', 'Plumbing'],
-                ['roofing', 'Roofing'],
-                ['electrical', 'Electrical'],
-                ['building', 'Building'],
-                ['landscaping', 'Landscaping'],
-              ] as [string, string][]).map(([filter, label]) => (
-                <button
-                  key={filter}
-                  className={`filter-chip${activeFilter === filter ? ' active' : ''}`}
-                  onClick={() => setActiveFilter(filter)}
-                >
-                  {label} <span className="count">{portfolioCounts[filter as keyof typeof portfolioCounts] ?? 0}</span>
-                </button>
-              ))}
-            </div>
-
-            <div className="work-grid">
-              {filteredPortfolio.map(p => (
-                <article
-                  key={p.name}
-                  className="work"
-                  data-trade={p.tradeFilter}
-                  style={{ '--accent': p.accent, '--accent-2': p.accent2 } as React.CSSProperties}
-                >
-                  <div className="work-devices">
-                    <div className="device-desktop">
-                      <div className="dt-bar">
-                        <span className="dt-dots"><i></i><i></i><i></i></span>
-                        <span className="dt-url">{p.url ?? 'coming-soon.co.uk'}</span>
-                      </div>
-                      <div className="dt-screen">
-                        {p.previewDesktop ? (
-                          <img src={p.previewDesktop} alt={`${p.name} desktop preview`} style={{ width: '100%', display: 'block', borderRadius: 0 }} loading="lazy" />
-                        ) : (
-                          <>
-                            <div className="bs-nav"><span className="bs-logo">{p.navLabel}</span><span className="bs-cta">{p.navCta}</span></div>
-                            <div className="bs-hero">
-                              <div className="bs-eyebrow">{p.eyebrow}</div>
-                              <div className="bs-h1">{p.h1.replace(/\n/g, ' ')}</div>
-                              <div className="bs-row"><span className="bs-pill">{p.pill}</span><span className="bs-btn">Get a quote →</span></div>
-                            </div>
-                            <div className="bs-strip">{p.strip.map(s => <span key={s}>{s}</span>)}</div>
-                          </>
-                        )}
-                      </div>
-                    </div>
-                    <div className="device-mobile">
-                      <div className="mb-frame">
-                        <div className="mb-notch"></div>
-                        <div className="mb-screen">
-                          {p.previewMobile ? (
-                            <img src={p.previewMobile} alt={`${p.name} mobile preview`} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', borderRadius: '12px 12px 0 0' }} loading="lazy" />
-                          ) : (
-                            <>
-                              <div className="mb-bar">9:41 ▾</div>
-                              <div className="mb-nav"><span>{p.navLabel}</span><span>☰</span></div>
-                              <div className="mb-hero">
-                                <div className="mb-eyebrow">{p.mbEyebrow}</div>
-                                <div className="mb-h1">{p.mbH1.split('\n').map((line, i) => <React.Fragment key={i}>{line}{i === 0 && <br />}</React.Fragment>)}</div>
-                                <div className="mb-cta">{p.mbCta}</div>
-                              </div>
-                              <div className="mb-pills"><span>{p.mbPills[0]}</span><span>{p.mbPills[1]}</span></div>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="work-meta">
-                    <div className="wm-top">
-                      <div>
-                        <h4>{p.name}</h4>
-                        <div className="loc">
-                          {p.location} · {p.year}
-                          {p.result && <> · <span className="hi-text">{p.result}</span></>}
-                        </div>
-                      </div>
-                      <span className="trade-tag">{p.tradeTag}</span>
-                    </div>
-                    {p.url ? (
-                      <a href={p.url} target="_blank" rel="noopener noreferrer" className="live-link">
-                        <span className="live-dot"></span>
-                        View live site
-                        <span className="live-arrow">↗</span>
-                      </a>
-                    ) : (
-                      <span className="live-link" style={{ opacity: 0.5, cursor: 'default' }}>
-                        <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#aaa', display: 'inline-block' }}></span>
-                        Coming soon
-                      </span>
-                    )}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* ============ PRICING ============ */}
         <section id="pricing" className="pricing">
           <div className="container">
             <div className="section-head">
               <div>
-                <div className="eyebrow">Pricing · 04</div>
+                <div className="eyebrow">Pricing · 03</div>
                 <h2 className="section-title">Simple pricing.</h2>
               </div>
               <p className="section-lede">
@@ -841,22 +544,22 @@ export default function App() {
           <div className="container">
             <div className="section-head">
               <div>
-                <div className="eyebrow">FAQ · 05</div>
+                <div className="eyebrow">FAQ · 04</div>
                 <h2 className="section-title">Fair questions, straight answers.</h2>
               </div>
               <p className="section-lede">
-                The stuff trades actually ask us. Nothing missing? Give us a ring and we'll answer honestly — even if the honest answer is "we're not right for you."
+                The stuff trades actually ask us. Nothing missing? Drop us a message and we'll answer honestly — even if the honest answer is "we're not right for you."
               </p>
             </div>
 
             <div className="faq-grid">
               <div className="faq-side">
                 <p style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 12 }}>Still stuck?</p>
-                <h3 style={{ fontSize: 32, letterSpacing: '-0.02em', marginBottom: 24 }}>Ring us on a tea break.</h3>
+                <h3 style={{ fontSize: 32, letterSpacing: '-0.02em', marginBottom: 24 }}>Drop us a message.</h3>
                 <p style={{ fontSize: 15, color: 'var(--muted)', lineHeight: 1.6, marginBottom: 28, maxWidth: '40ch' }}>
-                  We pick up the phone. Honest. We won't put you on hold, won't palm you off to a chatbot, and won't read a script at you.
+                  We reply fast, answer honestly, and won't palm you off to a chatbot.
                 </p>
-                <a href="tel:08001234567" className="btn btn-dark">0800 123 4567</a>
+                <a href="#contact" className="btn btn-dark">Get in touch</a>
               </div>
 
               <div className="faq-list">
@@ -885,7 +588,7 @@ export default function App() {
         <section id="contact" className="contact">
           <div className="container contact-grid">
             <div className="contact-left">
-              <div className="eyebrow">Let's talk · 06</div>
+              <div className="eyebrow">Let's go · 05</div>
               <h2>Start your build.</h2>
               <p>Pick your package, tell us about your business, and we'll get to work. No calls, no back-and-forth.</p>
               <div className="contact-deets">
@@ -1028,7 +731,6 @@ export default function App() {
                 <h5>Company</h5>
                 <ul>
                   <li><a href="#process">How it works</a></li>
-                  <li><a href="#portfolio">Work</a></li>
                   <li><a href="#pricing">Pricing</a></li>
                   <li><a href="#faq">FAQ</a></li>
                   <li><a href="#contact">Contact</a></li>
