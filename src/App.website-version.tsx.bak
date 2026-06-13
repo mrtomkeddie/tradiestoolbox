@@ -130,8 +130,8 @@ export default function App() {
       {/* ============ TAPE ============ */}
       <div className="tape">
         <div className="tape-track">
-          <span>UK trades · never miss another call · answered 24/7 · books jobs while you work · no contracts · built in britain · live in 24 hours</span>
-          <span>UK trades · never miss another call · answered 24/7 · books jobs while you work · no contracts · built in britain · live in 24 hours</span>
+          <span>UK trades · websites that book jobs · est. 2026 · no contracts · hosting included · built in britain · fixed pricing</span>
+          <span>UK trades · websites that book jobs · est. 2026 · no contracts · hosting included · built in britain · fixed pricing</span>
         </div>
       </div>
 
@@ -143,13 +143,13 @@ export default function App() {
             TRADIES TOOLBOX
           </a>
           <div className="nav-links">
-            <a href="#services" data-link="">What it does</a>
-            <a href="#process" data-link="">How it works</a>
+            <a href="#services" data-link="">Services</a>
+            <a href="#process" data-link="">Process</a>
             <a href="#pricing" data-link="">Pricing</a>
             <a href="#faq" data-link="">FAQ</a>
           </div>
           <button className="theme-toggle" onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')} aria-label="Toggle dark mode">{theme === 'light' ? (<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>) : (<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>)}</button>
-          <a href="#contact" className="btn btn-primary btn-sm nav-cta">Get set up <span className="btn-arrow"></span></a>
+          <a href="#contact" className="btn btn-primary btn-sm nav-cta">Start your site <span className="btn-arrow"></span></a>
         </div>
       </nav>
 
@@ -165,42 +165,42 @@ export default function App() {
               <div className="hero-copy">
                 <div className="hero-eyebrow-row">
                   <span className="dot"></span>
-                  <span>Now answering calls · 2026</span>
+                  <span>Booking new projects · Spring 2026</span>
                 </div>
                 <h1 className="hero-title">
-                  Never miss<br />
-                  <span className="hi">another</span><br />
-                  <span className="stroke">call.</span>
+                  Websites<br />
+                  <span className="hi">built</span><br />
+                  <span className="stroke">for the trades.</span>
                 </h1>
                 <p className="hero-sub">
-                  An AI receptionist for the trades. It answers every call 24/7, qualifies the job, books it into your diary, and texts you the details — while you're on the tools, up a ladder, or fast asleep.
+                  Proper websites for plumbers, sparks, builders &amp; everyone on the tools. Fast, findable, and built to bring jobs in while you're out fixing things.
                 </p>
                 <div className="hero-cta">
-                  <a href="#contact" className="btn btn-primary">Get set up <span className="btn-arrow"></span></a>
+                  <a href="#contact" className="btn btn-primary">Start your site <span className="btn-arrow"></span></a>
                   <a href="#pricing" className="btn btn-ghost">See pricing</a>
                 </div>
                 <div className="hero-meta">
-                  <div><span className="num">24/7</span><span className="lbl">Always on</span></div>
+                  <div><span className="num">5-7d</span><span className="lbl">Go live</span></div>
                 </div>
               </div>
               <div className="mockup-wrap">
-                <div className="hero-float-badge b1">call booked ✓</div>
-                <div className="hero-float-badge b2">answered in 2 rings</div>
+                <div className="hero-float-badge b1">booking form ✓</div>
+                <div className="hero-float-badge b2">#1 in local search</div>
                 <div className="site-mockup">
                   <div className="mockup-bar">
                     <div className="dots"><span></span><span></span><span></span></div>
-                    <div className="url">incoming call · 2:14am</div>
+                    <div className="url">moorland-plumbing.co.uk</div>
                   </div>
                   <div className="mockup-body">
                     <div className="mock-hero">
                       <div className="mock-hero-kicker">Moorland Plumbing · Sheffield</div>
-                      <div className="mock-hero-title">Burst pipe.<br />Booked for 8am.</div>
-                      <div className="mock-hero-sub">Caller qualified, job logged, text sent — while you slept.</div>
+                      <div className="mock-hero-title">Emergency plumbers,<br />on call 24/7.</div>
+                      <div className="mock-hero-sub">Gas Safe registered. Boilers, leaks, full refits.</div>
                     </div>
                     <div className="mock-grid">
-                      <div className="mock-card"><span className="mock-icon"></span><strong>Answered</strong></div>
-                      <div className="mock-card"><span className="mock-icon"></span><strong>Qualified</strong></div>
-                      <div className="mock-card"><span className="mock-icon"></span><strong>Booked</strong></div>
+                      <div className="mock-card"><span className="mock-icon"></span><strong>Boilers</strong></div>
+                      <div className="mock-card"><span className="mock-icon"></span><strong>Bathrooms</strong></div>
+                      <div className="mock-card"><span className="mock-icon"></span><strong>Leaks</strong></div>
                     </div>
                     <div className="mock-lines"><span></span><span></span><span></span></div>
                   </div>
@@ -212,16 +212,16 @@ export default function App() {
             <div className="hero-blocks">
               <div className="hero-eyebrow-row">
                 <span className="dot"></span>
-                <span>Pick your trade · It's trained on yours</span>
+                <span>Pick your trade · We build sites tuned to it</span>
               </div>
               <div className="hero-blocks-top">
                 <h1 className="hero-title">
-                  Every <span className="hi">missed call</span><br />
-                  is a job<br />
-                  <span className="stroke">gone elsewhere.</span>
+                  Your trade<br />
+                  deserves a <span className="hi">proper</span><br />
+                  <span className="stroke">website.</span>
                 </h1>
                 <p className="hero-sub">
-                  An AI receptionist trained on your trade. It knows the jobs you do, the questions to ask, and exactly how to get a caller booked in.
+                  Not a drag-and-drop mess. A site tuned to your trade and engineered around how your customers actually find and hire you.
                 </p>
               </div>
 
@@ -254,11 +254,11 @@ export default function App() {
 
               <div className="hero-blocks-cta">
                 <div className="hero-cta">
-                  <a href="#contact" className="btn btn-primary">Get set up <span className="btn-arrow"></span></a>
+                  <a href="#contact" className="btn btn-primary">Start your site <span className="btn-arrow"></span></a>
                   <a href="#pricing" className="btn btn-ghost">See pricing</a>
                 </div>
                 <div className="hero-meta">
-                  <div><span className="num">24/7</span><span className="lbl">Always on</span></div>
+                  <div><span className="num">5-7d</span><span className="lbl">Build time</span></div>
                 </div>
               </div>
             </div>
@@ -267,7 +267,7 @@ export default function App() {
             <div className="hero-ticker">
               <div className="hero-eyebrow-row">
                 <span className="dot"></span>
-                <span>AI call answering for the trades · UK-wide</span>
+                <span>Websites built for the trades · UK-wide</span>
               </div>
               <div className="ticker-row">
                 <span>PLUMBERS</span>
@@ -298,11 +298,11 @@ export default function App() {
               </div>
               <div className="ticker-bottom">
                 <p className="hero-sub">
-                  Every missed call is a job that goes to the next guy.<br />Yours get answered, qualified, and booked — 24/7.
+                  Every trade gets its own tuned site — same toolbox, different tools.<br />Built in the UK, made to book jobs.
                 </p>
                 <div className="hero-meta">
-                  <div><span className="num">24/7</span><span className="lbl">Always on</span></div>
-                  <div><span className="num">0</span><span className="lbl">Missed calls</span></div>
+                  <div><span className="num">5-7d</span><span className="lbl">Go live</span></div>
+                  <div><span className="num">0</span><span className="lbl">Contracts</span></div>
                 </div>
               </div>
             </div>
@@ -313,12 +313,12 @@ export default function App() {
         {/* ============ TRUST ============ */}
         <section className="trust">
           <div className="container trust-inner">
-            <div className="trust-lbl">No catch — here's the deal</div>
+            <div className="trust-lbl">Trusted by trades across the UK</div>
             <div className="trust-logos">
-              <div className="trust-logo"><span className="glyph"></span>No contract</div>
-              <div className="trust-logo"><span className="glyph circle"></span>Free setup</div>
-              <div className="trust-logo"><span className="glyph diamond"></span>Live in 24 hours</div>
-              <div className="trust-logo"><span className="glyph tri"></span>Cancel any time</div>
+              <div className="trust-logo"><span className="glyph"></span>GLJ PLUMBING</div>
+              <div className="trust-logo"><span className="glyph circle"></span>ANDY JOHN</div>
+              <div className="trust-logo"><span className="glyph diamond"></span>PARAGON</div>
+              <div className="trust-logo"><span className="glyph tri"></span>GJ ISITT</div>
             </div>
           </div>
         </section>
@@ -328,55 +328,55 @@ export default function App() {
           <div className="container">
             <div className="section-head">
               <div>
-                <div className="eyebrow">What it does · 01</div>
-                <h2 className="section-title">Everything a receptionist does. None of the wages.</h2>
+                <div className="eyebrow">What we build · 01</div>
+                <h2 className="section-title">Everything your trade needs online.</h2>
               </div>
               <p className="section-lede">
-                Answers every call, day or night. Qualifies the job, books it into your diary, and texts you the details before you've put your tools down. Pro adds automatic review requests and monthly call reports.
+                Every package includes design, copy, and professional imagery. Pro adds the full local-SEO stack, branded kit, and growth tools.
               </p>
             </div>
 
             <div className="services-grid">
               <article className="svc">
-                <div className="svc-num">01 / Always on <span className="tick"></span></div>
-                <h3>Answers every call, 24/7.</h3>
-                <p>First ring, every time — nights, weekends, bank holidays. Sounds natural, knows your trade, and never sends a caller to voicemail.</p>
-                <div className="svc-tag">Standard &amp; Pro</div>
+                <div className="svc-num">01 / Design <span className="tick"></span></div>
+                <h3>Tuned to your trade.</h3>
+                <p>Hero, copy, photography and logo. Done for you, built to convert — not a template dropped into your name.</p>
+                <div className="svc-tag">Included · Starter &amp; Pro</div>
               </article>
 
               <article className="svc is-featured">
-                <div className="svc-num">02 / Qualifying <span className="tick"></span></div>
-                <h3>Asks the right questions.</h3>
-                <p>Job type, location, urgency, contact details. You find out whether it's worth the drive before you ever pick up the phone.</p>
-                <div className="svc-tag">Standard &amp; Pro</div>
+                <div className="svc-num">02 / Local SEO <span className="tick"></span></div>
+                <h3>Own every town you cover.</h3>
+                <p>A dedicated page for every service and every town in your patch. Built to rank for every search that matters.</p>
+                <div className="svc-tag">Pro package</div>
               </article>
 
               <article className="svc">
-                <div className="svc-num">03 / Booking <span className="tick"></span></div>
-                <h3>Books straight into your diary.</h3>
-                <p>Checks your availability and locks in the slot while you're on the tools. Wake up to a full calendar, not a list of voicemails.</p>
-                <div className="svc-tag">Standard &amp; Pro</div>
+                <div className="svc-num">03 / Lead capture <span className="tick"></span></div>
+                <h3>Turn visitors into calls.</h3>
+                <p>Click-to-call, WhatsApp tap, contact form. Every page wired to bring the phone in — no dead ends.</p>
+                <div className="svc-tag">Included · Starter &amp; Pro</div>
               </article>
 
               <article className="svc">
-                <div className="svc-num">04 / Instant alerts <span className="tick"></span></div>
-                <h3>The details hit your phone.</h3>
-                <p>Every call summed up and texted to you the second it ends — name, number, the job, how urgent. Call back when it suits you.</p>
-                <div className="svc-tag">Standard &amp; Pro</div>
+                <div className="svc-num">04 / Reviews engine <span className="tick"></span></div>
+                <h3>More 5-stars, less nagging.</h3>
+                <p>A print-ready card you leave on the job. Customers scan and leave a Google review in 10 seconds.</p>
+                <div className="svc-tag">Pro package</div>
               </article>
 
               <article className="svc">
-                <div className="svc-num">05 / Reviews engine <span className="tick"></span></div>
-                <h3>More 5-stars, automatically.</h3>
-                <p>Texts a Google review link after every completed job. More reviews, higher ranking, more calls — and no nagging from you.</p>
-                <div className="svc-tag">Pro plan</div>
+                <div className="svc-num">05 / Branded kit <span className="tick"></span></div>
+                <h3>Look the part off-site too.</h3>
+                <p>Branded email signature, invoice template, and 10 ready-to-post social media posts. Consistent everywhere.</p>
+                <div className="svc-tag">Pro package</div>
               </article>
 
               <article className="svc">
-                <div className="svc-num">06 / Call reports <span className="tick"></span></div>
-                <h3>See what you'd have missed.</h3>
-                <p>A monthly summary of every call answered, job booked and lead saved — so you can see exactly what it's putting back in your pocket.</p>
-                <div className="svc-tag">Pro plan</div>
+                <div className="svc-num">06 / Care Plan <span className="tick"></span></div>
+                <h3>Hosting, edits &amp; support.</h3>
+                <p>We host it, keep it safe, and make unlimited edits for you. Cancel any time, no lock-in.</p>
+                <div className="svc-tag">Add-on · £65/mo</div>
               </article>
             </div>
           </div>
@@ -388,10 +388,10 @@ export default function App() {
             <div className="section-head">
               <div>
                 <div className="eyebrow">How it works · 02</div>
-                <h2 className="section-title">Three steps. Live by tomorrow.</h2>
+                <h2 className="section-title">Three steps. No faff.</h2>
               </div>
               <p className="section-lede">
-                The whole setup runs by message. No calls, no install, no new hardware. Most lines are answering within 24 hours of you sending your details.
+                The whole process runs by message. No calls, no meetings, no waiting around. Most sites go from form to live in 5-7 days.
               </p>
             </div>
 
@@ -401,9 +401,9 @@ export default function App() {
               </div>
               <div className="process-grid">
                 {[
-                  { n: '01', lbl: 'Tell us', h3: 'Tell us about your business.', p: 'Your trade, your services, your hours, and the questions you always get asked. Takes a few minutes by message — no call to book.', dur: 'Day 1 · 5 mins' },
-                  { n: '02', lbl: 'We build', h3: 'We train your receptionist.', p: 'We write the script, set the voice, and wire up the booking logic — trained on how your trade actually works, not a generic bot.', dur: 'Same day · async' },
-                  { n: '03', lbl: 'Live', h3: 'Forward your calls. Done.', p: 'Point your number at it, or use a fresh one we give you. It starts answering, qualifying and booking jobs straight away.', dur: 'Live in 24h' },
+                  { n: '01', lbl: 'Start', h3: 'Fill in the form.', p: 'Tell us your trade, your area, and your current site if you have one. Takes 3 minutes. No follow-up call required.', dur: 'Day 1 · 3 mins' },
+                  { n: '02', lbl: 'Work', h3: 'We research and build.', p: 'We analyse your competitors, extract your brand, and build a site designed to beat what\'s already out there.', dur: 'Day 2-6 · async' },
+                  { n: '03', lbl: 'Launch', h3: 'Review and go live.', p: 'You get a preview link. Approve it or send feedback by message. We handle the rest — including going live on your domain.', dur: 'Day 7 · done' },
                 ].map((step, i) => (
                   <article
                     key={step.n}
@@ -439,7 +439,7 @@ export default function App() {
                 <h2 className="section-title">Simple pricing.</h2>
               </div>
               <p className="section-lede">
-                Month-to-month, no setup fee, cancel any time. Pay yearly and get two months free plus a website worth £497. Most trades cover it with the first job it books them.
+                One-off builds. You own the site outright. Care Plan is optional — cancel any time, no lock-in.
               </p>
             </div>
 
@@ -447,31 +447,31 @@ export default function App() {
               <div className="tier">
                 <div className="tier-head">
                   <div>
-                    <div className="tier-name">Standard</div>
+                    <div className="tier-name">Starter</div>
                   </div>
                 </div>
                 <div className="tier-price">
-                  <span className="cur">£</span><span className="num">99</span><span className="per">/mo</span>
+                  <span className="cur">£</span><span className="num">497</span>
                 </div>
-                <p className="tier-blurb">Your calls answered around the clock, leads qualified, and jobs booked straight into your diary. Live in 24 hours.</p>
+                <p className="tier-blurb">One sharp single-page site, built to rank in your home town and turn visitors into calls. Live in 5 days.</p>
                 <ul className="tier-features">
                   {[
-                    '24/7 call answering — first ring, every time',
-                    'Natural voice, trained on your trade',
-                    'Qualifies every lead — job, location, urgency',
-                    'Books jobs straight into your calendar',
-                    'Instant text summary after every call',
-                    'Missed-call rescue — catches the ones you can\'t',
-                    'Use your existing number or a new one',
-                    'Free setup & onboarding — we build and train it',
-                    'No contract — cancel any time',
-                    'Live in 24 hours',
+                    'Hero pattern tuned to your trade',
+                    'Ranks for your trade in your home town',
+                    'Single-page site (everything on one scrolling home)',
+                    'All your services on one section',
+                    'Click-to-call, WhatsApp + contact form',
+                    'Professional trade photography throughout',
+                    'Conversion copy written for you',
+                    "Simple logo included (if you don't have one)",
+                    '1 round of revisions',
+                    'Live in 5 days',
                   ].map(f => <li key={f}>{f}</li>)}
                 </ul>
                 <div className="tier-spacer"></div>
                 <div className="care-addon">
-                  <div className="care-title">+ Pay yearly <span className="care-price">2 months free</span> <span className="care-rec">+ free website</span></div>
-                  <div className="care-sub">£990 for the year — and we build you a website worth £497, free.</div>
+                  <div className="care-title">+ Care Plan <span className="care-price">£65/mo</span> <span className="care-rec">(recommended)</span></div>
+                  <div className="care-sub">Hosting, unlimited edits &amp; priority support.</div>
                 </div>
                 <a href="#contact" className="btn btn-ghost btn-full">Get Started <span className="btn-arrow"></span></a>
               </div>
@@ -484,25 +484,31 @@ export default function App() {
                   </div>
                 </div>
                 <div className="tier-price">
-                  <span className="cur">£</span><span className="num">149</span><span className="per">/mo</span>
+                  <span className="cur">£</span><span className="num">797</span>
                 </div>
-                <p className="tier-blurb">Everything in Standard, plus the tools that turn answered calls into more reviews, more rankings, and more work.</p>
+                <p className="tier-blurb">Built to own every search term across every town you cover. The last website you'll ever need.</p>
                 <ul className="tier-features">
                   {[
-                    'Everything in Standard',
-                    'Automatic Google review request after every job',
-                    'Monthly call & booking report',
-                    'Spam & time-waster filtering',
-                    'Custom answering script & call flow',
-                    'Calendar & CRM integration',
-                    'Outbound callback on missed leads',
-                    'Higher call volume included',
-                    'Priority same-day support',
+                    'Everything in Starter',
+                    'A dedicated page for every service you offer (6-10 pages)',
+                    'A dedicated page for every town you cover',
+                    'Interactive service area map',
+                    'Google Business Profile starter kit — we write it, you paste it in',
+                    'Print-ready review card — customers scan, leave a Google review in 10 seconds',
+                    'Branded email signature',
+                    'Branded invoice PDF template',
+                    '10 ready-to-post social media posts',
+                    'Recent Jobs page (if you have photos)',
+                    'Guaranteed to load fast on mobile',
+                    'First month of AI Receptionist free when it launches',
+                    'First month of Care Plan free',
+                    '2 rounds of revisions',
+                    'Live in 7 days',
                   ].map(f => <li key={f}>{f}</li>)}
                 </ul>
                 <div className="care-addon">
-                  <div className="care-title">+ Pay yearly <span className="care-price">2 months free</span> <span className="care-rec">+ free website</span></div>
-                  <div className="care-sub">£1,490 for the year — and we build you a website worth £497, free.</div>
+                  <div className="care-title">+ Care Plan <span className="care-price">£65/mo</span> <span className="care-rec">(first month free, recommended)</span></div>
+                  <div className="care-sub">Hosting, unlimited edits &amp; priority support.</div>
                 </div>
                 <a href="#contact" className="btn btn-primary btn-full">Get Started <span className="btn-arrow"></span></a>
               </div>
@@ -511,19 +517,19 @@ export default function App() {
             <div className="addons">
               <div className="addons-label">Add-ons</div>
               <div className="addon-row">
-                <div className="addon-name">Extra line</div>
-                <div className="addon-desc">A second number or location, answered by the same receptionist.</div>
-                <div className="addon-price">£40/mo</div>
+                <div className="addon-name" style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>AI Receptionist <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', background: 'var(--border)', color: 'var(--muted)', borderRadius: 4, padding: '2px 6px', alignSelf: 'flex-start' }}>Coming soon</span></div>
+                <div className="addon-desc">24/7 call answering, books jobs, and auto-sends review requests after every job. Pro customers get their first month free at launch.</div>
+                <div className="addon-price" style={{ opacity: 0.5 }}>£97/mo</div>
               </div>
               <div className="addon-row">
-                <div className="addon-name">Custom voice</div>
-                <div className="addon-desc">Choose the voice and accent that fits your business, or clone your own.</div>
-                <div className="addon-price">£25/mo</div>
+                <div className="addon-name">Rush Delivery</div>
+                <div className="addon-desc">24-48hr turnaround. One rush slot per week, subject to availability.</div>
+                <div className="addon-price">+£197</div>
               </div>
               <div className="addon-row">
-                <div className="addon-name">Outbound follow-ups</div>
-                <div className="addon-desc">It calls back missed leads and chases quotes you've sent, so nothing slips.</div>
-                <div className="addon-price">£40/mo</div>
+                <div className="addon-name">Care Plan</div>
+                <div className="addon-desc">Hosting, SSL &amp; backups · Unlimited small edits · Monthly performance report · Same-day priority support</div>
+                <div className="addon-price">£65/mo</div>
               </div>
             </div>
           </div>
@@ -538,7 +544,7 @@ export default function App() {
                 <h2 className="section-title">Fair questions, straight answers.</h2>
               </div>
               <p className="section-lede">
-                The stuff trades actually ask us. Nothing here? Drop us a message and we'll answer honestly — even if the honest answer is that we're not the right fit.
+                The stuff trades actually ask us. Nothing missing? Drop us a message and we'll answer honestly — even if the honest answer is "we're not right for you."
               </p>
             </div>
 
@@ -547,19 +553,19 @@ export default function App() {
                 <p style={{ fontFamily: 'var(--mono)', fontSize: 12, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 12 }}>Still stuck?</p>
                 <h3 style={{ fontSize: 32, letterSpacing: '-0.02em', marginBottom: 24 }}>Drop us a message.</h3>
                 <p style={{ fontSize: 15, color: 'var(--muted)', lineHeight: 1.6, marginBottom: 28, maxWidth: '40ch' }}>
-                  We reply fast and answer straight — no pushy sales, no jargon.
+                  We reply fast, answer honestly, and won't palm you off to a chatbot.
                 </p>
                 <a href="#contact" className="btn btn-dark">Get in touch</a>
               </div>
 
               <div className="faq-list">
                 {[
-                  { n: '01', q: 'Will it sound like a robot?', a: "No. It uses a natural voice, trained on your trade, and most callers don't realise they're talking to AI. You can pick the voice and even the accent if you want." },
-                  { n: '02', q: 'What happens to my existing number?', a: 'Nothing changes for your customers. You forward your calls to the receptionist — all of them, or only the ones you miss — or we give you a brand-new number. Your call either way.' },
-                  { n: '03', q: "What if it can't answer a question?", a: "It takes the details and texts them to you straight away, or transfers the call to you live if you'd rather. It never leaves a caller hanging or stuck in a loop." },
-                  { n: '04', q: 'Will it actually book jobs?', a: 'Yes. It checks your availability, books the slot into your diary, and sends you the details by text. You set the rules — job types, hours, the areas you cover — so it only books what you want.' },
-                  { n: '05', q: 'How fast can I go live?', a: 'Usually within 24 hours of sending your details. There\'s no hardware to install and no app for your customers — we set it up and point your calls at it.' },
-                  { n: '06', q: 'Is there a contract?', a: 'No. It\'s month-to-month, cancel any time. Most trades find one booked job more than covers the month — fewer missed calls, more work won.' },
+                  { n: '01', q: 'How long does a website take to build?', a: 'Most trade sites go from form submission to live in 5-7 days. The whole thing runs by message, so there\'s no call to book or meeting to attend — as soon as you send the form we start researching and building.' },
+                  { n: '02', q: 'What do I actually need to give you?', a: 'The basics: your logo (or we\'ll make one), contact details, a rough list of services, and the areas you cover. We\'ll guide you through the rest — copy, photos, accreditations. No forms, no homework.' },
+                  { n: '03', q: 'Will it actually bring in jobs?', a: 'Yes — if your trade has local demand online, a proper site puts you in front of people actively searching for your services. Most trades are losing jobs to competitors with better-looking sites, not because they\'re worse at the trade. A site that ranks and converts fixes that.' },
+                  { n: '04', q: 'Do I own the website?', a: 'Yes. The domain is yours, the content is yours, and if you ever leave we\'ll hand over an export so you can move it anywhere. No lock-in, no hostage situations.' },
+                  { n: '05', q: 'What if I already have a website?', a: "We'll take a look and tell you honestly whether it needs replacing or just a tune-up. Sometimes the existing site is fine and you just need SEO. We'll say so and save you money." },
+                  { n: '06', q: 'Is there a long contract?', a: "The site build is a one-off payment — you own it outright. Care Plan is month-to-month, cancel any time. No auto-renew traps." },
                 ].map((item, i) => (
                   <div key={item.n} className={`faq-item${openFaq === i ? ' open' : ''}`}>
                     <button className="faq-q" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
@@ -579,8 +585,8 @@ export default function App() {
           <div className="container contact-grid">
             <div className="contact-left">
               <div className="eyebrow">Let's go · 05</div>
-              <h2>Get your receptionist live.</h2>
-              <p>Tell us about your business, pick a plan, and we'll have your calls answered within 24 hours. No calls, no back-and-forth.</p>
+              <h2>Start your build.</h2>
+              <p>Pick your package, tell us about your business, and we'll get to work. No calls, no back-and-forth.</p>
               <div className="contact-deets">
                 <div className="row"><span className="lbl">Email</span><span className="val">hello@tradiestoolbox.co.uk</span></div>
                 <div className="row"><span className="lbl">Based</span><span className="val">South Wales · serving UK-wide</span></div>
@@ -590,7 +596,7 @@ export default function App() {
             {submitted ? (
               <div className="contact-form" style={{ alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
                 <div style={{ fontFamily: 'var(--display)', fontSize: 22, fontWeight: 800, padding: '40px 0' }}>
-                  Cheers — we'll be in touch within 1 working day to get your receptionist set up.
+                  Cheers — we'll be in touch within 1 working day to get started.
                 </div>
               </div>
             ) : (
@@ -649,15 +655,15 @@ export default function App() {
                   />
                 </div>
                 <div className="field">
-                  <label>Plan interested in</label>
+                  <label>Package interested in</label>
                   <select
                     required
                     value={formData.package}
                     onChange={e => setFormData({ ...formData, package: e.target.value })}
                   >
-                    <option value="" disabled>Select a plan…</option>
-                    <option>Standard — £99/mo</option>
-                    <option>Pro — £149/mo</option>
+                    <option value="" disabled>Select a package…</option>
+                    <option>Starter — £497</option>
+                    <option>Pro — £797</option>
                     <option>Not sure — help me decide</option>
                   </select>
                 </div>
@@ -672,13 +678,13 @@ export default function App() {
                   />
                 </div>
                 <button type="submit" className="btn btn-dark btn-full btn-submit" disabled={submitting}>
-                  <span className="submit-ico">➤</span> {submitting ? 'Sending…' : 'Get set up'}
+                  <span className="submit-ico">➤</span> {submitting ? 'Sending…' : 'Confirm my order'}
                 </button>
                 {submitError && (
                   <p style={{ color: '#ff6b6b', fontSize: 13, margin: 0, textAlign: 'center' }}>{submitError}</p>
                 )}
                 <p className="form-foot">
-                  We'll be in touch within 1 working day to get you set up. No calls, no spam.{' '}
+                  We'll be in touch within 1 working day to get started. No calls, no spam.{' '}
                   <Link to="/privacy">Privacy policy</Link>.
                 </p>
               </form>
@@ -695,16 +701,16 @@ export default function App() {
                   <span className="brand-mark"></span>
                   TRADIES TOOLBOX
                 </a>
-                <p>An AI receptionist for UK trades. Answers every call, books every job, 24/7. South Wales–based, working nationwide.</p>
+                <p>Websites, SEO &amp; branding for UK trades. South Wales–based, working nationwide. Built to win more jobs.</p>
               </div>
               <div className="footer-col">
-                <h5>What it does</h5>
+                <h5>Services</h5>
                 <ul>
-                  <li><a href="#services">24/7 answering</a></li>
-                  <li><a href="#services">Lead qualifying</a></li>
-                  <li><a href="#services">Job booking</a></li>
-                  <li><a href="#services">Text alerts</a></li>
-                  <li><a href="#services">Review requests</a></li>
+                  <li><a href="#services">Websites</a></li>
+                  <li><a href="#services">Local SEO</a></li>
+                  <li><a href="#services">Branding</a></li>
+                  <li><a href="#services">Photography</a></li>
+                  <li><a href="#services">Hosting</a></li>
                 </ul>
               </div>
               <div className="footer-col">

@@ -41,7 +41,7 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ records: [{ fields }] }),
+      body: JSON.stringify({ records: [{ fields }], typecast: true }),
     });
 
     if (!airtableRes.ok) {
