@@ -297,8 +297,8 @@ export default function App() {
                 <span className="hi">PAVERS</span>
               </div>
               <div className="ticker-bottom">
-                <p className="hero-sub">
-                  Every missed call is a job that goes to the next guy.<br />Yours get answered, qualified, and booked — 24/7.
+                <p className="hero-sub" style={{ textWrap: 'balance' }}>
+                  Every missed call goes to the next guy.<br />Yours get answered and booked — 24/7.
                 </p>
                 <div className="hero-meta">
                   <div><span className="num">24/7</span><span className="lbl">Always on</span></div>
