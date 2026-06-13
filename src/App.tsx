@@ -139,7 +139,7 @@ export default function App() {
       <nav className="nav">
         <div className="container nav-inner">
           <a href="#top" className="brand">
-            <span className="brand-mark"></span>
+            <svg className="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4" /><path d="M14.5 5.5l4 4" /><path d="M12 8l-5 -5l-4 4l5 5" /><path d="M7 8l-1.5 1.5" /><path d="M16 12l5 5l-4 4l-5 -5" /><path d="M16 17l-1.5 1.5" /></svg>
             TRADIES TOOLBOX
           </a>
           <div className="nav-links">
@@ -692,7 +692,7 @@ export default function App() {
             <div className="footer-grid">
               <div className="footer-brand">
                 <a href="#top" className="brand">
-                  <span className="brand-mark"></span>
+                  <svg className="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4" /><path d="M14.5 5.5l4 4" /><path d="M12 8l-5 -5l-4 4l5 5" /><path d="M7 8l-1.5 1.5" /><path d="M16 12l5 5l-4 4l-5 -5" /><path d="M16 17l-1.5 1.5" /></svg>
                   TRADIES TOOLBOX
                 </a>
                 <p>An AI receptionist for UK trades. Answers every call, books every job, 24/7. South Wales–based, working nationwide.</p>
