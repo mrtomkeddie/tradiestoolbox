@@ -139,7 +139,7 @@ export default function App() {
       <nav className="nav">
         <div className="container nav-inner">
           <a href="#top" className="brand">
-            <span className="brand-mark"></span>
+            <svg className="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4" /><path d="M14.5 5.5l4 4" /><path d="M12 8l-5 -5l-4 4l5 5" /><path d="M7 8l-1.5 1.5" /><path d="M16 12l5 5l-4 4l-5 -5" /><path d="M16 17l-1.5 1.5" /></svg>
             TRADIES TOOLBOX
           </a>
           <div className="nav-links">
@@ -313,12 +313,12 @@ export default function App() {
         {/* ============ TRUST ============ */}
         <section className="trust">
           <div className="container trust-inner">
-            <div className="trust-lbl">Trusted by trades across the UK</div>
+            <div className="trust-lbl">No catch — here's the deal</div>
             <div className="trust-logos">
-              <div className="trust-logo"><span className="glyph"></span>GLJ PLUMBING</div>
-              <div className="trust-logo"><span className="glyph circle"></span>ANDY JOHN</div>
-              <div className="trust-logo"><span className="glyph diamond"></span>PARAGON</div>
-              <div className="trust-logo"><span className="glyph tri"></span>GJ ISITT</div>
+              <div className="trust-logo"><span className="glyph"></span>You own it outright</div>
+              <div className="trust-logo"><span className="glyph circle"></span>Fixed pricing</div>
+              <div className="trust-logo"><span className="glyph diamond"></span>Live in 5–7 days</div>
+              <div className="trust-logo"><span className="glyph tri"></span>No lock-in</div>
             </div>
           </div>
         </section>
@@ -698,7 +698,7 @@ export default function App() {
             <div className="footer-grid">
               <div className="footer-brand">
                 <a href="#top" className="brand">
-                  <span className="brand-mark"></span>
+                  <svg className="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4" /><path d="M14.5 5.5l4 4" /><path d="M12 8l-5 -5l-4 4l5 5" /><path d="M7 8l-1.5 1.5" /><path d="M16 12l5 5l-4 4l-5 -5" /><path d="M16 17l-1.5 1.5" /></svg>
                   TRADIES TOOLBOX
                 </a>
                 <p>Websites, SEO &amp; branding for UK trades. South Wales–based, working nationwide. Built to win more jobs.</p>
