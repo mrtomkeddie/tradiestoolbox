@@ -164,6 +164,19 @@ h1, h2, h3, h4 {
   color: var(--hi);
   flex: none;
 }
+/* Lowercase wordmark logo (Helvetica Now Display, system fallback) */
+.brand .brand-word {
+  font-family: "Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 800;            /* "tradies" extrabold */
+  font-size: 23px;
+  letter-spacing: -0.07em;
+  text-transform: none;
+  line-height: 1;
+}
+.brand .brand-word .brand-word-light {
+  font-weight: 400;            /* "toolbox" regular */
+  color: var(--hi);           /* orange */
+}
 .nav-links {
   display: flex;
   gap: 28px;
