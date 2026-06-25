@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './design.css';
+import Wordmark from './Wordmark';
 
 /* =========================================================
    Trade picker colours (hero variant B)
@@ -140,7 +141,7 @@ export default function App() {
         <div className="container nav-inner">
           <a href="#top" className="brand">
             <svg className="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4" /><path d="M14.5 5.5l4 4" /><path d="M12 8l-5 -5l-4 4l5 5" /><path d="M7 8l-1.5 1.5" /><path d="M16 12l5 5l-4 4l-5 -5" /><path d="M16 17l-1.5 1.5" /></svg>
-            <span className="brand-word">tradies<span className="brand-word-light">toolbox</span></span>
+            <Wordmark />
           </a>
           <div className="nav-links">
             <a href="#services" data-link="">Services</a>
@@ -699,7 +700,7 @@ export default function App() {
               <div className="footer-brand">
                 <a href="#top" className="brand">
                   <svg className="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4" /><path d="M14.5 5.5l4 4" /><path d="M12 8l-5 -5l-4 4l5 5" /><path d="M7 8l-1.5 1.5" /><path d="M16 12l5 5l-4 4l-5 -5" /><path d="M16 17l-1.5 1.5" /></svg>
-                  <span className="brand-word">tradies<span className="brand-word-light">toolbox</span></span>
+                  <Wordmark />
                 </a>
                 <p>Websites, SEO &amp; branding for UK trades. South Wales–based, working nationwide. Built to win more jobs.</p>
               </div>

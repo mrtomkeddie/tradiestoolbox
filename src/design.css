@@ -164,19 +164,14 @@ h1, h2, h3, h4 {
   color: var(--hi);
   flex: none;
 }
-/* Lowercase wordmark logo (Helvetica Now Display, system fallback) */
+/* Lowercase wordmark logo (outlined vector from Helvetica Now Display) */
 .brand .brand-word {
-  font-family: "Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 800;            /* "tradies" extrabold */
-  font-size: 23px;
-  letter-spacing: -0.07em;
-  text-transform: none;
-  line-height: 1;
+  height: 16.7px;
+  width: auto;
+  display: block;
+  flex: none;
 }
-.brand .brand-word .brand-word-light {
-  font-weight: 400;            /* "toolbox" regular */
-  color: var(--hi);           /* orange */
-}
+.brand .brand-word .tb { fill: var(--hi); }   /* "toolbox" orange */
 .nav-links {
   display: flex;
   gap: 28px;
