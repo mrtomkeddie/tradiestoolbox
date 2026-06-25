@@ -2003,6 +2003,9 @@ footer {
   .trust-logos { grid-template-columns: repeat(3, 1fr); }
   .hero-blocks-top { grid-template-columns: 1fr; }
   .hero-blocks-cta { flex-direction: column; align-items: flex-start; }
+  /* Ticker hero: stack the sub-text above the stats instead of cramming
+     them into a 3-column grid (which overlaps on narrow screens). */
+  .ticker-bottom { grid-template-columns: 1fr; gap: 24px; }
 }
 @media (max-width: 640px) {
   .nav-links { display: none; }
@@ -2016,6 +2019,13 @@ footer {
   .trust-logo { padding-left: 10px; font-size: 14px; }
   .hero-meta { gap: 20px; flex-wrap: wrap; }
   .tape { font-size: 11px; }
+  /* Ticker hero sizing for phones: the desktop clamp floor (64px) is too
+     large here and reads as clipped/broken. Shrink type + gaps so the
+     marquee scans as an intentional ticker. */
+  .hero-ticker { gap: 16px; }
+  .ticker-row { font-size: clamp(36px, 13vw, 64px); gap: 28px; }
+  .ticker-row.reverse { animation-duration: 38s; }
+  .ticker-bottom { gap: 20px; padding-top: 28px; margin-top: 8px; }
 }
 
 /* Dark mode toggle ------------------------------------------------------- */
