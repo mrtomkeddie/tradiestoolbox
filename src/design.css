@@ -309,17 +309,22 @@ section { position: relative; scroll-margin-top: 80px; }
    ========================================================= */
 .hero {
   position: relative;
-  /* Flex-fill the viewport below the tape (~32px) + sticky nav (~68px) and
-     centre the content, so the hero fills the space on any screen size.
-     On mobile the content is taller than this min-height, so it just flows. */
-  min-height: calc(100svh - 100px);
-  display: flex;
-  align-items: center;
-  padding: 48px 0;
+  padding: 56px 0 72px;
   border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
 .hero > .container { width: 100%; }
+/* Flex-fill the viewport and centre the content on DESKTOP ONLY (below the
+   ~32px tape + ~68px sticky nav). On smaller screens the hero stays plain
+   block flow, so the taller stacked content — including the mockup's badges
+   and shadow — flows naturally and never gets clipped by overflow:hidden. */
+@media (min-width: 1001px) {
+  .hero {
+    min-height: calc(100svh - 100px);
+    display: flex;
+    align-items: center;
+  }
+}
 
 .hero-grid-bg {
   position: absolute;
@@ -2102,7 +2107,7 @@ footer {
   }
   .nav-links { display: none; }
   .hero {
-    padding: 48px 0 48px;
+    padding: 40px 0 80px;
   }
   /* Tighten the big desktop section padding so phone sections don't read
      as empty bands between blocks. */
