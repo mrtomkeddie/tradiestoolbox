@@ -268,7 +268,13 @@ export default function App() {
             <div className="hero-ticker">
               <div className="hero-eyebrow-row">
                 <span className="dot"></span>
-                <span>Websites built for the trades · UK-wide</span>
+                <span>Fixed-price websites for UK trades · Live in 5-7 days</span>
+              </div>
+              <div className="ticker-intro">
+                <h1>Websites for trades that turn visitors into booked jobs.</h1>
+                <p>
+                  We design, write and launch proper sites for plumbers, electricians, roofers, builders and local trade businesses.
+                </p>
               </div>
               <div className="ticker-row">
                 <span>PLUMBERS</span>
@@ -299,8 +305,12 @@ export default function App() {
               </div>
               <div className="ticker-bottom">
                 <p className="hero-sub">
-                  Every trade gets its own tuned site — same toolbox, different tools.<br />Built in the UK, made to book jobs.
+                  Starter sites from £497. No calls, no contracts, no drag-and-drop templates.
                 </p>
+                <div className="hero-cta">
+                  <a href="#contact" className="btn btn-primary">Start your site <span className="btn-arrow"></span></a>
+                  <a href="#pricing" className="btn btn-ghost">See pricing</a>
+                </div>
                 <div className="hero-meta">
                   <div><span className="num">5-7d</span><span className="lbl">Go live</span></div>
                   <div><span className="num">0</span><span className="lbl">Contracts</span></div>

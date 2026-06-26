@@ -634,6 +634,26 @@ h1.hero-title {
   position: relative;
   z-index: 1;
 }
+.ticker-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.65fr);
+  gap: 40px;
+  align-items: end;
+  padding-bottom: 12px;
+}
+.ticker-intro h1 {
+  max-width: 12ch;
+  font-size: clamp(48px, 7vw, 112px);
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+}
+.ticker-intro p {
+  max-width: 38ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.55;
+}
 .ticker-row {
   display: flex;
   gap: 60px;
@@ -2003,6 +2023,7 @@ footer {
   .trust-logos { grid-template-columns: repeat(3, 1fr); }
   .hero-blocks-top { grid-template-columns: 1fr; }
   .hero-blocks-cta { flex-direction: column; align-items: flex-start; }
+  .ticker-intro { grid-template-columns: 1fr; gap: 20px; }
   /* Ticker hero: stack the sub-text above the stats instead of cramming
      them into a 3-column grid (which overlaps on narrow screens). */
   .ticker-bottom { grid-template-columns: 1fr; gap: 24px; }
@@ -2025,6 +2046,7 @@ footer {
     height: 34px !important;
   }
   .nav-cta {
+    margin-left: auto;
     padding: 10px 12px;
     font-size: 11px;
     letter-spacing: 0.01em;
@@ -2065,19 +2087,34 @@ footer {
   /* Ticker hero sizing for phones: the desktop clamp floor (64px) is too
      large here and reads as clipped/broken. Shrink type + gaps so the
      marquee scans as an intentional ticker. */
-  .hero-ticker { gap: 16px; }
-  .ticker-row {
-    font-size: clamp(34px, 11vw, 46px);
-    gap: 20px;
-    letter-spacing: -0.02em;
+  .hero-ticker { gap: 18px; }
+  .ticker-intro {
+    gap: 14px;
+    padding-bottom: 8px;
   }
-  .ticker-row .stroke { -webkit-text-stroke-width: 1.2px; }
-  .ticker-divider { font-size: 0.5em; }
-  .ticker-row.reverse { animation-duration: 38s; }
-  .ticker-bottom { gap: 20px; padding-top: 28px; margin-top: 8px; }
+  .ticker-intro h1 {
+    max-width: 11ch;
+    font-size: clamp(38px, 11vw, 48px);
+    line-height: 0.94;
+  }
+  .ticker-intro p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .ticker-row {
+    display: none;
+  }
+  .ticker-bottom { gap: 18px; padding-top: 22px; margin-top: 2px; }
   .ticker-bottom .hero-sub {
-    font-size: 17px;
+    font-size: 15px;
     margin: 0;
+  }
+  .ticker-bottom .hero-cta {
+    margin-bottom: 4px;
+  }
+  .ticker-bottom .hero-cta .btn {
+    width: 100%;
+    justify-content: center;
   }
   .contact-grid > *,
   .contact-left,
