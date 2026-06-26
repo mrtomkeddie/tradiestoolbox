@@ -447,8 +447,11 @@ h1.hero-title {
 /* Scale the mockup up a touch on desktop so it fills the right column more —
    only above the stacking breakpoint, so mobile/tablet stay clip-free. */
 @media (min-width: 1001px) {
-  .site-mockup { transform: rotate(-1.2deg) scale(1.1); }
-  .site-mockup:hover { transform: rotate(0deg) translateY(-4px) scale(1.1); }
+  /* Anchor to the left edge so the mockup grows rightward and bleeds off the
+     viewport edge (filling the space at any width) without ever encroaching
+     on the hero copy. */
+  .site-mockup { transform: rotate(-1.2deg) scale(1.28); transform-origin: left center; }
+  .site-mockup:hover { transform: rotate(0deg) translateY(-4px) scale(1.28); transform-origin: left center; }
 }
 .mockup-bar {
   background: var(--bone-2);
