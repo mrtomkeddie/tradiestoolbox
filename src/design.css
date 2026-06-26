@@ -2278,3 +2278,31 @@ button.theme-toggle svg {
   stroke-linejoin: round;
   display: block;
 }
+
+/* Accent colour cycler --------------------------------------------------- */
+button.accent-toggle {
+  display: grid !important;
+  place-items: center;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  border: 2px solid rgba(255, 255, 255, 0.85) !important;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0 !important;
+  appearance: none;
+  box-shadow: 0 0 0 1px var(--line-strong), inset 0 0 8px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.3s var(--ease), transform 0.15s var(--ease);
+}
+button.accent-toggle:hover { transform: rotate(45deg) scale(1.08); }
+button.accent-toggle:active { transform: scale(0.94); }
+button.accent-toggle svg {
+  width: 14px !important;
+  height: 14px !important;
+  opacity: 0.92;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+}
+@media (max-width: 640px) {
+  /* Keep the mobile nav clean — the cycler is a desktop bit of fun. */
+  button.accent-toggle { display: none !important; }
+}

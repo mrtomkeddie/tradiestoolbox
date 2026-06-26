@@ -15,6 +15,9 @@ const tradeColors: Record<string, string> = {
   landscapers: '#4CAF50',
 };
 
+/* Accent palette for the nav colour-cycler (starts on the brand orange) */
+const ACCENTS = ['#FF7A1A', '#2BA6E8', '#4CAF50', '#8B5CF6', '#E84D8A', '#FFD400'];
+
 /* =========================================================
    App
    ========================================================= */
@@ -44,6 +47,16 @@ export default function App() {
 
   /* ---- faq open item ---- */
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  /* ---- accent colour cycler ---- */
+  const [accentIndex, setAccentIndex] = useState(0);
+  const accentRef = useRef(0);
+  const cycleAccent = () => {
+    const next = (accentRef.current + 1) % ACCENTS.length;
+    accentRef.current = next;
+    setAccentIndex(next);
+    document.documentElement.style.setProperty('--hi', ACCENTS[next]);
+  };
 
   /* ---- Apply theme/fonts to body ---- */
   useEffect(() => {
@@ -149,6 +162,9 @@ export default function App() {
             <a href="#pricing" data-link="">Pricing</a>
             <a href="#faq" data-link="">FAQ</a>
           </div>
+          <button className="accent-toggle" onClick={cycleAccent} aria-label="Switch accent colour" title="Switch accent colour" style={{ background: ACCENTS[accentIndex] }}>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 2.5 2.5 0 0 0 2-4 2.5 2.5 0 0 1 2-4h1a4 4 0 0 0 4-4 9 9 0 0 0-9-6z"/><circle cx="7.5" cy="11.5" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16.5" cy="11.5" r="1"/></svg>
+          </button>
           <button className="theme-toggle" onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')} aria-label="Toggle dark mode">{theme === 'light' ? (<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>) : (<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>)}</button>
           <a href="#contact" className="btn btn-primary btn-sm nav-cta">Start your site <span className="btn-arrow"></span></a>
         </div>
