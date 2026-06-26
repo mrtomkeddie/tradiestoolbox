@@ -2114,9 +2114,15 @@ footer {
      as empty bands between blocks. */
   .services, .process, .pricing, .contact { padding: 64px 0; }
   .faq { padding: 64px 0 72px; }
-  .hero .container,
   .hero-ticker {
     overflow: hidden;
+  }
+  .hero[data-variant="editorial"] .mockup-wrap {
+    margin-bottom: 36px;
+  }
+  .hero[data-variant="editorial"] .hero-float-badge.b2 {
+    bottom: -6px;
+    left: 0;
   }
   .hero-eyebrow-row {
     gap: 10px;
