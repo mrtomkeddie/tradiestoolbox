@@ -266,10 +266,6 @@ export default function App() {
 
             {/* Variant C: Ticker */}
             <div className="hero-ticker">
-              <div className="hero-eyebrow-row">
-                <span className="dot"></span>
-                <span>Fixed-price websites for UK trades · Live in 5-7 days</span>
-              </div>
               <div className="ticker-intro">
                 <h1>Websites for trades that turn visitors into booked jobs.</h1>
                 <p>
