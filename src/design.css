@@ -2116,6 +2116,39 @@ footer {
     width: 100%;
     justify-content: center;
   }
+  .ticker-bottom .hero-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding-top: 0;
+    border-top: 0;
+  }
+  .ticker-bottom .hero-meta > div {
+    gap: 2px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: color-mix(in oklab, var(--panel) 7%, transparent);
+  }
+  .ticker-bottom .hero-meta .num {
+    font-size: 24px;
+  }
+  .ticker-bottom .hero-meta .lbl {
+    font-size: 10px;
+  }
+  .trust {
+    padding: 24px 0;
+    background: var(--ink-2);
+  }
+  .trust-inner {
+    gap: 18px;
+  }
+  .trust-lbl {
+    max-width: none;
+    font-size: 10px;
+    color: var(--hi);
+    opacity: 1;
+  }
   .contact-grid > *,
   .contact-left,
   .contact-form {
@@ -2144,6 +2177,14 @@ footer {
   }
   .nav-inner {
     justify-content: space-between;
+  }
+  .trust-logos {
+    grid-template-columns: 1fr;
+  }
+  .trust-logo,
+  .trust-logo:first-child {
+    border-left: 0;
+    padding-left: 0;
   }
 }
 

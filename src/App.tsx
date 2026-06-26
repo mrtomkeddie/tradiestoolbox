@@ -313,7 +313,7 @@ export default function App() {
                 </div>
                 <div className="hero-meta">
                   <div><span className="num">5-7d</span><span className="lbl">Go live</span></div>
-                  <div><span className="num">0</span><span className="lbl">Contracts</span></div>
+                  <div><span className="num">No</span><span className="lbl">Contracts</span></div>
                 </div>
               </div>
             </div>
@@ -324,7 +324,7 @@ export default function App() {
         {/* ============ TRUST ============ */}
         <section className="trust">
           <div className="container trust-inner">
-            <div className="trust-lbl">No catch — here's the deal</div>
+            <div className="trust-lbl">Simple terms</div>
             <div className="trust-logos">
               <div className="trust-logo"><span className="glyph"></span>You own it outright</div>
               <div className="trust-logo"><span className="glyph circle"></span>Fixed pricing</div>
