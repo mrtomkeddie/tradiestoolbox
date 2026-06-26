@@ -163,7 +163,11 @@ h1, h2, h3, h4 {
   height: 28px;
   color: var(--hi);
   flex: none;
+  transition: transform 0.3s var(--ease);
 }
+/* Playful nudge on hover — hints the logo mark is interactive (cycles the
+   accent), echoing the hero mockup's hover lift. */
+.brand-mark:hover { transform: rotate(-12deg) scale(1.12); }
 /* Lowercase wordmark logo (outlined vector from Helvetica Now Display) */
 .brand .brand-word {
   height: 16.7px;
