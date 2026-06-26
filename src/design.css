@@ -311,18 +311,19 @@ section { position: relative; scroll-margin-top: 80px; }
   position: relative;
   padding: 56px 0 72px;
   border-bottom: 1px solid var(--line);
-  overflow: hidden;
+  /* No clip by default — on mobile the stacked mockup (and its badges/shadow)
+     must be free to show in full. overflow:hidden is added on desktop only,
+     where it's needed to contain the scaled mockup's right-edge bleed. */
 }
 .hero > .container { width: 100%; }
-/* Flex-fill the viewport and centre the content on DESKTOP ONLY (below the
-   ~32px tape + ~68px sticky nav). On smaller screens the hero stays plain
-   block flow, so the taller stacked content — including the mockup's badges
-   and shadow — flows naturally and never gets clipped by overflow:hidden. */
+/* Flex-fill the viewport, centre the content, and clip the mockup bleed —
+   DESKTOP ONLY. Below this width the hero is plain block flow with no clip. */
 @media (min-width: 1001px) {
   .hero {
     min-height: calc(100svh - 100px);
     display: flex;
     align-items: center;
+    overflow: hidden;
   }
 }
 
