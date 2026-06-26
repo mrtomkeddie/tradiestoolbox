@@ -33,7 +33,7 @@ export default function App() {
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   /* ---- tweaks panel state ---- */
-  const [heroVariant, setHeroVariant] = useState<'editorial' | 'blocks' | 'ticker'>('ticker');
+  const [heroVariant, setHeroVariant] = useState<'editorial' | 'blocks' | 'ticker'>('editorial');
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [fonts, setFonts] = useState<'display-sans' | 'condensed-serif' | 'mono-grotesk'>('display-sans');
   const [tweaksOpen, setTweaksOpen] = useState(false);
