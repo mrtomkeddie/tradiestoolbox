@@ -2008,7 +2008,50 @@ footer {
   .ticker-bottom { grid-template-columns: 1fr; gap: 24px; }
 }
 @media (max-width: 640px) {
+  :root { --pad: 20px; }
+  .nav-inner {
+    height: 64px;
+    gap: 10px;
+  }
+  .brand { gap: 8px; }
+  .brand-mark {
+    width: 24px;
+    height: 24px;
+  }
+  .brand .brand-word { height: 14px; }
+  .theme-toggle,
+  button.theme-toggle {
+    width: 34px !important;
+    height: 34px !important;
+  }
+  .nav-cta {
+    padding: 10px 12px;
+    font-size: 11px;
+    letter-spacing: 0.01em;
+  }
   .nav-links { display: none; }
+  .hero {
+    padding: 54px 0 72px;
+  }
+  .hero .container,
+  .hero-ticker {
+    overflow: hidden;
+  }
+  .hero-eyebrow-row {
+    gap: 10px;
+    margin-bottom: 24px;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .section-lede {
+    max-width: 100%;
+  }
   .services-grid, .trade-picker { grid-template-columns: 1fr; }
   .svc { border-right: 0 !important; }
   .process-grid { grid-template-columns: 1fr; }
@@ -2023,9 +2066,48 @@ footer {
      large here and reads as clipped/broken. Shrink type + gaps so the
      marquee scans as an intentional ticker. */
   .hero-ticker { gap: 16px; }
-  .ticker-row { font-size: clamp(36px, 13vw, 64px); gap: 28px; }
+  .ticker-row {
+    font-size: clamp(34px, 11vw, 46px);
+    gap: 20px;
+    letter-spacing: -0.02em;
+  }
+  .ticker-row .stroke { -webkit-text-stroke-width: 1.2px; }
+  .ticker-divider { font-size: 0.5em; }
   .ticker-row.reverse { animation-duration: 38s; }
   .ticker-bottom { gap: 20px; padding-top: 28px; margin-top: 8px; }
+  .ticker-bottom .hero-sub {
+    font-size: 17px;
+    margin: 0;
+  }
+  .contact-grid > *,
+  .contact-left,
+  .contact-form {
+    min-width: 0;
+  }
+  .contact-left h2,
+  .contact-left p,
+  .contact-deets {
+    max-width: 100%;
+  }
+  .contact-deets .row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .contact-deets .row .lbl {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand .brand-word,
+  .theme-toggle,
+  button.theme-toggle {
+    display: none !important;
+  }
+  .nav-inner {
+    justify-content: space-between;
+  }
 }
 
 /* Dark mode toggle ------------------------------------------------------- */
