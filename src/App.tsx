@@ -182,6 +182,7 @@ export default function App() {
                 </div>
                 <div className="hero-meta">
                   <div><span className="num">5-7d</span><span className="lbl">Go live</span></div>
+                  <div><span className="num">No</span><span className="lbl">Contracts</span></div>
                 </div>
               </div>
               <div className="mockup-wrap">
