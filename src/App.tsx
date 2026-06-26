@@ -317,19 +317,6 @@ export default function App() {
           </div>
         </section>
 
-        {/* ============ TRUST ============ */}
-        <section className="trust">
-          <div className="container trust-inner">
-            <div className="trust-lbl">Simple terms</div>
-            <div className="trust-logos">
-              <div className="trust-logo"><span className="glyph"></span>You own it outright</div>
-              <div className="trust-logo"><span className="glyph circle"></span>Fixed pricing</div>
-              <div className="trust-logo"><span className="glyph diamond"></span>Live in 5–7 days</div>
-              <div className="trust-logo"><span className="glyph tri"></span>No lock-in</div>
-            </div>
-          </div>
-        </section>
-
         {/* ============ SERVICES ============ */}
         <section id="services" className="services">
           <div className="container">
@@ -339,7 +326,7 @@ export default function App() {
                 <h2 className="section-title">Everything your trade needs online.</h2>
               </div>
               <p className="section-lede">
-                Every package includes design, copy, and professional imagery. Pro adds the full local-SEO stack, branded kit, and growth tools.
+                Every package includes design, copy, and professional imagery. Pro adds the full local-SEO stack, a review engine, and the tools to get found on Google.
               </p>
             </div>
 
@@ -366,16 +353,16 @@ export default function App() {
               </article>
 
               <article className="svc">
-                <div className="svc-num">04 / Reviews engine <span className="tick"></span></div>
-                <h3>More 5-stars, less nagging.</h3>
-                <p>A print-ready card you leave on the job. Customers scan and leave a Google review in 10 seconds.</p>
+                <div className="svc-num">04 / Review Booster <span className="tick"></span></div>
+                <h3>Turn finished jobs into 5-stars.</h3>
+                <p>A ready-to-send review-request text you fire off the second a job's done — the review link's already in it, customer taps once. Plus a stack of printed QR cards, posted to you. Neutral wording, easy opt-out — no nagging, no gimmicks.</p>
                 <div className="svc-tag">Pro package</div>
               </article>
 
               <article className="svc">
-                <div className="svc-num">05 / Branded kit <span className="tick"></span></div>
-                <h3>Look the part off-site too.</h3>
-                <p>Branded email signature, invoice template, and 10 ready-to-post social media posts. Consistent everywhere.</p>
+                <div className="svc-num">05 / Google Profile <span className="tick"></span></div>
+                <h3>Get found on the map.</h3>
+                <p>We write your Google Business Profile — services, description, the lot. You paste it in and start showing up in the local map results.</p>
                 <div className="svc-tag">Pro package</div>
               </article>
 
@@ -501,10 +488,8 @@ export default function App() {
                     'A dedicated page for every town you cover',
                     'Interactive service area map',
                     'Google Business Profile starter kit — we write it, you paste it in',
-                    'Print-ready review card — customers scan, leave a Google review in 10 seconds',
-                    'Branded email signature',
-                    'Branded invoice PDF template',
-                    '10 ready-to-post social media posts',
+                    'Review Booster — printed QR review cards posted to you + a ready-to-send review-request text (you send it, neutral wording, easy opt-out)',
+                    'Branded email signature + invoice template',
                     'Recent Jobs page (if you have photos)',
                     'Guaranteed to load fast on mobile',
                     'First month of AI Receptionist free when it launches',
@@ -525,7 +510,7 @@ export default function App() {
               <div className="addons-label">Add-ons</div>
               <div className="addon-row">
                 <div className="addon-name" style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>AI Receptionist <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', background: 'var(--border)', color: 'var(--muted)', borderRadius: 4, padding: '2px 6px', alignSelf: 'flex-start' }}>Coming soon</span></div>
-                <div className="addon-desc">24/7 call answering, books jobs, and auto-sends review requests after every job. Pro customers get their first month free at launch.</div>
+                <div className="addon-desc">24/7 call answering, books jobs, and automatically sends your Review Booster texts after each job — hands-off. Pro customers get their first month free at launch.</div>
                 <div className="addon-price" style={{ opacity: 0.5 }}>£97/mo</div>
               </div>
               <div className="addon-row">

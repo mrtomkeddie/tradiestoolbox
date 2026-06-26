@@ -2053,8 +2053,12 @@ footer {
   }
   .nav-links { display: none; }
   .hero {
-    padding: 54px 0 72px;
+    padding: 48px 0 48px;
   }
+  /* Tighten the big desktop section padding so phone sections don't read
+     as empty bands between blocks. */
+  .services, .process, .pricing, .contact { padding: 64px 0; }
+  .faq { padding: 64px 0 72px; }
   .hero .container,
   .hero-ticker {
     overflow: hidden;
@@ -2093,18 +2097,29 @@ footer {
     padding-bottom: 8px;
   }
   .ticker-intro h1 {
-    max-width: 11ch;
-    font-size: clamp(38px, 11vw, 48px);
-    line-height: 0.94;
+    max-width: 18ch;
+    font-size: clamp(30px, 8vw, 38px);
+    line-height: 1.02;
   }
+  /* Drop the descriptive paragraph on phones — the headline already says
+     what we do, and the price line below carries the offer. One block of
+     body text reads clearer than two competing ones. */
   .ticker-intro p {
-    font-size: 16px;
-    line-height: 1.5;
+    display: none;
   }
   .ticker-row {
     display: none;
   }
-  .ticker-bottom { gap: 18px; padding-top: 22px; margin-top: 2px; }
+  /* No divider line directly under the headline now the intro paragraph
+     is hidden — let the price line sit straight beneath it. */
+  .ticker-bottom { gap: 18px; padding-top: 0; margin-top: 0; border-top: 0; }
+  /* Service cards: kill the forced 300px height and tighten the
+     paragraph→tag gap so each card hugs its content instead of leaving
+     a void. */
+  .svc { min-height: 0; padding: 28px 22px; }
+  .svc-num { margin-bottom: 18px; }
+  .svc p { margin-bottom: 18px; }
+  .svc .svc-tag { margin-top: 18px; padding-top: 14px; }
   .ticker-bottom .hero-sub {
     font-size: 15px;
     margin: 0;
