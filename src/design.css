@@ -288,10 +288,17 @@ section { position: relative; scroll-margin-top: 80px; }
    ========================================================= */
 .hero {
   position: relative;
-  padding: 64px 0 64px;
+  /* Flex-fill the viewport below the tape (~32px) + sticky nav (~68px) and
+     centre the content, so the hero fills the space on any screen size.
+     On mobile the content is taller than this min-height, so it just flows. */
+  min-height: calc(100svh - 100px);
+  display: flex;
+  align-items: center;
+  padding: 48px 0;
   border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
+.hero > .container { width: 100%; }
 
 .hero-grid-bg {
   position: absolute;
@@ -340,7 +347,7 @@ section { position: relative; scroll-margin-top: 80px; }
   50% { opacity: 0.6; box-shadow: 0 0 0 6px transparent; }
 }
 h1.hero-title {
-  font-size: clamp(44px, 6vw, 100px);
+  font-size: clamp(46px, 6.6vw, 118px);
   line-height: 0.9;
   letter-spacing: -0.035em;
   font-weight: 900;
@@ -355,13 +362,13 @@ h1.hero-title {
   font-size: 18px;
   line-height: 1.5;
   color: var(--muted);
-  margin: 24px 0 28px;
+  margin: 28px 0 32px;
 }
 .hero-cta {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 .hero-meta {
   display: flex;
