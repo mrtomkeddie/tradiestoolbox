@@ -164,10 +164,27 @@ h1, h2, h3, h4 {
   color: var(--hi);
   flex: none;
   transition: transform 0.3s var(--ease);
+  /* Rest most of the cycle, twitch briefly at the end — an intermittent
+     "click me" wiggle every few seconds. */
+  animation: toolWiggle 5s ease-in-out 2s infinite;
+  transform-origin: 50% 60%;
 }
-/* Playful nudge on hover — hints the logo mark is interactive (cycles the
-   accent), echoing the hero mockup's hover lift. */
-.brand-mark:hover { transform: rotate(-12deg) scale(1.12); }
+/* On hover, drop the idle wiggle and do the bigger deliberate nudge. */
+.brand-mark:hover {
+  animation: none;
+  transform: rotate(-12deg) scale(1.12);
+}
+@keyframes toolWiggle {
+  0%, 86%, 100% { transform: rotate(0); }
+  89% { transform: rotate(-12deg) scale(1.1); }
+  92% { transform: rotate(9deg); }
+  95% { transform: rotate(-5deg); }
+  98% { transform: rotate(2deg); }
+}
+/* Respect users who prefer reduced motion — no idle animation for them. */
+@media (prefers-reduced-motion: reduce) {
+  .brand-mark { animation: none; }
+}
 /* Lowercase wordmark logo (outlined vector from Helvetica Now Display) */
 .brand .brand-word {
   height: 16.7px;
