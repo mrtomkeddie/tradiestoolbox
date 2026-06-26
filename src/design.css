@@ -74,7 +74,11 @@ body {
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  /* `clip` (not `hidden`) contains horizontal bleed WITHOUT making <body> a
+     scroll container. On iOS Safari, overflow-x:hidden forces overflow-y to
+     `auto`, creating a clip that cut off the hero mockup's badge/shadow on
+     real devices (invisible in Chrome/DevTools). `clip` avoids that. */
+  overflow-x: clip;
   transition: background 0.3s var(--ease), color 0.3s var(--ease);
 }
 
