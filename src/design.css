@@ -586,8 +586,11 @@ h1.hero-title {
   box-shadow: 4px 4px 0 var(--hi);
 }
 [data-theme="dark"] .hero-float-badge { background: var(--hi); color: var(--ink); box-shadow: 4px 4px 0 var(--bone); }
-.hero-float-badge.b1 { top: -12px; right: 20%; }
-.hero-float-badge.b2 { bottom: -14px; left: -12px; transform: rotate(-5deg); }
+/* Hung clear of the card's top/bottom edges: the report card carries text in
+   both its header and footer rows, so the badges sit outside rather than
+   overlapping inward the way they could with the old browser-chrome mockup. */
+.hero-float-badge.b1 { top: -34px; right: 2%; }
+.hero-float-badge.b2 { bottom: -44px; left: -14px; transform: rotate(-5deg); }
 
 .mockup-wrap { position: relative; }
 
@@ -2124,9 +2127,11 @@ footer {
   .hero[data-variant="editorial"] .mockup-wrap {
     margin-bottom: 36px;
   }
+  /* The report footer wraps to two lines at this width, so b2 has to clear the
+     card entirely rather than tuck against its bottom-left corner. */
   .hero[data-variant="editorial"] .hero-float-badge.b2 {
-    bottom: -6px;
-    left: 0;
+    bottom: -78px;
+    left: 4px;
   }
   .hero-eyebrow-row {
     gap: 10px;
@@ -2381,12 +2386,13 @@ button.theme-toggle svg {
 }
 [data-theme="dark"] .rc-card { border-color: var(--bone); box-shadow: 12px 12px 0 var(--hi); }
 
-/* Hero placement: matches the old .site-mockup tilt + desktop upscale. */
+/* Hero placement. Deliberately NOT scaled: the badges are positioned against
+   .mockup-wrap, so a transform on the card would make it render outside its own
+   wrapper and swallow them. Fill the column with max-width instead. */
 .mockup-wrap .rc-card { transform: rotate(-1.2deg); max-width: 420px; margin: 0 auto; }
 .mockup-wrap .rc-card:hover { transform: rotate(0deg) translateY(-4px); }
 @media (min-width: 1001px) {
-  .mockup-wrap .rc-card { transform: rotate(-1.2deg) scale(1.18); transform-origin: left center; }
-  .mockup-wrap .rc-card:hover { transform: rotate(0deg) translateY(-4px) scale(1.18); transform-origin: left center; }
+  .mockup-wrap .rc-card { max-width: 500px; }
 }
 
 .cm-head {

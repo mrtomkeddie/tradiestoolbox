@@ -95,9 +95,16 @@ Warm, capable, unhurried — a brilliant British receptionist. Short sentences. 
 }
 
 /* ------------------------------------------------ helpers */
+// A failed scrape is non-fatal — the demo still runs, just less personalised.
+// But every failure path MUST log: a dead/stale FIRECRAWL_API_KEY otherwise
+// looks identical to "their site had no content", and the demo silently
+// degrades for every visitor with nobody noticing.
 async function scrapeSite(url) {
   const key = process.env.FIRECRAWL_API_KEY;
-  if (!key) return null;
+  if (!key) {
+    console.warn('scrapeSite: FIRECRAWL_API_KEY not set — skipping scrape');
+    return null;
+  }
   try {
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), 14000);
@@ -108,16 +115,33 @@ async function scrapeSite(url) {
       signal: ctrl.signal,
     });
     clearTimeout(timer);
-    if (!resp.ok) return null;
+    if (!resp.ok) {
+      // 401/403 here means the key is wrong or revoked — the failure mode that
+      // cost us a silent afternoon. Body is truncated; it never contains the key.
+      const body = await resp.text().catch(() => '');
+      console.error(`scrapeSite: Firecrawl HTTP ${resp.status} for ${url} — ${body.slice(0, 200)}`);
+      return null;
+    }
     const data = await resp.json();
     const md = data?.data?.markdown || '';
+    if (!md) {
+      console.warn(`scrapeSite: Firecrawl returned no markdown for ${url}`);
+      return null;
+    }
     // Strip link/image noise and cap: the agent needs flavour, not the site.
-    return md
+    const cleaned = md
       .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
       .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
       .replace(/\n{3,}/g, '\n\n')
-      .slice(0, 1800) || null;
-  } catch {
+      .slice(0, 1800);
+    if (!cleaned.trim()) {
+      console.warn(`scrapeSite: nothing left after cleaning markdown for ${url}`);
+      return null;
+    }
+    return cleaned;
+  } catch (err) {
+    const reason = err?.name === 'AbortError' ? 'timed out after 14s' : (err?.message || String(err));
+    console.error(`scrapeSite: scrape failed for ${url} — ${reason}`);
     return null;
   }
 }
