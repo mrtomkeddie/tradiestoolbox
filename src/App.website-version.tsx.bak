@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './design.css';
+import Wordmark from './Wordmark';
 
 /* =========================================================
    Trade picker colours (hero variant B)
@@ -13,6 +14,9 @@ const tradeColors: Record<string, string> = {
   decorators: '#E84D8A',
   landscapers: '#4CAF50',
 };
+
+/* Accent palette for the nav colour-cycler (starts on the brand orange) */
+const ACCENTS = ['#FF7A1A', '#2BA6E8', '#4CAF50', '#8B5CF6', '#E84D8A', '#FFD400'];
 
 /* =========================================================
    App
@@ -32,7 +36,7 @@ export default function App() {
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   /* ---- tweaks panel state ---- */
-  const [heroVariant, setHeroVariant] = useState<'editorial' | 'blocks' | 'ticker'>('ticker');
+  const [heroVariant, setHeroVariant] = useState<'editorial' | 'blocks' | 'ticker'>('editorial');
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [fonts, setFonts] = useState<'display-sans' | 'condensed-serif' | 'mono-grotesk'>('display-sans');
   const [tweaksOpen, setTweaksOpen] = useState(false);
@@ -43,6 +47,14 @@ export default function App() {
 
   /* ---- faq open item ---- */
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  /* ---- accent colour cycler (logo easter egg) ---- */
+  const accentRef = useRef(0);
+  const cycleAccent = () => {
+    const next = (accentRef.current + 1) % ACCENTS.length;
+    accentRef.current = next;
+    document.documentElement.style.setProperty('--hi', ACCENTS[next]);
+  };
 
   /* ---- Apply theme/fonts to body ---- */
   useEffect(() => {
@@ -139,8 +151,8 @@ export default function App() {
       <nav className="nav">
         <div className="container nav-inner">
           <a href="#top" className="brand">
-            <span className="brand-mark"></span>
-            TRADIES TOOLBOX
+            <svg className="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" onClick={(e) => { e.preventDefault(); cycleAccent(); }} style={{ cursor: 'pointer' }}><title>Psst… click me</title><path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4" /><path d="M14.5 5.5l4 4" /><path d="M12 8l-5 -5l-4 4l5 5" /><path d="M7 8l-1.5 1.5" /><path d="M16 12l5 5l-4 4l-5 -5" /><path d="M16 17l-1.5 1.5" /></svg>
+            <Wordmark />
           </a>
           <div className="nav-links">
             <a href="#services" data-link="">Services</a>
@@ -181,6 +193,7 @@ export default function App() {
                 </div>
                 <div className="hero-meta">
                   <div><span className="num">5-7d</span><span className="lbl">Go live</span></div>
+                  <div><span className="num">No</span><span className="lbl">Contracts</span></div>
                 </div>
               </div>
               <div className="mockup-wrap">
@@ -265,9 +278,11 @@ export default function App() {
 
             {/* Variant C: Ticker */}
             <div className="hero-ticker">
-              <div className="hero-eyebrow-row">
-                <span className="dot"></span>
-                <span>Websites built for the trades · UK-wide</span>
+              <div className="ticker-intro">
+                <h1>Websites for trades that turn visitors into booked jobs.</h1>
+                <p>
+                  We design, write and launch proper sites for plumbers, electricians, roofers, builders and local trade businesses.
+                </p>
               </div>
               <div className="ticker-row">
                 <span>PLUMBERS</span>
@@ -298,28 +313,19 @@ export default function App() {
               </div>
               <div className="ticker-bottom">
                 <p className="hero-sub">
-                  Every trade gets its own tuned site — same toolbox, different tools.<br />Built in the UK, made to book jobs.
+                  Starter sites from £497. No calls, no contracts, no drag-and-drop templates.
                 </p>
+                <div className="hero-cta">
+                  <a href="#contact" className="btn btn-primary">Start your site <span className="btn-arrow"></span></a>
+                  <a href="#pricing" className="btn btn-ghost">See pricing</a>
+                </div>
                 <div className="hero-meta">
                   <div><span className="num">5-7d</span><span className="lbl">Go live</span></div>
-                  <div><span className="num">0</span><span className="lbl">Contracts</span></div>
+                  <div><span className="num">No</span><span className="lbl">Contracts</span></div>
                 </div>
               </div>
             </div>
 
-          </div>
-        </section>
-
-        {/* ============ TRUST ============ */}
-        <section className="trust">
-          <div className="container trust-inner">
-            <div className="trust-lbl">Trusted by trades across the UK</div>
-            <div className="trust-logos">
-              <div className="trust-logo"><span className="glyph"></span>GLJ PLUMBING</div>
-              <div className="trust-logo"><span className="glyph circle"></span>ANDY JOHN</div>
-              <div className="trust-logo"><span className="glyph diamond"></span>PARAGON</div>
-              <div className="trust-logo"><span className="glyph tri"></span>GJ ISITT</div>
-            </div>
           </div>
         </section>
 
@@ -332,7 +338,7 @@ export default function App() {
                 <h2 className="section-title">Everything your trade needs online.</h2>
               </div>
               <p className="section-lede">
-                Every package includes design, copy, and professional imagery. Pro adds the full local-SEO stack, branded kit, and growth tools.
+                Every package includes design, copy, and professional imagery. Pro adds the full local-SEO stack, a review engine, and the tools to get found on Google.
               </p>
             </div>
 
@@ -359,16 +365,16 @@ export default function App() {
               </article>
 
               <article className="svc">
-                <div className="svc-num">04 / Reviews engine <span className="tick"></span></div>
-                <h3>More 5-stars, less nagging.</h3>
-                <p>A print-ready card you leave on the job. Customers scan and leave a Google review in 10 seconds.</p>
+                <div className="svc-num">04 / Review Booster <span className="tick"></span></div>
+                <h3>Turn finished jobs into 5-stars.</h3>
+                <p>A ready-to-send review-request text you fire off the second a job's done — the review link's already in it, customer taps once. Plus a stack of printed QR cards, posted to you. Neutral wording, easy opt-out — no nagging, no gimmicks.</p>
                 <div className="svc-tag">Pro package</div>
               </article>
 
               <article className="svc">
-                <div className="svc-num">05 / Branded kit <span className="tick"></span></div>
-                <h3>Look the part off-site too.</h3>
-                <p>Branded email signature, invoice template, and 10 ready-to-post social media posts. Consistent everywhere.</p>
+                <div className="svc-num">05 / Google Profile <span className="tick"></span></div>
+                <h3>Get found on the map.</h3>
+                <p>We write your Google Business Profile — services, description, the lot. You paste it in and start showing up in the local map results.</p>
                 <div className="svc-tag">Pro package</div>
               </article>
 
@@ -494,10 +500,8 @@ export default function App() {
                     'A dedicated page for every town you cover',
                     'Interactive service area map',
                     'Google Business Profile starter kit — we write it, you paste it in',
-                    'Print-ready review card — customers scan, leave a Google review in 10 seconds',
-                    'Branded email signature',
-                    'Branded invoice PDF template',
-                    '10 ready-to-post social media posts',
+                    'Review Booster — printed QR review cards posted to you + a ready-to-send review-request text (you send it, neutral wording, easy opt-out)',
+                    'Branded email signature + invoice template',
                     'Recent Jobs page (if you have photos)',
                     'Guaranteed to load fast on mobile',
                     'First month of AI Receptionist free when it launches',
@@ -518,7 +522,7 @@ export default function App() {
               <div className="addons-label">Add-ons</div>
               <div className="addon-row">
                 <div className="addon-name" style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>AI Receptionist <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', background: 'var(--border)', color: 'var(--muted)', borderRadius: 4, padding: '2px 6px', alignSelf: 'flex-start' }}>Coming soon</span></div>
-                <div className="addon-desc">24/7 call answering, books jobs, and auto-sends review requests after every job. Pro customers get their first month free at launch.</div>
+                <div className="addon-desc">24/7 call answering, books jobs, and automatically sends your Review Booster texts after each job — hands-off. Pro customers get their first month free at launch.</div>
                 <div className="addon-price" style={{ opacity: 0.5 }}>£97/mo</div>
               </div>
               <div className="addon-row">
@@ -698,8 +702,8 @@ export default function App() {
             <div className="footer-grid">
               <div className="footer-brand">
                 <a href="#top" className="brand">
-                  <span className="brand-mark"></span>
-                  TRADIES TOOLBOX
+                  <svg className="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4" /><path d="M14.5 5.5l4 4" /><path d="M12 8l-5 -5l-4 4l5 5" /><path d="M7 8l-1.5 1.5" /><path d="M16 12l5 5l-4 4l-5 -5" /><path d="M16 17l-1.5 1.5" /></svg>
+                  <Wordmark />
                 </a>
                 <p>Websites, SEO &amp; branding for UK trades. South Wales–based, working nationwide. Built to win more jobs.</p>
               </div>

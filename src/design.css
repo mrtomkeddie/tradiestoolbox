@@ -2327,3 +2327,41 @@ button.theme-toggle svg {
 
 /* Accent colour cycler now lives on the nav logo mark (easter egg) — see
    the brand-mark onClick in App.tsx. */
+
+/* =========================================================
+   DEMO — "talk to your own receptionist" section
+   ========================================================= */
+.demo { padding: clamp(64px, 8vw, 120px) 0; border-top: 1px solid var(--line); }
+.demo-panel {
+  background: var(--panel); color: var(--panel-ink);
+  border: 1px solid var(--line-strong); border-radius: var(--radius-lg);
+  padding: clamp(24px, 4vw, 48px); max-width: 760px; margin: 0 auto;
+}
+.demo-form { display: flex; flex-direction: column; gap: 18px; }
+.demo-error { color: #ff6b6b; font-size: 13px; margin: 0; text-align: center; }
+.demo-stage {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 14px; padding: clamp(16px, 3vw, 32px) 0;
+}
+.demo-orb {
+  width: 96px; height: 96px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--hi), var(--hi-deep));
+  box-shadow: 0 0 0 0 rgba(255, 122, 26, 0.35);
+  transition: transform 0.3s var(--ease);
+}
+.demo-orb.building { animation: demo-breathe 1.6s ease-in-out infinite; }
+.demo-orb.speaking { animation: demo-pulse 1.1s ease-out infinite; }
+.demo-orb.listening { animation: demo-breathe 2.6s ease-in-out infinite; }
+@keyframes demo-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 122, 26, 0.35); transform: scale(1); }
+  70% { box-shadow: 0 0 0 26px rgba(255, 122, 26, 0); transform: scale(1.05); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 122, 26, 0); transform: scale(1); }
+}
+@keyframes demo-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+.demo-status { font-family: var(--display); font-size: 20px; font-weight: 800; letter-spacing: -0.01em; }
+.demo-substatus { font-size: 14px; color: var(--muted); margin: 0; max-width: 46ch; }
+.demo-cta-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+@media (max-width: 640px) { .demo-cta-row { flex-direction: column; width: 100%; } }
