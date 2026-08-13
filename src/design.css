@@ -2365,3 +2365,88 @@ button.theme-toggle svg {
 .demo-substatus { font-size: 14px; color: var(--muted); margin: 0; max-width: 46ch; }
 .demo-cta-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
 @media (max-width: 640px) { .demo-cta-row { flex-direction: column; width: 100%; } }
+
+/* ============ Receipt cards (hero night report + scripted call) ============
+   Shared card chrome for the "here's what it did while you slept" artefacts. */
+.rc-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  color: var(--panel-ink);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-lg);
+  box-shadow: 12px 12px 0 var(--ink);
+  overflow: hidden;
+  transition: transform 0.4s var(--ease);
+}
+[data-theme="dark"] .rc-card { border-color: var(--bone); box-shadow: 12px 12px 0 var(--hi); }
+
+/* Hero placement: matches the old .site-mockup tilt + desktop upscale. */
+.mockup-wrap .rc-card { transform: rotate(-1.2deg); max-width: 420px; margin: 0 auto; }
+.mockup-wrap .rc-card:hover { transform: rotate(0deg) translateY(-4px); }
+@media (min-width: 1001px) {
+  .mockup-wrap .rc-card { transform: rotate(-1.2deg) scale(1.18); transform-origin: left center; }
+  .mockup-wrap .rc-card:hover { transform: rotate(0deg) translateY(-4px) scale(1.18); transform-origin: left center; }
+}
+
+.cm-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 18px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  border-bottom: 1px solid var(--line); color: var(--muted);
+}
+.cm-dot { width: 8px; height: 8px; border-radius: 50%; background: #2dd35f; animation: demo-breathe 2s infinite; flex: none; }
+.cm-dur { margin-left: auto; opacity: 0.7; }
+
+/* Night report ---------------------------------------------------------- */
+.report-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.report-grid > div {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 22px 20px; border-bottom: 1px solid var(--line);
+}
+.report-grid > div:nth-child(odd) { border-right: 1px solid var(--line); }
+.report-grid > div:nth-child(3), .report-grid > div:nth-child(4) { border-bottom: 0; }
+.r-num {
+  font-family: var(--display); font-weight: 900; font-size: 36px;
+  letter-spacing: -0.02em; line-height: 1; color: var(--hi);
+}
+.r-lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.report-foot {
+  padding: 14px 18px; border-top: 1px dashed var(--line-strong);
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted); text-align: center;
+}
+
+/* Scripted call transcript ---------------------------------------------- */
+.demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+@media (max-width: 900px) { .demo-grid { grid-template-columns: 1fr; } }
+.demo-call .cm-body {
+  display: flex; flex-direction: column; gap: 12px;
+  padding: 20px 18px 22px; min-height: 320px;
+}
+.cm-bubble {
+  max-width: 88%; padding: 12px 14px; border-radius: 10px;
+  font-size: 14px; line-height: 1.45;
+  display: flex; flex-direction: column; gap: 4px;
+  animation: cm-in 0.35s var(--ease) both;
+}
+.cm-bubble.ai { background: var(--hi); color: #fff; align-self: flex-start; }
+.cm-bubble.caller { background: var(--bone-2); color: var(--panel-ink); align-self: flex-end; }
+.cm-who { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75; }
+@keyframes cm-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.cm-status {
+  margin-top: auto; padding-top: 14px; border-top: 1px dashed var(--line-strong);
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted);
+  display: flex; align-items: center; gap: 8px;
+  animation: cm-in 0.35s var(--ease) both;
+}
+.cm-tick { color: #2dd35f; font-size: 14px; }
+.demo-idle { color: var(--muted); font-size: 14px; line-height: 1.6; margin: auto 0; text-align: center; }
+.demo-voice { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); cursor: pointer; }
+.demo-voice input { width: 16px; height: 16px; accent-color: var(--hi); }
+
+/* Live-demo escalation --------------------------------------------------- */
+.demo-escalate { margin-top: 28px; border-top: 1px dashed var(--line-strong); padding-top: 24px; text-align: center; }
+.demo-escalate-lede { font-size: 14px; color: var(--muted); margin: 0 0 14px; }

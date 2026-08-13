@@ -205,24 +205,17 @@ export default function App() {
               <div className="mockup-wrap">
                 <div className="hero-float-badge b1">call booked ✓</div>
                 <div className="hero-float-badge b2">answered in 2 rings</div>
-                <div className="site-mockup">
-                  <div className="mockup-bar">
-                    <div className="dots"><span></span><span></span><span></span></div>
-                    <div className="url">incoming call · 2:14am</div>
+                {/* Night report — leads on the outcome (jobs booked) rather
+                    than the mechanism (a call being handled). */}
+                <div className="rc-card rc-report">
+                  <div className="cm-head"><span className="cm-dot"></span>Overnight · while you slept</div>
+                  <div className="report-grid">
+                    <div><span className="r-num">6/6</span><span className="r-lbl">Calls answered</span></div>
+                    <div><span className="r-num">3</span><span className="r-lbl">Jobs booked</span></div>
+                    <div><span className="r-num">0</span><span className="r-lbl">Voicemails</span></div>
+                    <div><span className="r-num">2</span><span className="r-lbl">Quotes requested</span></div>
                   </div>
-                  <div className="mockup-body">
-                    <div className="mock-hero">
-                      <div className="mock-hero-kicker">Moorland Plumbing · Sheffield</div>
-                      <div className="mock-hero-title">Burst pipe.<br />Booked for 8am.</div>
-                      <div className="mock-hero-sub">Caller qualified, job logged, text sent — while you slept.</div>
-                    </div>
-                    <div className="mock-grid">
-                      <div className="mock-card"><span className="mock-icon"></span><strong>Answered</strong></div>
-                      <div className="mock-card"><span className="mock-icon"></span><strong>Qualified</strong></div>
-                      <div className="mock-card"><span className="mock-icon"></span><strong>Booked</strong></div>
-                    </div>
-                    <div className="mock-lines"><span></span><span></span><span></span></div>
-                  </div>
+                  <div className="report-foot">Every caller answered on the first ring</div>
                 </div>
               </div>
             </div>
@@ -461,16 +454,18 @@ export default function App() {
                 <h2 className="section-title">Simple pricing.</h2>
               </div>
               <p className="section-lede">
-                One plan, everything in — including your website, built free. Month-to-month, no setup fee, cancel any time. Most trades cover it with the first job it books them.
+                One plan, everything in. Month-to-month, no setup fee, cancel any time — or pay yearly, get two months free, and we build your website free on top. Most trades cover it with the first job it books them.
               </p>
             </div>
 
+            {/* One plan, two ways to pay. Yearly is the featured side: the
+                website is the yearly bonus, so the build cost is only ever
+                incurred once the year is paid up front. */}
             <div className="tiers tiers-2">
-              <div className="tier featured">
-                <div className="tier-ribbon">Everything included</div>
+              <div className="tier">
                 <div className="tier-head">
                   <div>
-                    <div className="tier-name">AI Receptionist</div>
+                    <div className="tier-name">Monthly</div>
                   </div>
                 </div>
                 <div className="tier-price">
@@ -493,42 +488,40 @@ export default function App() {
                     'No contract — cancel any time',
                   ].map(f => <li key={f}>{f}</li>)}
                 </ul>
-                <div className="care-addon">
-                  <div className="care-title">+ Pay yearly <span className="care-price">2 months free</span></div>
-                  <div className="care-sub">£1,490 for the year instead of £1,788.</div>
-                </div>
-                <a href="#contact" className="btn btn-primary btn-full">Get Started <span className="btn-arrow"></span></a>
+                <div className="tier-spacer"></div>
+                <a href="#contact" className="btn btn-ghost btn-full">Get Started <span className="btn-arrow"></span></a>
               </div>
 
-              <div className="tier">
+              <div className="tier featured">
+                <div className="tier-ribbon">Best value</div>
                 <div className="tier-head">
                   <div>
-                    <div className="tier-name">Your Website</div>
+                    <div className="tier-name">Yearly</div>
                   </div>
                 </div>
                 <div className="tier-price">
-                  <span className="num">Free</span><span className="per">with your plan</span>
+                  <span className="cur">£</span><span className="num">1,490</span><span className="per">/yr</span>
                 </div>
-                <p className="tier-blurb">A proper trade website — designed, written, built and hosted by us. Included with your receptionist, because answered calls deserve somewhere to land.</p>
+                <p className="tier-blurb">The same receptionist, two months free, and we design and build your website free on top — a £497 build, included.</p>
                 <ul className="tier-features">
                   {[
+                    'Everything in Monthly',
+                    'Two months free — £1,490 instead of £1,788',
+                    'Your website built free — a £497 build, included',
                     'Single-page site tuned to your trade',
-                    'Conversion copy written for you',
-                    'Professional trade photography throughout',
+                    'Conversion copy + trade photography throughout',
                     'Click-to-call, WhatsApp + contact form',
                     'Built to rank for your trade in your home town',
                     'Simple logo included (if you don\'t have one)',
                     'Hosting, SSL & backups included',
-                    'Small edits handled for you',
                     'Your domain, your site — keep it if you leave',
                   ].map(f => <li key={f}>{f}</li>)}
                 </ul>
-                <div className="tier-spacer"></div>
                 <div className="care-addon">
                   <div className="care-title">Already got a site you love?</div>
-                  <div className="care-sub">Keep it — the receptionist works with any website, or none at all.</div>
+                  <div className="care-sub">Keep it — the receptionist works with any website, or none at all. The two months free still stand.</div>
                 </div>
-                <a href="#demo" className="btn btn-ghost btn-full">Try the receptionist first <span className="btn-arrow"></span></a>
+                <a href="#contact" className="btn btn-primary btn-full">Get Started <span className="btn-arrow"></span></a>
               </div>
             </div>
 
