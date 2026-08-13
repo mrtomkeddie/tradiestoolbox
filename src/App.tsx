@@ -143,8 +143,8 @@ export default function App() {
       {/* ============ TAPE ============ */}
       <div className="tape">
         <div className="tape-track">
-          <span>UK trades · never miss another call · answered 24/7 · books jobs while you work · website included · no contracts · live in 24 hours</span>
-          <span>UK trades · never miss another call · answered 24/7 · books jobs while you work · website included · no contracts · live in 24 hours</span>
+          <span>UK trades · never miss another call · answered 24/7 · books jobs while you work · free website on yearly · no contracts · live in 24 hours</span>
+          <span>UK trades · never miss another call · answered 24/7 · books jobs while you work · free website on yearly · no contracts · live in 24 hours</span>
         </div>
       </div>
 
@@ -191,7 +191,7 @@ export default function App() {
                   <span className="stroke">call.</span>
                 </h1>
                 <p className="hero-sub">
-                  An AI receptionist for the trades. It answers every call 24/7, qualifies the job, books it into your diary, and texts you the details — while you're on the tools, up a ladder, or fast asleep. Professional website included.
+                  An AI receptionist for the trades. It answers every call 24/7, qualifies the job, books it into your diary, and texts you the details — while you're on the tools, up a ladder, or fast asleep. Professional website free on the yearly plan.
                 </p>
                 <div className="hero-cta">
                   <a href="#demo" className="btn btn-primary">Try it on your business <span className="btn-arrow"></span></a>
@@ -318,7 +318,7 @@ export default function App() {
               </div>
               <div className="ticker-bottom">
                 <p className="hero-sub">
-                  £149/mo, website included, no contract. Every missed call goes to the next guy — yours get answered and booked.
+                  £149/mo, no contract, free website on yearly. Every missed call goes to the next guy — yours get answered and booked.
                 </p>
                 <div className="hero-cta">
                   <a href="#demo" className="btn btn-primary">Try it on your business <span className="btn-arrow"></span></a>
@@ -347,7 +347,7 @@ export default function App() {
                 <h2 className="section-title">Everything a receptionist does. None of the wages.</h2>
               </div>
               <p className="section-lede">
-                Answers every call, day or night. Qualifies the job, books it into your diary, and texts you the details before you've put your tools down. And because customers who find you need somewhere to land, your website is included.
+                Answers every call, day or night. Qualifies the job, books it into your diary, and texts you the details before you've put your tools down. And because customers who find you need somewhere to land, pay yearly and we build your website free.
               </p>
             </div>
 
@@ -390,8 +390,8 @@ export default function App() {
               <article className="svc">
                 <div className="svc-num">06 / Your website <span className="tick"></span></div>
                 <h3>A proper website. Free.</h3>
-                <p>Designed, built and hosted by us, included in your plan. The receptionist answers the calls; the website wins you the ones who Google first.</p>
-                <div className="svc-tag">Included</div>
+                <p>Designed, built and hosted by us — free when you pay yearly, a £497 build included. The receptionist answers the calls; the website wins you the ones who Google first.</p>
+                <div className="svc-tag">On yearly</div>
               </article>
             </div>
           </div>
@@ -418,7 +418,7 @@ export default function App() {
                 {[
                   { n: '01', lbl: 'Tell us', h3: 'Tell us about your business.', p: 'Your trade, your services, your hours, and the questions you always get asked. Takes a few minutes by message — no call to book.', dur: 'Day 1 · 5 mins' },
                   { n: '02', lbl: 'We build', h3: 'We train your receptionist.', p: 'We write the script, set the voice, and wire up the booking logic — trained on how your trade actually works, not a generic bot.', dur: 'Same day · async' },
-                  { n: '03', lbl: 'Live', h3: 'Forward your calls. Done.', p: 'Point your number at it, or use a fresh one we give you. It starts answering, qualifying and booking jobs straight away. Your free website follows within the week.', dur: 'Live in 24h' },
+                  { n: '03', lbl: 'Live', h3: 'Forward your calls. Done.', p: 'Point your number at it, or use a fresh one we give you. It starts answering, qualifying and booking jobs straight away. On the yearly plan, your free website follows within the week.', dur: 'Live in 24h' },
                 ].map((step, i) => (
                   <article
                     key={step.n}
@@ -577,7 +577,7 @@ export default function App() {
                   { n: '04', q: 'Will it actually book jobs?', a: 'Yes. It checks your availability, books the slot into your diary, and sends you the details by text. You set the rules — job types, hours, the areas you cover — so it only books what you want.' },
                   { n: '05', q: 'How fast can I go live?', a: 'Usually within 24 hours of sending your details. There\'s no hardware to install and no app for your customers — we set it up and point your calls at it.' },
                   { n: '06', q: 'Is there a contract?', a: 'No. It\'s month-to-month, cancel any time. Most trades find one booked job more than covers the month — fewer missed calls, more work won.' },
-                  { n: '07', q: 'Is the website really free?', a: 'Yes. A professional site — designed, built and hosted by us — is part of the £149/mo plan. It\'s where your answered callers and Google searchers land. Already got a site you love? Keep it; the receptionist works with any website or none.' },
+                  { n: '07', q: 'Is the website really free?', a: 'Yes — on the yearly plan. Pay £1,490 up front (two months free) and we design, build and host a professional site for you at no extra cost: a £497 build, included. On monthly it\'s not part of the £149 — switch to yearly whenever you like and we\'ll build it. Already got a site you love? Keep it; the receptionist works with any website or none.' },
                 ].map((item, i) => (
                   <div key={item.n} className={`faq-item${openFaq === i ? ' open' : ''}`}>
                     <button className="faq-q" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
@@ -713,7 +713,7 @@ export default function App() {
                   <svg className="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4" /><path d="M14.5 5.5l4 4" /><path d="M12 8l-5 -5l-4 4l5 5" /><path d="M7 8l-1.5 1.5" /><path d="M16 12l5 5l-4 4l-5 -5" /><path d="M16 17l-1.5 1.5" /></svg>
                   <Wordmark />
                 </a>
-                <p>An AI receptionist for UK trades — with the website included. Answers every call, books every job, 24/7. South Wales–based, working nationwide.</p>
+                <p>An AI receptionist for UK trades — with a free website on the yearly plan. Answers every call, books every job, 24/7. South Wales–based, working nationwide.</p>
               </div>
               <div className="footer-col">
                 <h5>What it does</h5>
