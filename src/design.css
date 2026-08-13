@@ -2424,35 +2424,3 @@ button.theme-toggle svg {
   text-transform: uppercase; color: var(--muted); text-align: center;
 }
 
-/* Scripted call transcript ---------------------------------------------- */
-.demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
-@media (max-width: 900px) { .demo-grid { grid-template-columns: 1fr; } }
-.demo-call .cm-body {
-  display: flex; flex-direction: column; gap: 12px;
-  padding: 20px 18px 22px; min-height: 320px;
-}
-.cm-bubble {
-  max-width: 88%; padding: 12px 14px; border-radius: 10px;
-  font-size: 14px; line-height: 1.45;
-  display: flex; flex-direction: column; gap: 4px;
-  animation: cm-in 0.35s var(--ease) both;
-}
-.cm-bubble.ai { background: var(--hi); color: #fff; align-self: flex-start; }
-.cm-bubble.caller { background: var(--bone-2); color: var(--panel-ink); align-self: flex-end; }
-.cm-who { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75; }
-@keyframes cm-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-.cm-status {
-  margin-top: auto; padding-top: 14px; border-top: 1px dashed var(--line-strong);
-  font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
-  text-transform: uppercase; color: var(--muted);
-  display: flex; align-items: center; gap: 8px;
-  animation: cm-in 0.35s var(--ease) both;
-}
-.cm-tick { color: #2dd35f; font-size: 14px; }
-.demo-idle { color: var(--muted); font-size: 14px; line-height: 1.6; margin: auto 0; text-align: center; }
-.demo-voice { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); cursor: pointer; }
-.demo-voice input { width: 16px; height: 16px; accent-color: var(--hi); }
-
-/* Live-demo escalation --------------------------------------------------- */
-.demo-escalate { margin-top: 28px; border-top: 1px dashed var(--line-strong); padding-top: 24px; text-align: center; }
-.demo-escalate-lede { font-size: 14px; color: var(--muted); margin: 0 0 14px; }
