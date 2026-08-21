@@ -194,7 +194,7 @@ export default function App() {
                 </div>
                 <h1 className="hero-title">
                   Never miss<br />
-                  <span className="hi">another</span><br />
+                  <span className="hi">another</span><br className="h1-break" /><span className="h1-space"> </span>
                   <span className="stroke">call.</span>
                 </h1>
                 <p className="hero-sub">

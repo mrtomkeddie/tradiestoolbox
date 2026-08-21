@@ -2691,6 +2691,12 @@ button.theme-toggle svg {
      display heading between them is the third time. */
   .mockup-wrap .demo .section-title { display: none; }
   .mockup-wrap .demo .section-head { margin-bottom: 12px; }
+  /* "Never miss / another call." instead of three lines. JSX strips the
+     whitespace between <br> and the next element, so dropping the break
+     alone would read "anothercall." — .h1-space supplies the space that
+     only the unbroken line needs. */
+  .h1-break { display: none; }
+  .hero-title .h1-space { display: inline; }
 }
 
 @media (max-width: 640px) {
@@ -2699,3 +2705,7 @@ button.theme-toggle svg {
     line-height: 1.45;
   }
 }
+
+/* Paired with .h1-break above: the space exists only when the break does
+   not, so the desktop line-3 indent stays clean. */
+.h1-space { display: none; }
