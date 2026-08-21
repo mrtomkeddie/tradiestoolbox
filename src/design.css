@@ -313,7 +313,10 @@ section { position: relative; scroll-margin-top: 80px; }
    ========================================================= */
 .hero {
   position: relative;
-  padding: 56px 0 72px;
+  /* Tuned, not guessed: these two values are what puts .hero-strip above
+     the fold on a 1440x800 laptop. Raising either pushes the strip's
+     labels under it. */
+  padding: 18px 0 18px;
   border-bottom: 1px solid var(--line);
   /* No clip by default — on mobile the stacked mockup (and its badges/shadow)
      must be free to show in full. overflow:hidden is added on desktop only,
@@ -2115,7 +2118,10 @@ footer {
   }
   .nav-links { display: none; }
   .hero {
-    padding: 40px 0 80px;
+    padding: 28px 0 24px;
+    /* No rule under the hero on phones: the demo form directly below is
+       part of the same block now, not the next section along. */
+    border-bottom: 0;
   }
   /* Tighten the big desktop section padding so phone sections don't read
      as empty bands between blocks. */
@@ -2124,18 +2130,33 @@ footer {
   .hero-ticker {
     overflow: hidden;
   }
-  .hero[data-variant="editorial"] .mockup-wrap {
-    margin-bottom: 36px;
-  }
-  /* The report footer wraps to two lines at this width, so b2 has to clear the
-     card entirely rather than tuck against its bottom-left corner. */
-  .hero[data-variant="editorial"] .hero-float-badge.b2 {
-    bottom: -78px;
-    left: 4px;
-  }
+  /* Demo-led phone hero. The try-it form is the first thumb-reach action,
+     so the night-report card leaves the hero — it comes back as .proof
+     below the demo — and the CTA row goes with it: the form sitting under
+     the copy IS the call to action, and a button pointing at it would just
+     scroll the reader past the thing it was pointing at. */
+  .hero[data-variant="editorial"] .hero-cta { display: none; }
+  /* The website line belongs to the yearly plan, which the pricing section
+     and the thumb bar both carry. One offer per screen on a phone. */
+  .sub-tail { display: none; }
+
+  /* The two trust numbers move off the first screen: the tape above the
+     nav already says "answered 24/7 · no contracts", and every pixel here
+     pushes the form further down. */
+  .hero[data-variant="editorial"] .hero-sub { margin: 16px 0 16px; }
+  /* The hero grid's 60px column gap becomes a 60px row gap once it stacks,
+     and it lands squarely between the copy and the form. */
+  .hero-editorial { gap: 16px; }
+  /* Everything above the form is measured against one number: how far down
+     the page the first field lands. These three trims buy ~150px of it. */
+  .hero[data-variant="editorial"] .hero-title { font-size: clamp(34px, 9.5vw, 40px); }
+  .sub-clip { display: none; }
+
+  .demo .section-head { margin-bottom: 12px; }
+  .demo .section-lede { display: none; }
   .hero-eyebrow-row {
     gap: 10px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     font-size: 11px;
     line-height: 1.5;
   }
@@ -2424,3 +2445,236 @@ button.theme-toggle svg {
   text-transform: uppercase; color: var(--muted); text-align: center;
 }
 
+
+/* =========================================================
+   PROOF — night report, phone layout only
+
+   Desktop keeps the report in the hero's right-hand column (.mockup-wrap).
+   This section is its home on phones, where that column is given to the
+   demo form instead. Shown by the max-width:640px block above.
+   ========================================================= */
+.proof { display: none; }
+
+/* Shown wherever .hero-strip is not — the two are the same proof, sized
+   for the layout that is running. */
+@media (max-width: 1000px) {
+  .proof { display: block; padding: 40px 0 56px; }
+  .proof .section-head { margin-bottom: 20px; }
+}
+
+/* =========================================================
+   BILLING TOGGLE — phone layout only
+
+   Desktop compares the two plans side by side. A phone can't, so it picks
+   one: the toggle swaps which .tier renders. Hidden above 640px, where
+   both tiers show regardless of what this is set to.
+   ========================================================= */
+.billing-toggle { display: none; }
+
+@media (max-width: 640px) {
+  .billing-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    padding: 4px;
+    margin-bottom: 24px;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius);
+    background: color-mix(in oklab, var(--panel) 7%, transparent);
+  }
+  [data-theme="dark"] .billing-toggle { border-color: var(--bone); }
+  .billing-toggle button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--fg);
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    transition: background 0.2s var(--ease), color 0.2s var(--ease);
+  }
+  .billing-toggle button.active { background: var(--ink); color: var(--bone); }
+  [data-theme="dark"] .billing-toggle button.active { background: var(--hi); color: var(--ink); }
+  .bt-flag {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 6px;
+    border-radius: 2px;
+    background: var(--hi);
+    color: var(--ink);
+  }
+  .billing-toggle button.active .bt-flag { background: var(--bone); color: var(--ink); }
+  [data-theme="dark"] .billing-toggle button.active .bt-flag { background: var(--ink); color: var(--bone); }
+
+  /* One plan on screen at a time. */
+  .tiers-2[data-billing="yearly"] > .tier:not(.featured),
+  .tiers-2[data-billing="monthly"] > .tier.featured { display: none; }
+}
+
+/* =========================================================
+   THUMB BAR — phone layout only
+
+   Price left, action right. The phone page is ~2600px tall, so without
+   this both the price and the CTA are off-screen for most of the scroll.
+   Fixed, not sticky: there is no flow position for it to stick to. The
+   footer carries matching bottom padding so its last line stays reachable.
+   ========================================================= */
+.thumb-bar { display: none; }
+
+@media (max-width: 640px) {
+  .thumb-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    padding: 10px var(--pad);
+    /* Home-indicator clearance on iOS — without it the bar sits under the
+       gesture strip and the button is a coin-flip to tap. */
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    /* Solid ink, not a tint of --bg: this bar sits over arbitrary page
+       content and has to stay legible against all of it, and --bg/--fg do
+       not resolve to the same palette as the page's own text on this build.
+       --ink/--bone is the pair .tier.featured and the toggle's active state
+       already use here, so the bar matches components that are known good. */
+    background: var(--ink);
+    color: var(--bone);
+    border-top: 1.5px solid var(--ink);
+  }
+  [data-theme="dark"] .thumb-bar {
+    background: var(--bone);
+    color: var(--ink);
+    border-top-color: var(--bone);
+  }
+  .thumb-price {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+  .tb-num {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .tb-lbl {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    /* Tinted against the bar's own ground, not var(--muted) — that token
+       tracks the page palette, which this bar deliberately inverts. */
+    color: rgba(244, 241, 236, 0.62);
+  }
+  [data-theme="dark"] .tb-lbl { color: rgba(15, 23, 32, 0.62); }
+  .thumb-cta {
+    flex: 1;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 14px;
+    font-size: 13px;
+  }
+  /* Clear the bar. */
+  footer { padding-bottom: calc(88px + env(safe-area-inset-bottom)); }
+}
+
+/* =========================================================
+   DEMO IN THE HERO
+
+   The demo widget is the hero's right-hand column on desktop and the block
+   directly under the hero copy on phones — one instance either way, so a
+   live call survives a rotate or a resize. It still renders as a <section>
+   with its own container, so its section chrome is neutralised here rather
+   than by giving the widget a second set of markup.
+   ========================================================= */
+.mockup-wrap .demo {
+  padding: 0;
+  border-top: 0;
+}
+.mockup-wrap .demo > .container {
+  max-width: none;
+  padding: 0;
+}
+/* The hero's own h1 is the headline. What's left is a compact label for the
+   card: the eyebrow, and one line saying what the card does. */
+.mockup-wrap .demo .section-head {
+  display: block;
+  margin-bottom: 16px;
+}
+.mockup-wrap .demo .section-lede { display: none; }
+.mockup-wrap .demo .section-title {
+  font-size: clamp(20px, 1.6vw, 24px);
+  line-height: 1.25;
+  margin-top: 8px;
+}
+.mockup-wrap .demo-panel {
+  max-width: none;
+  margin: 0;
+}
+
+/* =========================================================
+   HERO STRIP — overnight numbers along the bottom of the first screen
+
+   Desktop only. Below 1000px the hero grid stacks and these numbers would
+   push the form off the screen, so phones get the fuller .proof card
+   after the demo instead.
+   ========================================================= */
+.hero-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 20px;
+  border-top: 1.5px solid var(--line-strong);
+  position: relative;
+  z-index: 1;
+}
+.hero-strip > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 14px 20px;
+  border-right: 1px solid var(--line);
+}
+.hero-strip > div:first-child { padding-left: 0; }
+.hero-strip > div:last-child { border-right: 0; }
+.hs-num {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(26px, 2.2vw, 32px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.hs-lbl {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (max-width: 1000px) {
+  .hero-strip { display: none; }
+}
+
+/* The editorial hero's boxed stat row and .hero-strip are the same device
+   twice on one screen — and the strip's numbers are the better ones. The
+   copy column keeps its CTA; carrying the proof is the strip's job now. */
+.hero[data-variant="editorial"] .hero-meta { display: none; }
+/* With the stat row gone the CTA is last in the column, so its trailing
+   margin is just dead height inside the tallest thing on the screen. */
+.hero-editorial .hero-cta { margin-bottom: 0; }

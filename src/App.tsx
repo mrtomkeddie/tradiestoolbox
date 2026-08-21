@@ -49,6 +49,12 @@ export default function App() {
   /* ---- faq open item ---- */
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
+  /* ---- pricing billing period ----
+     Only the phone layout reads this: two full tier cards stacked is a very
+     long scroll on a handset, so a phone shows one plan at a time. Desktop
+     renders both regardless. Defaults to yearly — it's the featured side. */
+  const [billing, setBilling] = useState<'monthly' | 'yearly'>('yearly');
+
   /* ---- accent colour cycler (logo easter egg) ---- */
   const accentRef = useRef(0);
   const cycleAccent = () => {
@@ -179,6 +185,7 @@ export default function App() {
 
             {/* Variant A: Editorial split */}
             {heroVariant === 'editorial' && (
+            <>
             <div className="hero-editorial">
               <div className="hero-copy">
                 <div className="hero-eyebrow-row">
@@ -191,7 +198,7 @@ export default function App() {
                   <span className="stroke">call.</span>
                 </h1>
                 <p className="hero-sub">
-                  An AI receptionist for the trades. It answers every call 24/7, qualifies the job, books it into your diary, and texts you the details — while you're on the tools, up a ladder, or fast asleep. Professional website free on the yearly plan.
+                  An AI receptionist for the trades. It answers every call 24/7, qualifies the job, books it into your diary<span className="sub-clip">, and texts you the details</span> — while you're on the tools, up a ladder, or fast asleep.<span className="sub-tail"> Professional website free on the yearly plan.</span>
                 </p>
                 <div className="hero-cta">
                   <a href="#demo" className="btn btn-primary">Try it on your business <span className="btn-arrow"></span></a>
@@ -202,24 +209,25 @@ export default function App() {
                   <div><span className="num">No</span><span className="lbl">Contracts</span></div>
                 </div>
               </div>
+              {/* The demo IS the hero's right-hand column. One instance,
+                  mounted once: it must never unmount on a resize, or a live
+                  call would be cut off mid-sentence. The night report it
+                  replaced is now .hero-strip below (desktop) and .proof
+                  (phones). */}
               <div className="mockup-wrap">
-                <div className="hero-float-badge b1">call booked ✓</div>
-                <div className="hero-float-badge b2">answered in 2 rings</div>
-                {/* Night report — leads on the outcome (jobs booked) rather
-                    than the mechanism (a call being handled). */}
-                <div className="rc-card rc-report">
-                  <div className="cm-head"><span className="cm-dot"></span>Overnight · while you slept</div>
-                  <div className="report-grid">
-                    <div><span className="r-num">6/6</span><span className="r-lbl">Calls answered</span></div>
-                    <div><span className="r-num">3</span><span className="r-lbl">Jobs booked</span></div>
-                    <div><span className="r-num">0</span><span className="r-lbl">Voicemails</span></div>
-                    <div><span className="r-num">2</span><span className="r-lbl">Quotes requested</span></div>
-                  </div>
-                  <div className="report-foot">Every caller answered on the first ring</div>
-                </div>
+                <DemoWidget />
               </div>
             </div>
 
+            {/* Overnight numbers, full width along the bottom of the first
+                screen — the proof the hero used to carry in a card. */}
+            <div className="hero-strip">
+              <div><span className="hs-num">6/6</span><span className="hs-lbl">Overnight calls answered</span></div>
+              <div><span className="hs-num">3</span><span className="hs-lbl">Jobs booked in</span></div>
+              <div><span className="hs-num">0</span><span className="hs-lbl">Voicemails left</span></div>
+              <div><span className="hs-num">£149</span><span className="hs-lbl">A month, no contract</span></div>
+            </div>
+            </>
             )}
 
             {/* Variant B: Blocks / trade picker */}
@@ -335,8 +343,32 @@ export default function App() {
           </div>
         </section>
 
-        {/* ============ DEMO ============ */}
-        <DemoWidget />
+        {/* ============ PROOF (phones only) ============ */}
+        {/* The night report is the hero's right-hand column on desktop. On a
+            phone the hero gives that space to the demo form instead, so the
+            report gets its own section here rather than being dropped. No
+            number in the eyebrow — the numbered run (01–05) is the same on
+            both layouts and this section only exists on one of them. */}
+        <section className="proof">
+          <div className="container">
+            <div className="section-head">
+              <div>
+                <div className="eyebrow">Proof</div>
+                <h2 className="section-title">What happened while you slept.</h2>
+              </div>
+            </div>
+            <div className="rc-card rc-report">
+              <div className="cm-head"><span className="cm-dot"></span>Overnight · while you slept</div>
+              <div className="report-grid">
+                <div><span className="r-num">6/6</span><span className="r-lbl">Calls answered</span></div>
+                <div><span className="r-num">3</span><span className="r-lbl">Jobs booked</span></div>
+                <div><span className="r-num">0</span><span className="r-lbl">Voicemails</span></div>
+                <div><span className="r-num">2</span><span className="r-lbl">Quotes requested</span></div>
+              </div>
+              <div className="report-foot">Every caller answered on the first ring</div>
+            </div>
+          </div>
+        </section>
 
         {/* ============ SERVICES ============ */}
         <section id="services" className="services">
@@ -461,7 +493,22 @@ export default function App() {
             {/* One plan, two ways to pay. Yearly is the featured side: the
                 website is the yearly bonus, so the build cost is only ever
                 incurred once the year is paid up front. */}
-            <div className="tiers tiers-2">
+            <div className="billing-toggle" role="tablist" aria-label="Billing period">
+              {([['monthly', 'Monthly'], ['yearly', 'Yearly']] as const).map(([v, label]) => (
+                <button
+                  key={v}
+                  type="button"
+                  role="tab"
+                  aria-selected={billing === v}
+                  className={billing === v ? 'active' : ''}
+                  onClick={() => setBilling(v)}
+                >
+                  {label}{v === 'yearly' && <span className="bt-flag">2 mo free</span>}
+                </button>
+              ))}
+            </div>
+
+            <div className="tiers tiers-2" data-billing={billing}>
               <div className="tier">
                 <div className="tier-head">
                   <div>
@@ -755,6 +802,22 @@ export default function App() {
         </footer>
 
       </main>
+
+      {/* ============ THUMB BAR (phones only) ============ */}
+      {/* Price left, action right at 48px. The page is ~2600px tall on a
+          handset, so without this both the price and the CTA spend most of
+          the scroll off-screen. Fixed rather than sticky: it has no place in
+          the flow to stick to, and the footer carries matching bottom
+          padding so nothing sits under it. */}
+      <div className="thumb-bar">
+        <a href="#pricing" className="thumb-price">
+          <span className="tb-num">£149</span>
+          <span className="tb-lbl">per month</span>
+        </a>
+        <a href="#demo" className="btn btn-primary thumb-cta">
+          Hear it answer <span className="btn-arrow"></span>
+        </a>
+      </div>
 
       {/* ============ TWEAKS PANEL ============ */}
       <div className={`tweaks${tweaksOpen ? ' open' : ''}`}>
