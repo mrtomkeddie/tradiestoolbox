@@ -7,7 +7,7 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const PUBLIC = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'public');
-const ORANGE = '#FF6B00';
+const ORANGE = '#FF7A1A'; // must match --color-brand-orange in src/index.css
 
 // Tabler "tools" glyph (24x24), scaled ~11x and centred in a 512 tile, bold white stroke.
 const glyph = `<g transform="translate(124 124) scale(11)" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

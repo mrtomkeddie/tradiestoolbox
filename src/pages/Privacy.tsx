@@ -13,7 +13,7 @@ export default function Privacy() {
       <nav className="bg-white/90 backdrop-blur-md shadow-sm py-4 sticky top-0 z-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           <Link to="/">
-            <img src="/Logo (black).svg" alt="Tradies Toolbox" className="h-8 w-auto" />
+            <img src="/tt-logo-web-dark.svg" alt="Tradies Toolbox" className="h-8 w-auto" />
           </Link>
           <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-brand-slate hover:text-brand-dark transition-colors">
             <ArrowLeft className="w-4 h-4" />
@@ -109,7 +109,7 @@ export default function Privacy() {
       <footer className="bg-brand-dark text-gray-400 py-10 border-t border-white/10">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <Link to="/">
-            <img src="/Logo (white).svg" alt="Tradies Toolbox" className="h-7 w-auto" />
+            <img src="/tt-logo-web-white.svg" alt="Tradies Toolbox" className="h-7 w-auto" />
           </Link>
           <p className="text-xs">&copy; 2026 Tradies Toolbox. tradiestoolbox.co.uk</p>
         </div>

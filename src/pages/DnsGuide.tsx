@@ -76,7 +76,7 @@ export default function DnsGuide() {
           {/* Header */}
           <div className="dns-header">
             <div className="dns-brand">
-              <img src="/Logo (black).svg" alt="Tradies Toolbox" />
+              <img src="/tt-logo-web-dark.svg" alt="Tradies Toolbox" />
             </div>
             <h1>Your site is built.<br />Let's get it <em>live.</em></h1>
             <p className="dns-subtitle">
@@ -226,7 +226,7 @@ export default function DnsGuide() {
 
           {/* Footer */}
           <div className="dns-footer">
-            <img src="/Logo (black).svg" alt="Tradies Toolbox" />
+            <img src="/tt-logo-web-dark.svg" alt="Tradies Toolbox" />
             <span>Questions? Message us anytime.</span>
           </div>
 
