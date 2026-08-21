@@ -2678,3 +2678,25 @@ button.theme-toggle svg {
 /* With the stat row gone the CTA is last in the column, so its trailing
    margin is just dead height inside the tallest thing on the screen. */
 .hero-editorial .hero-cta { margin-bottom: 0; }
+
+/* =========================================================
+   PHONE HERO — last pass on what sits above the form
+
+   Everything here is measured against one number: where the first field
+   lands. The h1 is the pitch and the form is the action; the prose between
+   them is what gets cut when they compete for the same screen.
+   ========================================================= */
+@media (max-width: 640px) {
+  /* Two lines instead of four. The clause the .sub-clip span removes is
+     the imagery ("up a ladder, or fast asleep") — good copy, but the h1
+     directly above it already makes the same point. */
+  .hero[data-variant="editorial"] .hero-sub {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  /* The eyebrow above ("Try it live · 00") and the button below ("Build my
+     receptionist & talk to it") both say what this card is. A two-line
+     display heading between them is the third time. */
+  .mockup-wrap .demo .section-title { display: none; }
+  .mockup-wrap .demo .section-head { margin-bottom: 12px; }
+}

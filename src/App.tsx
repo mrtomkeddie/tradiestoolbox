@@ -198,7 +198,7 @@ export default function App() {
                   <span className="stroke">call.</span>
                 </h1>
                 <p className="hero-sub">
-                  An AI receptionist for the trades. It answers every call 24/7, qualifies the job, books it into your diary<span className="sub-clip">, and texts you the details</span> — while you're on the tools, up a ladder, or fast asleep.<span className="sub-tail"> Professional website free on the yearly plan.</span>
+                  An AI receptionist for the trades. It answers every call 24/7, qualifies the job, books it into your diary<span className="sub-clip">, and texts you the details — while you're on the tools, up a ladder, or fast asleep</span>.<span className="sub-tail"> Professional website free on the yearly plan.</span>
                 </p>
                 <div className="hero-cta">
                   <a href="#demo" className="btn btn-primary">Try it on your business <span className="btn-arrow"></span></a>
