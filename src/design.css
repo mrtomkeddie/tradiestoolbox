@@ -2135,24 +2135,8 @@ footer {
      below the demo — and the CTA row goes with it: the form sitting under
      the copy IS the call to action, and a button pointing at it would just
      scroll the reader past the thing it was pointing at. */
-  .hero[data-variant="editorial"] .hero-cta { display: none; }
-  /* The website line belongs to the yearly plan, which the pricing section
-     and the thumb bar both carry. One offer per screen on a phone. */
-  .sub-tail { display: none; }
-
-  /* The two trust numbers move off the first screen: the tape above the
-     nav already says "answered 24/7 · no contracts", and every pixel here
-     pushes the form further down. */
   .hero[data-variant="editorial"] .hero-sub { margin: 16px 0 16px; }
-  /* The hero grid's 60px column gap becomes a 60px row gap once it stacks,
-     and it lands squarely between the copy and the form. */
-  .hero-editorial { gap: 16px; }
-  /* Everything above the form is measured against one number: how far down
-     the page the first field lands. These three trims buy ~150px of it. */
   .hero[data-variant="editorial"] .hero-title { font-size: clamp(34px, 9.5vw, 40px); }
-  .sub-clip { display: none; }
-
-  .demo .section-head { margin-bottom: 12px; }
   .demo .section-lede { display: none; }
   .hero-eyebrow-row {
     gap: 10px;
@@ -2686,17 +2670,32 @@ button.theme-toggle svg {
    lands. The h1 is the pitch and the form is the action; the prose between
    them is what gets cut when they compete for the same screen.
    ========================================================= */
-@media (max-width: 640px) {
-  /* Two lines instead of four. The clause the .sub-clip span removes is
-     the imagery ("up a ladder, or fast asleep") — good copy, but the h1
-     directly above it already makes the same point. */
-  .hero[data-variant="editorial"] .hero-sub {
-    font-size: 16px;
-    line-height: 1.45;
-  }
+/* 1000px is where .hero-editorial drops to one column. From here down the
+   form sits under the copy rather than beside it, so every line of prose
+   between the two is a line the reader scrolls past to reach the thing the
+   page is asking them to do. Tablets were getting the stacked layout with
+   the full desktop copy still in it — form at 729px on an iPad. */
+@media (max-width: 1000px) {
+  /* Two lines instead of five. .sub-clip holds the imagery ("up a ladder,
+     or fast asleep") and .sub-tail the website offer — the h1 above makes
+     the first point and the pricing section makes the second. */
+  .sub-clip { display: none; }
+  .sub-tail { display: none; }
+  /* The grid's 60px column gap becomes a row gap once it stacks, landing
+     squarely between the copy and the form. */
+  .hero-editorial { gap: 16px; }
+  /* The CTA pointed at #demo, which is now the hero it sits in. */
+  .hero[data-variant="editorial"] .hero-cta { display: none; }
   /* The eyebrow above ("Try it live · 00") and the button below ("Build my
      receptionist & talk to it") both say what this card is. A two-line
      display heading between them is the third time. */
   .mockup-wrap .demo .section-title { display: none; }
   .mockup-wrap .demo .section-head { margin-bottom: 12px; }
+}
+
+@media (max-width: 640px) {
+  .hero[data-variant="editorial"] .hero-sub {
+    font-size: 16px;
+    line-height: 1.45;
+  }
 }
